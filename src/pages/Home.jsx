@@ -17,7 +17,7 @@ import note from "../images/note.png"
 import mini from "../images/mini.png"
 import great from "../images/great.png"
 import post from "../images/post.png"
-import notess from "../images/notes.png"
+import notess from "../images/notess.png"
 function Home() {
   const navigate=useNavigate()
     let folders=useSelector(state=>state.noted.Folders)

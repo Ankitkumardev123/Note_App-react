@@ -1,0 +1,17 @@
+import searchicon from './images/searchicon.png'
+import save from "./images/save.png"
+import user from "./images/user.png"
+import logout from "./images/logout.png"
+import login from "./images/login.png"
+import Menu from "./images/menu.png"
+import pencils from "./images/pencils.png"
+import post from "./images/post.png"
+import folder from "./images/folder.png"
+import note from "./images/note.png"
+import notes from "./images/notes.png"
+import eye1 from "./images/eye1.png"
+import eye2 from "./images/eye2.png"
+import close from "./images/close.png"
+import facebook from "./images/facebook.png"
+import google from "./images/google.png"
+export {user,save,searchicon,logout,login,Menu,pencils,eye1,eye2,post,folder,note,notes,close,facebook,google};

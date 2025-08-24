@@ -5,8 +5,11 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { setcurentuser, setloginuser,setlogined } from '../noteslice/noteslices'
 import {  collection, getDocs, query,where} from "firebase/firestore"; 
-import { google,eye1,eye2,facebook } from '../icon'
 
+import eye2 from "../images/eye2.png"
+import eye1 from "../images/eye1.png"
+import google from "../images/google.png"
+import facebook from "../images/facebook.png"
 function Login() {
   const [visible, setvisible] = useState(false)
   const [user_logindata, setuserdata] = useState('')

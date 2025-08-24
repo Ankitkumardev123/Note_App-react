@@ -5,7 +5,13 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import gsap from 'gsap'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { Auth } from '../firebase/firebase.js'
-import {user,logout,login,note,close,Menu} from "../icon.js"
+
+import close from "../images/close.png"
+import  logout from "../images/logout.png"
+import  login from "../images/login.png"
+import note from "../images/note.png"
+import Menu from "../images/menu.png"
+import user from "../images/user.png"
 function Navbar() {
   const navigate=useNavigate()
   const userdata=useSelector(state=>state.noted.currentuser)

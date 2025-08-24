@@ -1,8 +1,12 @@
 import React,{useEffect, useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { addNote,deletefolder, updatefolder,setselectfolder,setselectednote} from '../noteslice/noteslices'
-import { folder,close,pencils,save,post } from '../icon'
 
+import close from "../images/close.png"
+import folder from "../images/folder.png"
+import pencils from "../images/pencils.png"
+import post from "../images/post.png"
+import save from "../images/save.png"
 function Folder({fold,set1,searchmsg}) {
     const [visible, setvisible] = useState(false)
     const [edit, setedit] = useState(false)

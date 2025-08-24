@@ -1,8 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import {deletenote,updatenote,setselectednote,setselectfolder} from '../noteslice/noteslices'
 import { useDispatch,useSelector } from 'react-redux'
-import {close,pencils,save,post } from '../icon'
 
+import close from "../images/close.png"
+
+import pencils from "../images/pencils.png"
+import post from "../images/post.png"
+import save from "../images/save.png"
 function Note({not,items,searchmsg_note}) {
   const [visible, setvisible] = useState(false)
     const [edit, setedit] = useState(false)

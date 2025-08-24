@@ -5,7 +5,10 @@ import { setcurentuser, setlogined } from '../noteslice/noteslices'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { Auth } from '../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
-import { google,eye1,eye2,facebook } from '../icon'
+import eye2 from "../images/eye2.png"
+import eye1 from "../images/eye1.png"
+import google from "../images/google.png"
+import facebook from "../images/facebook.png"
 
 function Signup() { 
   const[visible,setvisible]=useState(false)

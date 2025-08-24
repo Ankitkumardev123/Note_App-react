@@ -9,7 +9,15 @@ import {oneDark} from '@uiw/react-codemirror'
 import { markdown } from '@codemirror/lang-markdown'
 import { EditorView } from '@uiw/react-codemirror'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { close,folder,post,searchicon,notes,note,mini,great } from '../icon'
+
+import close from "../images/close.png"
+import folder from "../images/folder.png"
+import searchicon from "../images/searchicon.png"
+import note from "../images/note.png"
+import mini from "../images/mini.png"
+import great from "../images/great.png"
+import post from "../images/post.png"
+import notess from "../images/notes.png"
 function Home() {
   const navigate=useNavigate()
     let folders=useSelector(state=>state.noted.Folders)
@@ -259,7 +267,7 @@ function Home() {
             </div>
              <div className='a a1 w-[30%] text-center gap-[1rem] h-[20%] flex items-center justify-start flex-col'>
                <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
-                <img src={notes} alt="" className='w-[10vmin]'/>
+                <img src={notess} alt="" className='w-[10vmin]'/>
                 <span>Edit Notes</span></span>
                 <p className='p text-white text-[4vmin]  w-[80%] text-center'>Keep your notes fresh by editing them whenever inspiration strikes...</p>
             </div>

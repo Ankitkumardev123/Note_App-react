@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+  margin: 0;
+  padding: 0;
+  color:rgb(255, 255, 255);
+  
+}
+body{
+  width: 100vw;
+  height: 100vh;
+  background-color:  #010614 ;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4{
+  cursor:default;
+}
+@media(max-width:1204px){
+.infobar{
+  margin-top: 2rem;
+  width: 80%;
+  flex-direction: column;
+  height: 60%;
+  
+  justify-content: center;
+  gap:10%;
+}
+
+.a{
+ width: 100%; 
+ 
+}
+.p{
+  width: 100%;
+}
+.a1{
+  margin-top: 5%;
+}
+
+}
+@media(max-width:1024px){
+.nav {
+  gap: 0%;
+  gap: 4%;
+  
+}
+.edit{
+  width: 80vw;
+}
+.navl{
+  font-size: 3.5vmin;
+}
+.user{
+width: 65vmin;
+}
+.total{
+  height: 25%;
+}
+.login{
+  width: 50%;
+}
+.eye{
+  right: 30%;
+}
+}
+@media(max-width:800px){
+.infobar{
+  margin-top: 5rem;
+}
+
+
+}
+@media(max-width:568px){
+.infobar{
+  margin-top: 0rem;
+}
+.total{
+  height: 20%;
+}
+.notes,.folders{
+  gap: 0;
+
+}
+.nots,.fols{
+  height: 5.5%;
+}
+.head{
+  height: 8%;
+}
+.login{
+  width: 80%;
+}
+.eye{
+  right: 18%;
+}
+}
+@media(max-width:425px){
+  .t{
+    height: 42%;
+  }
+  .infobar{
+    margin-top: 0rem;
+  }
+}

@@ -18,7 +18,10 @@ const router=createBrowserRouter(
             <Route  path='/contact' element={<Contact/>} />
            
         </Route>
-    )
+    ),
+    {
+        basename:'/Note_App-react/'
+    }
 )
 createRoot(document.getElementById('root')).render(
    <Provider store={store}>

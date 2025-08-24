@@ -27,7 +27,7 @@ const initialState={
 const handledata=async(data)=>{
 
    await addDoc(collection(database, "users"), {...data});
-   console.log("Created data")
+   
 }
 
 
@@ -163,7 +163,7 @@ const notesslices=createSlice({
             state.currentuser={...state.currentuser,user_folders:state.Folders}
         },
         setloginuser:(state,action)=>{
-            console.log("loginuser")
+            
             state.currentuser={...action.payload}
         }
        

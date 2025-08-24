@@ -5,6 +5,7 @@ import { setcurentuser, setlogined } from '../noteslice/noteslices'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { Auth } from '../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
+import { google,eye1,eye2,facebook } from '../icon'
 
 function Signup() { 
   const[visible,setvisible]=useState(false)
@@ -99,7 +100,7 @@ function Signup() {
               <div className=' w-[100%] h-[30%]  flex justify-right items-center'>
                 <input type={visible?"text":"password"} value={user_password} onChange={e=>setpassword(e.target.value)} placeholder='Enter a password...' className='h-[100%] text-[3vmin] 
                 outline-none p-0.5 bg-transparent border-b-orange-500 border-b-2 w-[100%] text-white placeholder:text-white'/>
-              <img src={visible?"/src/images/eye-care.png":"/src/images/eye-off.png"} alt="" className='eye1 absolute w-[5vmin]  z-[5]  right-[9%] duration-200' onClick={()=>setvisible(prev=>!prev)}/>
+              <img src={visible?eye2:eye1} alt="" className='eye1 absolute w-[5vmin]  z-[5]  right-[9%] duration-200' onClick={()=>setvisible(prev=>!prev)}/>
               </div>
               </span>
               <div className='text-[2vmin] w-[90%] h-[10%]   flex items-start justify-center flex-col gap-1'>
@@ -114,12 +115,12 @@ function Signup() {
               <div className='w-[90%] h-[20%]  flex-col justify-center items-center  mb-2  '>
                 
                 <span className='flex w-full h-[40%] bg-white  rounded-md justify-center items-center gap-1'>
-                <img src="src\images\google.png"  className='w-[4.5vmin] h-[4.5vmin]  ' alt="" />
+                <img src={google}  className='w-[4.5vmin] h-[4.5vmin]  ' alt="" />
 
                 <h5 className='text-black text-[1rem] font-semibold'>Signup With Google</h5>
                 </span>
                 <span className='flex w-full h-[40%] bg-blue-700 rounded-md justify-center items-center gap-1 mt-4'>
-                <img src="src\images\facebook.png"  className='w-[7vmin] h-[7vmin]' alt="" />
+                <img src={facebook}  className='w-[7vmin] h-[7vmin]' alt="" />
                 <h5 className='text-[1rem] font-semibold'> Signup With Facebook</h5>
                 </span>
               </div>

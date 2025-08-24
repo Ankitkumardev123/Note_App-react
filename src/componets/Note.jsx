@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import {deletenote,updatenote,setselectednote,setselectfolder} from '../noteslice/noteslices'
 import { useDispatch,useSelector } from 'react-redux'
+import {close,pencils,save,post } from '../icon'
+
 function Note({not,items,searchmsg_note}) {
   const [visible, setvisible] = useState(false)
     const [edit, setedit] = useState(false)
@@ -43,7 +45,7 @@ function Note({not,items,searchmsg_note}) {
   return (
     <div className={`nots w-[100%] h-[5.5%] text-center flex-shrink-0  flex justify-center  items-center  pl-1 ${visible?'hidden':''}`}>
         <span className='flex w-[100%] h-[100%] justify-center items-center'>
-        <img src="src\images\post-it.png" className='w-[5.5vmin] h-[5.5vmin]  ' alt="" onClick={()=>{
+        <img src={post} className='w-[5.5vmin] h-[5.5vmin]  ' alt="" onClick={()=>{
           
     
         if(not.id==selected_note?.id)
@@ -58,7 +60,7 @@ function Note({not,items,searchmsg_note}) {
         </span>
         <span className={`flex w-[45%] h-[100%]  items-center justify-right flex-row
          ${edit?"":"hidden"}`}>
-            <img src={rename?'src/images/pencils.png':'src/images/save.png'} alt=""
+            <img src={rename?pencils:save} alt=""
                 onClick={()=>{setrename(prev=>!prev)
                   if(rename==false){
                     const prop={
@@ -68,7 +70,7 @@ function Note({not,items,searchmsg_note}) {
                   }
                   
                 }} className='w-[4.5vmin]  rounded-lg duration-200'/>
-            <img src='src/images/close (1).png'  alt="" className='w-[4.5vmin]  rounded-lg 'onClick={()=>{dispatch(deletenote({id:not.id,folid:selectedfolderid} ))
+            <img src={close}  alt="" className='w-[4.5vmin]  rounded-lg 'onClick={()=>{dispatch(deletenote({id:not.id,folid:selectedfolderid} ))
             
              dispatch(setselectednote(null))
           }}/>

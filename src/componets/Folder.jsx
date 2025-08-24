@@ -1,6 +1,8 @@
 import React,{useEffect, useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { addNote,deletefolder, updatefolder,setselectfolder,setselectednote} from '../noteslice/noteslices'
+import { folder,close,pencils,save,post } from '../icon'
+
 function Folder({fold,set1,searchmsg}) {
     const [visible, setvisible] = useState(false)
     const [edit, setedit] = useState(false)
@@ -53,7 +55,7 @@ useEffect(()=>{
     <div className={`fols w-[100%] h-[5.5%]   flex justify-center  items-center  pl-1 ${visible?'hidden':''}`}
     >
         <span className=' w-[100%] h-[100%] flex justify-center items-center'>
-        <img src="src\images\mini.png" className={`w-[5.5min] h-[5.5vmin]  ${fold.id==1?"grayscale":''} `} alt="" onClick={()=>{
+        <img src={folder} className={`w-[5.5min] h-[5.5vmin]  ${fold.id==1?"grayscale":''} `} alt="" onClick={()=>{
              dispatch(setselectednote(null))
             if(selected_folder==fold.id)
             dispatch(setselectfolder(null))
@@ -79,7 +81,7 @@ useEffect(()=>{
         </span>
         <span className={`flex w-[60%] h-[100%]  items-center justify-center flex-row
          ${edit?"":"hidden"}`}>
-            <img src='src/images/close (1).png' alt="" className={`w-[5vmin] p-0.5 rounded-lg duration-200 ${create?"-rotate-90":'rotate-45'}`} onClick={()=>{
+            <img src={close} alt="" className={`w-[5vmin] p-0.5 rounded-lg duration-200 ${create?"-rotate-90":'rotate-45'}`} onClick={()=>{
                 
                 setcreate(prev=>!prev)
                 setnote_title('')
@@ -88,7 +90,7 @@ useEffect(()=>{
             )
             }
                 }}/>
-            <img src={rename?'src/images/pencils.png':'src/images/save.png'} alt=""
+            <img src={rename?pencils:save} alt=""
                 onClick={()=>{setrename(prev=>!prev) 
                    
                      dispatch(setselectfolder(fold.id))
@@ -99,7 +101,7 @@ useEffect(()=>{
                         dispatch(updatefolder({folid:fold.id,prop}))
                     }
                 }} className={fold.id==1?"hidden":'w-[5vmin] p-0.5 rounded-lg duration-200'}/>
-            <img src='src/images/close (1).png'  alt="" className={fold.id==1?"hidden":'w-[5vmin] p-0.5 rounded-lg'}
+            <img src={close}  alt="" className={fold.id==1?"hidden":'w-[5vmin] p-0.5 rounded-lg'}
             onClick={()=>{dispatch(deletefolder({id:fold.id}))
               dispatch(setselectfolder(null))
               dispatch(setselectednote(null))
@@ -107,7 +109,7 @@ useEffect(()=>{
         </span>
     </div>
     <div className={`w-[100%] h-[7%]  flex justify-center  items-center ${create?"":"hidden"}`}>
-         <img src="src\images\post-it.png" className='w-[5vmin] h-[5vmin] ' alt="" />
+         <img src={post} className='w-[5vmin] h-[5vmin] ' alt="" />
         <input readOnly={false} type="text" value={note_title} 
  onChange={(e)=>{
     setnote_title(e.target.value)}

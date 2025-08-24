@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { setcurentuser, setloginuser,setlogined } from '../noteslice/noteslices'
 import {  collection, getDocs, query,where} from "firebase/firestore"; 
-
+import { google,eye1,eye2,facebook } from '../icon'
 
 function Login() {
   const [visible, setvisible] = useState(false)
@@ -73,7 +73,7 @@ function Login() {
              <div className='realtive w-[100%] h-[40%] flex justify-right items-center'>
                 <input type={visible?"text":"password"} value={user_password} onChange={(e)=>setpassword(e.target.value)} placeholder='Enter password...' className='
                 outline-none  bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[100%] text-white placeholder:text-white text-[1.2rem]'/>
-              <img src={visible?"/src/images/eye-care.png":"/src/images/eye-off.png"} alt="" className='eye absolute w-[1.7rem] right-[37%] flex duration-200 pb-1' onClick={()=>setvisible(prev=>!prev)}/>
+              <img src={visible?eye2:eye1} alt="" className='eye absolute w-[1.7rem] right-[37%] flex duration-200 pb-1' onClick={()=>setvisible(prev=>!prev)}/>
               </div>
               </span>
               <div className='text-[2.5vmin] w-[90%] h-[5%]  flex items-center justify-center '>
@@ -92,11 +92,11 @@ function Login() {
               <div className='w-[90%] h-[25%]  flex-col justify-center items-center  mt-1 gap-[5%] '>
                 
                 <span className='flex w-full h-[40%] bg-white  rounded-md justify-center items-center gap-1'>
-                <img src="src\images\google.png"  className='w-[4.5vmin] h-[4.5vmin] ml-3' alt="" />
+                <img src={google}  className='w-[4.5vmin] h-[4.5vmin] ml-3' alt="" />
                 <h5 className='text-black text-[1rem] font-semibold'>Login With Google</h5>
                 </span>
                 <span className='flex w-full h-[40%] bg-blue-700 rounded-md justify-center items-center gap-1 mt-4'>
-                <img src="src\images\facebook.png"  className='w-[15%] h-[100%]' alt="" />
+                <img src={facebook}  className='w-[15%] h-[100%]' alt="" />
                 <h5 className='text-[1rem] font-semibold'> Login With Facebook</h5>
                 </span>
               </div>

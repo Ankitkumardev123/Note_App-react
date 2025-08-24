@@ -9,6 +9,7 @@ import {oneDark} from '@uiw/react-codemirror'
 import { markdown } from '@codemirror/lang-markdown'
 import { EditorView } from '@uiw/react-codemirror'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { close,folder,post,searchicon,notes,note,mini,great } from '../icon'
 function Home() {
   const navigate=useNavigate()
     let folders=useSelector(state=>state.noted.Folders)
@@ -111,18 +112,18 @@ function Home() {
     flex-row${islogined?"":'hidden'}`}>
     <div className='w-[50%] h-[100%] flex justify-center flex-col items-center bg-black border-r-2  border-orange-500 '>
     <span className='head w-[100%] h-[10%] flex items-center  justify-left pl-1  '>
-    <img src="src\images\folder.png" className='w-[7vmin] h-[7vmin]  mb-1' alt="" />
+    <img src={folder} className='w-[7vmin] h-[7vmin]  mb-1' alt="" />
     <h1 className='flex text-center text-[5vmin] text-orange-500  w-[50%] font-semibold font-mono justify-left items-center ' >Folders</h1>
 
     <span className='ml-1 flex b w-[50%] justify-center items-center gap-2 h-[100%]'>
       
-      <img src="src/images/close (1).png" className={`w-[26%]  rotate-45 duration-200 ${create?"rotate-90":"rotate-45"}`} alt="" onClick={()=>{
+      <img src={close} className={`w-[26%]  rotate-45 duration-200 ${create?"rotate-90":"rotate-45"}`} alt="" onClick={()=>{
         setsearch(false)
         setcreate(prev=>!prev)
       if(create==true)
         setmsg('')
       }} />
-      <img src={`${!search?"src/images/search (1).png":"src/images/close (1).png"}`} className={`w-[26%]  duration-200 `} alt="" onClick={()=>{
+      <img src={`${!search?searchicon:close}`} className={`w-[26%]  duration-200 `} alt="" onClick={()=>{
         setcreate(false)
         setsearch(prev=>!prev)
       if(search==true)
@@ -131,7 +132,7 @@ function Home() {
     </span>
     </span>
     <span className={`flex w-[100%] h-[7%]  justify-center  items-center duration-400 mb-2 pl-2 ${create?"":"hidden"}  `}>
-     <img src="src\images\mini.png" value={msg} className='w-[5vmin] h-[5vmin]' alt="" />
+     <img src={mini} value={msg} className='w-[5vmin] h-[5vmin]' alt="" />
     <input type="text" value={msg} className={`w-[50%] text-orange-500 outline-none border-0 border-b-4 bg-transparent ${create?"":"hidden"} text-[3vmin] `} placeholder='Give a name..'onChange={e=>setmsg(e.target.value)} onKeyDown={e=>{
       if(e.key==="Enter"){
         
@@ -159,7 +160,7 @@ function Home() {
      
     </span>
      <span className={`flex w-[100%] justify-start ml-2 items-center duration-400 ${search?"":"hidden"}  pl-2`}>
-       <img src="src/images/search (1).png" className={`w-[5vmin] h-[5vmin] mr-1`}/>
+       <img src={searchicon} className={`w-[5vmin] h-[5vmin] mr-1`}/>
     <input type="text" value={Search_msg} className={`w-[70%] text-orange-500 outline-none border-0 border-b-4 bg-transparent text-[3vmin] `} placeholder='Enter folder name... 'onChange={e=>setsearch_msg(e.target.value)} 
      onKeyDown={e=>{
       if(e.key=="Enter")
@@ -184,15 +185,15 @@ function Home() {
     </div>
      <div className={`w-[50%] duration-400 h-[100%] flex flex-col items-center bg-black ${folders?"":'hidden'}`}>
      <span className='w-[100%] h-[5%] flex items-center pt-2  justify-start  pl-0.5 mb-2 mt-0.5'>
-      <img src="src\images\note.png" className='w-[6vmin] h-[6vmin] ' alt="" />
+      <img src={note} className='w-[6vmin] h-[6vmin] ' alt="" />
      <h1 className='flex text-center text-[5vmin] text-orange-500   font-semibold font-mono justify-left items-center ' >Notes</h1>
-      <img src={`${!search_note?"src/images/search (1).png":"src/images/close (1).png"}`} className={`w-[10%]   duration-400 ml-10 ${selectedfolder?? 'hidden'}`} alt="" onClick={()=>{setsearch_note(prev=>!prev)
+      <img src={`${!search_note?searchicon:close}`} className={`w-[10%]   duration-400 ml-10 ${selectedfolder?? 'hidden'}`} alt="" onClick={()=>{setsearch_note(prev=>!prev)
       if(search==true)
         setsearch_notemsg('')
       }} />
      </span>
      <span className={`flex w-[100%] bg-red justify-start ml-5 pb-2 items-center duration-400 ${search_note?"":"hidden"}  `}>
-      <img src="src/images/search (1).png" className={`w-[4vmin] h-[4vmin] `}/>
+      <img src={searchicon} className={`w-[4vmin] h-[4vmin] `}/>
     <input type="text" value={Search_notemsg} className={`w-[60%] text-orange-500 outline-none border-0 border-b-4 bg-transparent text-[3vmin] `} placeholder='Enter note name...'onChange={e=>setsearch_notemsg(e.target.value)} 
      onKeyDown={e=>{
       if(e.key=="Enter")
@@ -202,7 +203,7 @@ function Home() {
      }} />
     </span>
     <span className='ml-3 w-[100%] flex text-center h-[5%] justify-start gap-[1%]' ref={ani}>
-      <img src="src/images/mini.png" className={`w-[4vmin] h-[4vmin] mb-1 ${selectedfolder??"hidden"}`}alt=""/>
+      <img src={mini} className={`w-[4vmin] h-[4vmin] mb-1 ${selectedfolder??"hidden"}`}alt=""/>
       <h2 className={`text-white text-[2.5vmin] h-[100%] $ ${selectedfolder??"hidden"}`}>{
       selectedfolder?.folname }</h2>
       <h2 className={`text-orange font-semibold  text-[2.5vmin] text-center w-[100%] h-[90%]   ${selectedfolder??"hidden"}`}>Total Notes-{selectedfolder?.notes?.length}</h2>
@@ -227,7 +228,7 @@ function Home() {
       setslider(slide)
       dispatch(menubartoggle(false))
     }}>
-      <img src="src\images\greater-than.png" alt="" className={`duration-200 ${slide?"rotate-0":"rotate-180"}`} />
+      <img src={great} alt="" className={`duration-200 ${slide?"rotate-0":"rotate-180"}`} />
       
       </button>
      </div>
@@ -248,17 +249,17 @@ function Home() {
         <div className='infobar mt-2  w-[100%] h-[40%]   flex items-start justify-center flex-row ' >
             <div className='a w-[30%] gap-[1rem] text-center  h-[20%] flex items-center justify-start flex-col'>
                <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
-                <span className='flex justify-center items-center h-[20%]'><img src="src\images\note.png" alt="" className='w-[10vmin]'/>New Notes</span></span>
+                <span className='flex justify-center items-center h-[20%]'><img src={note} alt="" className='w-[10vmin]'/>New Notes</span></span>
                 <p className='p text-white text-[4vmin]  w-[70%] text-center'>Write down anything instantly,with diffrent styling...</p>
             </div>
             <div className='a w-[30%] text-center gap-[1rem]  h-[20%] flex items-center justify-start flex-col'>
                <span className='a w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
-                <img src="src\images\folder.png" alt="" className='w-[10vmin]'/><span>Sort Easily</span></span>
+                <img src={folder} alt="" className='w-[10vmin]'/><span>Sort Easily</span></span>
                 <p className='p text-white text-[4vmin]  w-[90%] text-center'>Sort your Notes with tags and folders,search instantly and keep everything neat and accessible...</p>
             </div>
              <div className='a a1 w-[30%] text-center gap-[1rem] h-[20%] flex items-center justify-start flex-col'>
                <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
-                <img src="src\images\notes.png" alt="" className='w-[10vmin]'/>
+                <img src={notes} alt="" className='w-[10vmin]'/>
                 <span>Edit Notes</span></span>
                 <p className='p text-white text-[4vmin]  w-[80%] text-center'>Keep your notes fresh by editing them whenever inspiration strikes...</p>
             </div>
@@ -267,7 +268,7 @@ function Home() {
      <div className={`fixed  top-[8%]  h-[100vh] z-5 left-0 w-[100vw] flex justify-center items-center  flex-col $
       ${islogined?"":'hidden'}`}> 
       <span className={`flex h-[20%] w-[100%] justify-center items-center ${selected_note?"hidden":""}`}>
-        <img src="src\images\note.png" alt=""  width={'50vmin'} height={'50vmin'} />
+        <img src={note} alt=""  width={'50vmin'} height={'50vmin'} />
       <h1 className='text-[8vmin] font-semibold duration-200'>No note selected. Start by picking or creating one!</h1>
       </span>
         
@@ -279,9 +280,10 @@ function Home() {
 
         <span className='flex w-[100%] h-[100%] justify-start items-center flex-row  pl-1 '>
           <h5 className='text-[2vmin]'>Created - {selected_note?.time}</h5>
-          <span className='flex w-[50%] h-[20%]  items-center justify-center text-[2vmin]'><img src="src\images\mini.png" alt="" className='w-[3vmin]' />
+          <span className='flex w-[50%] h-[20%]  items-center justify-center text-[2vmin]'>
+            <img src={mini} alt="" className='w-[3vmin]' />
           <h5>{selectedfolder?.folname} \ </h5>
-          <img src="src\images\post-it.png" alt=""  className='w-[3vmin]'  />
+          <img src={post} alt=""  className='w-[3vmin]'  />
           <h5>{selected_note?.note_name}</h5>
           </span>
           <h5 className='text-[2vmin] w-[20%] text-center'>Total characters:{length}</h5>

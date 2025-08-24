@@ -1,6 +1,7 @@
 import searchicon from './images/searchicon.png'
 import save from "./images/save.png"
 import user from "./images/user.png"
+import mini from "./images/mini.png"
 import logout from "./images/logout.png"
 import login from "./images/login.png"
 import Menu from "./images/menu.png"
@@ -14,4 +15,5 @@ import eye2 from "./images/eye2.png"
 import close from "./images/close.png"
 import facebook from "./images/facebook.png"
 import google from "./images/google.png"
-export {user,save,searchicon,logout,login,Menu,pencils,eye1,eye2,post,folder,note,notes,close,facebook,google};
+import great from "./images/great.png"
+export {user,save,searchicon,mini,logout,great,login,Menu,pencils,eye1,eye2,post,folder,note,notes,close,facebook,google};

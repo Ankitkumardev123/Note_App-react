@@ -5,7 +5,7 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import gsap from 'gsap'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { Auth } from '../firebase/firebase.js'
-
+import {user,logout,login,note,close,Menu} from "../icon.js"
 function Navbar() {
   const navigate=useNavigate()
   const userdata=useSelector(state=>state.noted.currentuser)
@@ -96,7 +96,7 @@ function Navbar() {
      <div ref={slider} className='user slide absolute flex overflow-x-hidden overflow-y-auto scrollbar-hide gap-2 
       justify-start items-center  flex-col w-[70vmin] top-[8.4%]  h-[100vh]
      bg-black bg-opacity-100 z-[30] rounded-r-xl border-4 border-white border-l-0'>
-    <img src={userdata.profile_pic ??'src/images/user.png'} 
+    <img src={userdata.profile_pic ??user} 
     className={`w-[20vmin] h-[20vmin] mt-2 rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
     <label htmlFor="input-file" className={`bg-orange-500 py-1 px-3 text-[3vmin] font-semibold hover:bg-orange-600 transition-all shadow-sm rounded-lg border-[0.5vmin]
        ${islogined?'':'hidden'}`}>Update image</label>
@@ -126,7 +126,7 @@ function Navbar() {
     <div className='h-[1%] w-[90%] rounded-full bg-orange-600 text-black '> jjj </div>
      <div className='total w-[90%] h-[22%] flex   justify-left flex-col   gap-3'>
     <span className='flex items-center  '>
-      <img src="src\images\note.png" className='w-[6vmin] h-[6vmin]' alt="" />
+      <img src={note} className='w-[6vmin] h-[6vmin]' alt="" />
     <h1 className='text-orange-600 text-[5vmin] pt-0.5 font-semibold font-mono' >Notes</h1></span>
      <span className='w-[100%] flex items-center'>
       <h2 className='text-gray-400 w-[50%] font-semibold text-[3vmin]'>Total notes</h2>
@@ -157,13 +157,13 @@ function Navbar() {
       }
       else
         navigate('/login')
-     }}><img src={islogined?"src/images/logout.png":"src/images/login.png"} className='w-[5vmin] h-[5vmin] mt-1' alt="" 
+     }}><img src={islogined?logout:login} className='w-[5vmin] h-[5vmin] mt-1' alt="" 
     
      />Log<span className='text-orange-600'>{islogined?"out":"in"}</span></button>
     </div>
     <div className='fixed gap-[10%]  border-2 flex flex-row items-center rounded-lg bg-black w-[100vw] h-[8vh] top-[0%] left-0 right-0'>
         <span className='flex items-center justify-left pl-2'>
-          <img src={menu?"src/images/close (1).png":"src/images/menu.png"} className='img w-[6vmin] h-[6vmin] z-50 p-0.5' alt="" onClick={()=>{
+          <img src={menu?close:Menu} className='img w-[6vmin] h-[6vmin] z-50 p-0.5' alt="" onClick={()=>{
             handleclick()
           }
           }/>

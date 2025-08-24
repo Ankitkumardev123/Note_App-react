@@ -12,7 +12,7 @@ import Contact from "./pages/Contactus";
 const router=createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<App/>}>
-            <Route  path='' element={<Home/>} />
+            <Route  path='/' element={<Home/>} />
             <Route  path='/login' element={<Login/>} />
             <Route  path='/signup' element={<Signup/>} />
             <Route  path='/contact' element={<Contact/>} />

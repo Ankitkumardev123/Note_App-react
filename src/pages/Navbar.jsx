@@ -44,7 +44,7 @@ function Navbar() {
       })
    },[])
    useEffect(()=>{
-  
+    if(img_user !=null)
     dispatch(setprofilepic(img_user))
       
    },[img_user])
@@ -101,9 +101,9 @@ function Navbar() {
     <>
      <div ref={slider} className='user slide absolute flex overflow-x-hidden overflow-y-auto scrollbar-hide gap-2 
       justify-start items-center  flex-col w-[70vmin] top-[8.4%]  h-[100vh]
-     bg-black bg-opacity-100 z-[30] rounded-r-xl border-4 border-white border-l-0'>
+     bg-black bg-opacity-100 z-[30] rounded-r-xl border-4 border-white border-l-0 py-1'>
     <img src={userdata.profile_pic ??user} 
-    className={`w-[20vmin] h-[20vmin] mt-2 rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
+    className={`  w-[20vmax] h-[20vmax]   rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
     <label htmlFor="input-file" className={`bg-orange-500 py-1 px-3 text-[3vmin] font-semibold hover:bg-orange-600 transition-all shadow-sm rounded-lg border-[0.5vmin]
        ${islogined?'':'hidden'}`}>Update image</label>
     <input type="file" name="" id="input-file" accept='image/jpeg,image/png,image/jpg '  className='hidden'  onChange={(e)=>{handleimage(e.target.files[0])

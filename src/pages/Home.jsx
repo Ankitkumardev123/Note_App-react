@@ -243,7 +243,7 @@ function Home() {
     </div>
     <div className={`absolute  top-[7%] z-[1]   h-[110vh] gap-1 w-[100vw] flex   justify-start items-center  flex-col ${islogined?"hidden":''}`}>
       <div className='t w-[100%] h-[50%] flex flex-col items-center justify-start gap-2  py-1'>
-       <h1 className='text-white text-[10vmin] pt-1 w-fit'>Welcome to <span className='text-white font-serif '>My</span>
+       <h1 className='text-white text-[10vmin] pt-1 w-[100%] text-center'>Welcome to <span className='text-white font-serif '>My</span>
             <span className='text-orange-500 text-[9vmin]'>Note</span></h1>
         <p className='text-white text-[5vmin] w-[50%] text-center'>Your personal space to save ,edit and organize your thoughts securely and safely...</p>
         <button

@@ -79,15 +79,15 @@ function Signup() {
     </div>
    }
     <form onSubmit={handlelogin}>
-   <div className='fixed  top-[8%]  h-[100vh] w-[100vw]  flex justify-center items-center  flex-col gap-2'>
+   <div className='absolute z-[1]  top-[8%]  h-[100vh] w-[100vw]  flex justify-center items-center  flex-col gap-2'>
     <h1 className='absolute top-[1%] left-[2%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
             <span className='text-orange-700 text-[6vmin]'>Note</span></h1>
-            <div className='login absolute w-[35%] h-[80%]  bg-black rounded-xl border-2 mt-5 border-white flex justify-start items-center flex-col gap-[2%]'>
+            <div className='login signup absolute w-[35%] h-[82%]  bg-black rounded-xl border-2 mt-5 border-white flex justify-start items-center flex-col gap-[2%]'>
               <h1 className='text-white font-semibold text-[5vmin] font-mono  mt-2 h-[7%] text-center '><span>Sign</span><span className='text-orange-500'>up</span></h1>
               <span className='w-[90%] flex items-center h-[40%]   gap-[10%] justify-start flex-col'>
               <input value={user_name} onChange={e=>setusename(e.target.value)} type="text" placeholder='Enter a username...' className=' 
-                outline-none p-0.5 bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[30%] text-[3vmin]  text-white placeholder:text-white'/>
-              <input type="email" value={user_gmail} onChange={e=>setgmail(e.target.value)} placeholder='Enter your gmail..' className='h-[30%] text-[3vmin] 
+                outline-none p-0.5 bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[30%] text-[4vmin]  text-white placeholder:text-white'/>
+              <input type="email" value={user_gmail} onChange={e=>setgmail(e.target.value)} placeholder='Enter your gmail..' className='h-[30%] text-[4vmin] 
               outline-none p-0.5 bg-transparent border-b-orange-500 border-b-2 w-[100%] text-white placeholder:text-white'/>
               <input type="text" value={user_phonenumber} onChange={e=>{
                try{
@@ -98,24 +98,24 @@ function Signup() {
                 alert('Invalid phonenumber format ,Re-enter phonenumber')
               }
 
-              }} placeholder='Enter your phone number..' className='outline-none p-0.5 h-[30%] text-[3vmin] bg-transparent border-b-orange-500 border-b-2 w-[100%] text-white placeholder:text-white'/>
+              }} placeholder='Enter your phone number..' className='outline-none p-0.5 h-[30%] text-[4vmin] bg-transparent border-b-orange-500 border-b-2 w-[100%] text-white placeholder:text-white'/>
              
               <div className=' w-[100%] h-[30%]  flex justify-right items-center'>
-                <input type={visible?"text":"password"} value={user_password} onChange={e=>setpassword(e.target.value)} placeholder='Enter a password...' className='h-[100%] text-[3vmin] 
+                <input type={visible?"text":"password"} value={user_password} onChange={e=>setpassword(e.target.value)} placeholder='Enter a password...' className='h-[100%] text-[4vmin] 
                 outline-none p-0.5 bg-transparent border-b-orange-500 border-b-2 w-[100%] text-white placeholder:text-white'/>
               <img src={visible?eye2:eye1} alt="" className='eye1 absolute w-[5vmin]  z-[5]  right-[9%] duration-200' onClick={()=>setvisible(prev=>!prev)}/>
               </div>
               </span>
-              <div className='text-[2vmin] w-[90%] h-[10%]   flex items-start justify-center flex-col gap-1'>
-                  <span className='flex justify-start items-center'><input type="checkbox" name="" id="" className='accent-orange-600  h-[60%]'/>Remember me</span>
+              <div className='tick text-[2vmin] w-[90%] h-[16%]   flex items-start justify-center flex-col gap-1 pt-4'>
+                  <span className='flex justify-start items-center text-[3.2vmin] w-[100%] '><input type="checkbox" name="" id="" className='accent-orange-600  h-[100%] w-[4%] '/>Remember me</span>
                   
-                <a href="" className='text-orange-500 w-[100%] h-[50%] text-sm text-left hover:underline'>Already have an account?Login?</a>
+                <a href="" className='text-orange-500 w-[100%] h-[50%] text-[3.5vmin] text-left hover:underline'>Already have an account?Login?</a>
                 
               </div>
-              <button className='text-[3vmin] border-4  text-center font-mono font-semibold border-white bg-orange-500 py-1 px-2 rounded-lg
+              <button className='text-[4.5vmin] border-4  text-center font-mono font-semibold border-white bg-orange-500 py-1 px-2 rounded-lg
                hover:text-black hover:bg-orange-500  hover:border-orange-700 m-0'>Signup</button>
               
-              <div className='w-[90%] h-[20%]  flex-col justify-center items-center  mb-2  '>
+              <div className='w-[90%] h-[20%]  flex-col justify-center items-center py-2  '>
                 
                 <span className='flex w-full h-[40%] bg-white  rounded-md justify-center items-center gap-1'>
                 <img src={google}  className='w-[4.5vmin] h-[4.5vmin]  ' alt="" />

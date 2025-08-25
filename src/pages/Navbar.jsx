@@ -167,7 +167,7 @@ function Navbar() {
     
      />Log<span className='text-orange-600'>{islogined?"out":"in"}</span></button>
     </div>
-    <div className='fixed gap-[10%]  border-2 flex flex-row items-center rounded-lg bg-black w-[100vw] h-[8vh] top-[0%] left-0 right-0'>
+    <div className='fixed z-[2] gap-[10%]  border-2 flex flex-row items-center rounded-lg bg-black w-[100vw] h-[8vh] top-[0%] left-0 right-0'>
         <span className='flex items-center justify-left pl-2'>
           <img src={menu?close:Menu} className='img w-[6vmin] h-[6vmin] z-50 p-0.5' alt="" onClick={()=>{
             handleclick()

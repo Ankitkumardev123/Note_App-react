@@ -89,7 +89,7 @@ function Login() {
                
               </div>
                <Link to='/signup' className='text-orange-500 pb-4 w-[90%] h-[2%] text-left  text-[2.5vmin]   hover:underline'>Don't have an account?Signup?</Link>
-              <button onClick={handlelogin} className='text-[3.5vmin] border-4 font-mono font-semibold border-white bg-orange-500 py-1 mt-2 px-2 rounded-lg hover:text-orange-300 hover:bg-orange-500  hover:border-orange-700'>Login</button>
+              <button onClick={handlelogin} className='text-[4vmin] border-4 font-mono font-semibold border-white bg-orange-500 py-1 mt-2 px-2 rounded-lg hover:text-orange-300 hover:bg-orange-500  hover:border-orange-700'>Login</button>
              
               <h1 className='h-[5%] text-[4vmin]  my-2'>...OR...</h1>
               <div className='w-[90%] h-[25%]  flex-col justify-center items-center  mt-1 gap-[5%] '>

@@ -18,15 +18,17 @@ h1,h2,h3,h4{
 }
 @media(max-width:1204px){
 .infobar{
-  margin-top: 2rem;
-  width: 80%;
+ 
+  width: 100%;
   flex-direction: column;
   height: 60%;
   
-  justify-content: center;
+  justify-content: start;
   gap:10%;
 }
-
+.t{
+  height: 60%;
+}
 .a{
  width: 100%; 
  
@@ -58,22 +60,52 @@ width: 65vmin;
   height: 25%;
 }
 .login{
-  width: 50%;
+  width: 60%;
 }
 .eye{
   right: 30%;
 }
 }
-@media(max-width:800px){
+@media(max-width:768px){
 .infobar{
-  margin-top: 5rem;
+  height: 100%;
 }
-
-
+.t{
+  height: 100%;
 }
-@media(max-width:568px){
+.login{
+  width: 60%;
+}
+.eye{
+  right: 25%;
+}
+.signup{
+  width: 70%;
+}
+.tick{
+  padding: 0;
+}
+}
+@media(max-width:425px){
 .infobar{
-  margin-top: 0rem;
+  height: 100%;
+}
+.t{
+  height: 100%;
+}
+.login{
+  width: 70%;
+}
+.eye{
+  right: 20%;
+}
+.signup{
+  width: 80%;
+}
+}
+@media(max-width:375px){
+.t{
+  height: 41%;
 }
 .total{
   height: 20%;
@@ -89,17 +121,10 @@ width: 65vmin;
   height: 8%;
 }
 .login{
-  width: 80%;
+  width: 90%;
 }
 .eye{
-  right: 18%;
+  right: 12%;
 }
 }
-@media(max-width:425px){
-  .t{
-    height: 42%;
-  }
-  .infobar{
-    margin-top: 0rem;
-  }
-}
+

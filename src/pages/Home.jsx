@@ -241,33 +241,33 @@ function Home() {
       </button>
      </div>
     </div>
-    <div className={` z-[-1] mt-20  h-[120vh] gap-1 w-[100vw] flex   justify-start items-center  flex-col ${islogined?"hidden":''}`}>
-      <div className='t w-[100%] h-[50%] flex flex-col items-center justify-start'>
+    <div className={`absolute  top-[7%] z-[1]   h-[110vh] gap-1 w-[100vw] flex   justify-start items-center  flex-col ${islogined?"hidden":''}`}>
+      <div className='t w-[100%] h-[50%] flex flex-col items-center justify-start gap-2  py-1'>
        <h1 className='text-white text-[10vmin] pt-1 w-fit'>Welcome to <span className='text-white font-serif '>My</span>
-            <span className='text-orange-500 text-[11vmin]'>Note</span></h1>
+            <span className='text-orange-500 text-[9vmin]'>Note</span></h1>
         <p className='text-white text-[5vmin] w-[50%] text-center'>Your personal space to save ,edit and organize your thoughts securely and safely...</p>
         <button
-       className='text-[5vmin] border-[0.3rem] mt-[5vmin] mb-5   border-white p-2 text-white bg-orange-500 rounded-xl hover:bg-orange-700'
+       className='text-[5vmin] border-[0.3rem]      border-white p-2 text-white bg-orange-500 rounded-xl hover:bg-orange-700'
        onClick={()=>{
         
         navigate("/login")}}
        >Get Started
         </button>
         </div>
-        <div className='infobar mt-2  w-[100%] h-[40%]   flex items-start justify-center flex-row ' >
-            <div className='a w-[30%] gap-[1rem] text-center  h-[20%] flex items-center justify-start flex-col'>
+        <div className='infobar  z-[-1]  w-[100%] h-[50%]   flex items-start justify-center flex-row  pt-5' >
+            <div className='a w-[100%] gap-[1rem] text-center  h-[20%] flex items-center justify-start flex-col '>
                <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
-                <span className='flex justify-center items-center h-[20%]'><img src={note} alt="" className='w-[10vmin]'/>New Notes</span></span>
+                <span className='flex justify-center items-center h-[20%]'><img src={note} alt="" className='w-[7vmin]'/>New Notes</span></span>
                 <p className='p text-white text-[4vmin]  w-[70%] text-center'>Write down anything instantly,with diffrent styling...</p>
             </div>
-            <div className='a w-[30%] text-center gap-[1rem]  h-[20%] flex items-center justify-start flex-col'>
+            <div className='a w-[100%] text-center gap-[1rem]  h-[20%] flex items-center justify-start flex-col'>
                <span className='a w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
-                <img src={folder} alt="" className='w-[10vmin]'/><span>Sort Easily</span></span>
+                <img src={folder} alt="" className='w-[7vmin]'/><span>Sort Easily</span></span>
                 <p className='p text-white text-[4vmin]  w-[90%] text-center'>Sort your Notes with tags and folders,search instantly and keep everything neat and accessible...</p>
             </div>
-             <div className='a a1 w-[30%] text-center gap-[1rem] h-[20%] flex items-center justify-start flex-col'>
+             <div className='a a1 w-[100%] text-center gap-[1rem] h-[20%] flex items-center justify-start flex-col'>
                <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
-                <img src={notess} alt="" className='w-[10vmin]'/>
+                <img src={notess} alt="" className='w-[7vmin]'/>
                 <span>Edit Notes</span></span>
                 <p className='p text-white text-[4vmin]  w-[80%] text-center'>Keep your notes fresh by editing them whenever inspiration strikes...</p>
             </div>

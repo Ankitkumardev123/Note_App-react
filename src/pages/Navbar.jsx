@@ -112,26 +112,26 @@ function Navbar() {
     <h1 className='text-[3vmin] font-semibold font-serif  p-0'>{userdata?.username}</h1>
     <h1 className='font-thin text-gray-500 font-mono h-[2%] p-0 text-[2.6vmin]'>{userdata?.username}</h1>
     </span>
-    <div className=' w-[100%] h-[24%] flex  justify-center flex-col gap-3 pl-5 items-center text-[3vmin]'>
+    <div className=' w-[90%] h-[22%] flex  justify-center flex-col gap-3  items-center text-[3vmin]'>
       <span className='w-[100%] flex  justify-start items-center '>
         <h2 className='text-gray-400  font-semibold w-[40%] h-[80%] '>Emaill</h2>
-        <h2 className='font-semibold  w-[50%]  h-[80%] text-left font-mono'>{userdata?.email}</h2>
+        <h2 className='font-semibold  w-[100%]  h-[80%] text-left font-mono '>{userdata?.email}</h2>
       </span>
       <span className='w-[100%]  flex  justify-start items-center'>
         <h2 className='text-gray-400 font-semibold w-[40%] h-[80%]'>Mobile</h2>
-        <h2 className='font-semibold w-[50%] h-[80%]  text-left  font-mono'>{userdata?.phonenumber}</h2>
+        <h2 className='font-semibold w-[100%] h-[80%]  text-left  font-mono'>{userdata?.phonenumber}</h2>
         </span>
 
       <span className='w-[100%] flex  justify-start items-center'>
         <h2 className='text-gray-400 font-semibold w-[40%] h-[80%]'>Created</h2>
-        <h2 className='font-semibold w-[50%] h-[80%] text-left  font-mono'>{userdata?.created}</h2></span>
+        <h2 className='font-semibold w-[100%] h-[80%] text-left  font-mono'>{userdata?.created}</h2></span>
       <span className='w-[100%]  flex  justify-start items-center'>
         <h2 className='text-gray-400 font-semibold w-[40%] h-[80%]'>Password</h2>
-        <h2 className='font-semibold w-[50%] h-[80%] text-left  font-mono'>{userdata?.password}</h2></span>
+        <h2 className='font-semibold w-[100%] h-[80%] text-left  font-mono'>{userdata?.password}</h2></span>
     </div>
-    <div className='h-[1%] w-[90%] rounded-full bg-orange-600 text-black '> jjj </div>
+    <div className='h-[1%] w-[90%] rounded-full bg-orange-600 text-black '>  </div>
      <div className='total w-[90%] h-[22%] flex   justify-left flex-col   gap-3'>
-    <span className='flex items-center  '>
+    <span className='flex items-center w-[100%] justify-start  '>
       <img src={note} className='w-[6vmin] h-[6vmin]' alt="" />
     <h1 className='text-orange-600 text-[5vmin] pt-0.5 font-semibold font-mono' >Notes</h1></span>
      <span className='w-[100%] flex items-center'>

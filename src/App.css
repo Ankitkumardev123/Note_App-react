@@ -23,7 +23,7 @@ h1,h2,h3,h4{
   flex-direction: column;
   height: 60%;
   
-  justify-content: start;
+  
   gap:10%;
 }
 .t{

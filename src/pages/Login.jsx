@@ -24,7 +24,7 @@ function Login() {
     try{
       setloading(true)
    const snap= await signInWithEmailAndPassword(Auth,user_logindata,user_password)
-
+      console.log(snap,"signed")
     const q= query(collection(database, "users"), where("email", "==",`${user_logindata}`));
     const user= await getDocs(q)
    setloading(false)
@@ -40,10 +40,10 @@ function Login() {
    alert(`Succesfully logined, Welcome back ${userdata.username}`)
    navigate("/")
      const user1=user?.docs[0]
+    }catch{
+      console.log("error")
     }
-    catch(error){
-     console.error(error)
-    }finally{
+    finally{
       setloading(false)
     }
      setuserdata('')
@@ -65,10 +65,10 @@ function Login() {
    }
     <form onSubmit={handlelogin}>
    <div className='fixed  top-[8%]  h-[100vh] w-[100vw]  flex justify-center items-center  flex-col '>
-    <h1 className=' absolute top-[1%] left-[2%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
+    <h1 className='head absolute top-[1%] left-[2%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
             <span className='text-orange-700 text-[7vmin]'>Note</span></h1>
-            <div className='login w-[32vw] h-[70%] bg-black rounded-xl border-2 border-white flex justify-start items-center flex-col  min-w-sm gap-[1%]'>
-              <h1 className='text-white font-semibold text-[6vmin] font-mono   mt-[2vmin] mb-1 h-[10%] text-center'><span>Log</span><span className='text-orange-500'>in</span></h1>
+            <div className='login w-[32vw] h-[70%] bg-black rounded-xl border-2 border-white flex justify-start items-center flex-col   gap-[1%]'>
+              <h1 className='am text-white font-semibold text-[6vmin] font-mono   mt-[2vmin] mb-1 h-[10%] text-center'><span>Log</span><span className='text-orange-500'>in</span></h1>
               <span className='w-[90%] h-[20%] flex items-center   gap-[4vmin] justify-start flex-col'>
               <input type="text" value={user_logindata} onChange={(e)=>setuserdata(e.target.value)} placeholder='Enter your gmail..' 
               className='outline-none  bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[40%] text-white placeholder:text-white text-[1.2rem]'/>
@@ -89,17 +89,17 @@ function Login() {
                
               </div>
                <Link to='/signup' className='text-orange-500 pb-4 w-[90%] h-[2%] text-left  text-[2.5vmin]   hover:underline'>Don't have an account?Signup?</Link>
-              <button onClick={handlelogin} className='text-[4vmin] border-4 font-mono font-semibold border-white bg-orange-500 py-1 mt-2 px-2 rounded-lg hover:text-orange-300 hover:bg-orange-500  hover:border-orange-700'>Login</button>
+              <button onClick={handlelogin} className='b text-[4vmin] border-4 font-mono font-semibold border-white bg-orange-500 py-1 mt-2 px-2 rounded-lg hover:text-orange-300 hover:bg-orange-500  hover:border-orange-700'>Login</button>
              
-              <h1 className='h-[5%] text-[4vmin]  my-2'>...OR...</h1>
+             
               <div className='w-[90%] h-[25%]  flex-col justify-center items-center  mt-1 gap-[5%] '>
                 
-                <span className='flex w-full h-[40%] bg-white  rounded-md justify-center items-center gap-1'>
-                <img src={google}  className='w-[4.5vmin] h-[4.5vmin] ml-3' alt="" />
+                <span className='flex w-full h-[40%] bg-white  rounded-md justify-center items-center gap-1 mt-4'>
+                <img src={google}  className='w-[5vmin] h-[5vmin] ml-3' alt="" />
                 <h5 className='text-black text-[1rem] font-semibold'>Login With Google</h5>
                 </span>
                 <span className='flex w-full h-[40%] bg-blue-700 rounded-md justify-center items-center gap-1 mt-4'>
-                <img src={facebook}  className='w-[15%] h-[100%]' alt="" />
+                <img src={facebook}  className='w-[7vmin]' alt="" />
                 <h5 className='text-[1rem] font-semibold'> Login With Facebook</h5>
                 </span>
               </div>

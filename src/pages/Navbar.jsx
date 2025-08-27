@@ -23,7 +23,7 @@ function Navbar() {
  const [visible, setvisible] = useState(false)
   
   const folders=useSelector(state=>state.noted.Folders)
-
+  const folder_len=folders?.length
   let note_length=folders?.reduce((count,folder)=>count+folder?.notes?.length,0)
   let menu=useSelector(state=>state.noted.menubar)
    const slider=useRef(null)
@@ -100,10 +100,10 @@ function Navbar() {
   return (
     <>
      <div ref={slider} className='user slide absolute flex overflow-x-hidden overflow-y-auto scrollbar-hide gap-2 
-      justify-start items-center  flex-col w-[70vmin] top-[8.4%]  h-[100vh]
+      justify-start items-center  flex-col w-[70vmin] top-[8.4%]  h-[110vh]
      bg-black bg-opacity-100 z-[30] rounded-r-xl border-4 border-white border-l-0 py-1'>
     <img src={userdata.profile_pic ??user} 
-    className={`  w-[20vmax] h-[20vmax]   rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
+    className={` w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40   rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
     <label htmlFor="input-file" className={`bg-orange-500 py-1 px-3 text-[3vmin] font-semibold hover:bg-orange-600 transition-all shadow-sm rounded-lg border-[0.5vmin]
        ${islogined?'':'hidden'}`}>Update image</label>
     <input type="file" name="" id="input-file" accept='image/jpeg,image/png,image/jpg '  className='hidden'  onChange={(e)=>{handleimage(e.target.files[0])
@@ -136,10 +136,10 @@ function Navbar() {
     <h1 className='text-orange-600 text-[5vmin] pt-0.5 font-semibold font-mono' >Notes</h1></span>
      <span className='w-[100%] flex items-center'>
       <h2 className='text-gray-400 w-[50%] font-semibold text-[3vmin]'>Total notes</h2>
-     <h2 className='font-semibold w-[50%] h-[80%] text-right font-mono text-[3vmin] '>{folders?.length || 0}</h2>
+     <h2 className='font-semibold w-[50%] h-[80%] text-right font-mono text-[3vmin] '> {note_length || 0}</h2>
      </span>
      <span className='w-[100%] flex'><h2 className='text-gray-400 w-[50%] font-semibold text-[3vmin]'>Total folders</h2>
-     <h2 className='font-semibold w-[50%] h-[80%] text-right font-mono text-[3vmin]'>{note_length || 0}
+     <h2 className='font-semibold w-[50%] h-[80%] text-right font-mono text-[3vmin]'>{folder_len || 0}
      </h2></span>
      </div>
      

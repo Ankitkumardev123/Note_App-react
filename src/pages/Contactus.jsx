@@ -1,11 +1,11 @@
 
 export default function Contact() {
     return (
-        <div className='absolute  top-[8%]  h-[100vh] w-[100vw]  flex justify-center items-center  flex-col sm:pt-0 '>
-            <div className="max-w-6xl mx-auto sm:px-6 h-[70%] lg:px-8  rounded-lg" >
-                <div className="mt-8 overflow-hidden">
-                    <div className="grid grid-cols-1 md:grid-cols-2">
-                        <div className="p-6  bg-orange-500 sm:rounded-l-lg border-4 border-r-0">
+        <div className='absolute    h-[100vh] w-[100vw]  flex justify-center items-center  flex-col sm:pt-0 '>
+            <div className="max-w-6xl mx-auto sm:px-6 h-[80%] lg:px-8  rounded-lg" >
+                <div className="mt-5 overflow-hidden">
+                    <div className="grid grid-cols-1 md:grid-cols-2 ">
+                        <div className="p1 p-6  bg-orange-500 sm:rounded-l-lg border-4 w-[100%]  ">
                             <h1 className="text-3xl sm:text-4xl text-gray-800 font-extrabold tracking-tight">
                                 Get in touch: 
                             </h1>
@@ -86,8 +86,8 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        <form className="p-5 mr-2 flex flex-col justify-center items-center bg-orange-500 rounded-r-lg border-4 border-l-0">
-                            <div className="flex flex-col w-[80%]">
+                        <form className="p2 p-6 sm:rounded-r-lg flex flex-col justify-center items-center bg-orange-500  border-4 ">
+                            <div className="flex flex-col w-[100%] ">
                                 <label for="name" className="hidden">
                                     Full Name
                                 </label>
@@ -100,7 +100,7 @@ export default function Contact() {
                                 />
                             </div>
 
-                            <div className="flex flex-col mt-2 w-[80%]">
+                            <div className="flex flex-col mt-2 w-[100%]">
                                 <label for="email" className="hidden">
                                     Email
                                 </label>
@@ -113,7 +113,7 @@ export default function Contact() {
                                 />
                             </div>
  
-                            <div className="flex flex-col mt-2 w-[80%]">
+                            <div className="flex flex-col mt-2 w-[100%]">
                                 <label for="tel" className="hidden">
                                     Number
                                 </label>

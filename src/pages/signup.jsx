@@ -47,7 +47,8 @@ function Signup() {
         
        try{
         setloading(true)
-     createUserWithEmailAndPassword(Auth,user_gmail,user_password)
+     const user=createUserWithEmailAndPassword(Auth,user_gmail,user_password)
+     console.log(user)
         setloading(false)
         alert(`Succesfully signedup, welcome to MyNote ${user_name}`)
         dispatch(setcurentuser(data))
@@ -80,10 +81,10 @@ function Signup() {
    }
     <form onSubmit={handlelogin}>
    <div className='absolute z-[1]  top-[8%]  h-[100vh] w-[100vw]  flex justify-center items-center  flex-col gap-2'>
-    <h1 className='absolute top-[1%] left-[2%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
+    <h1 className='head absolute top-[1%] left-[2%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
             <span className='text-orange-700 text-[6vmin]'>Note</span></h1>
             <div className='login signup absolute w-[35%] h-[82%]  bg-black rounded-xl border-2 mt-5 border-white flex justify-start items-center flex-col gap-[2%]'>
-              <h1 className='text-white font-semibold text-[5vmin] font-mono  mt-2 h-[7%] text-center '><span>Sign</span><span className='text-orange-500'>up</span></h1>
+              <h1 className='am text-white font-semibold text-[5vmin] font-mono  mt-2 h-[7%] text-center '><span>Sign</span><span className='text-orange-500'>up</span></h1>
               <span className='w-[90%] flex items-center h-[40%]   gap-[10%] justify-start flex-col'>
               <input value={user_name} onChange={e=>setusename(e.target.value)} type="text" placeholder='Enter a username...' className=' 
                 outline-none p-0.5 bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[30%] text-[4vmin]  text-white placeholder:text-white'/>
@@ -112,7 +113,7 @@ function Signup() {
                 <a href="" className='text-orange-500 w-[100%] h-[50%] text-[3.5vmin] text-left hover:underline'>Already have an account?Login?</a>
                 
               </div>
-              <button className='text-[4.5vmin] border-4  text-center font-mono font-semibold border-white bg-orange-500 py-1 px-2 rounded-lg
+              <button className='b text-[4.5vmin] border-4  text-center font-mono font-semibold border-white bg-orange-500 py-1 px-2 rounded-lg
                hover:text-black hover:bg-orange-500  hover:border-orange-700 m-0'>Signup</button>
               
               <div className='w-[90%] h-[20%]  flex-col justify-center items-center py-2  '>

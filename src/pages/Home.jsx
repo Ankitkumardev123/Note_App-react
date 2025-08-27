@@ -119,7 +119,7 @@ function Home() {
     <div ref={editbar2} className={`edit fixed w-[50vw]  h-[90vh] b-0 z-[5] bg-black top-[9.5%] bottom-0 border-[1vmin] border-orange-500 rounded-b-sm border-l-0 flex 
     flex-row${islogined?"":'hidden'}`}>
     <div className='w-[50%] h-[100%] flex justify-center flex-col items-center bg-black border-r-2  border-orange-500 '>
-    <span className='head w-[100%] h-[10%] flex items-center  justify-left pl-1  '>
+    <span className=' w-[100%] h-[10%] flex items-center  justify-left pl-1  '>
     <img src={folder} className='w-[7vmin] h-[7vmin]  mb-1' alt="" />
     <h1 className='flex text-center text-[5vmin] text-orange-500  w-[50%] font-semibold font-mono justify-left items-center ' >Folders</h1>
 
@@ -129,6 +129,7 @@ function Home() {
         setsearch(false)
         setcreate(prev=>!prev)
       if(create==true)
+        
         setmsg('')
       }} />
       <img src={`${!search?searchicon:close}`} className={`w-[26%]  duration-200 `} alt="" onClick={()=>{

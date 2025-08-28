@@ -5,6 +5,11 @@ It supports **Markdown formatting**, **Firebase Authentication**, and **real-tim
 
 ---
 
+## 🌐 Live Demo  
+🚀 Try it here: [**Note App**](https://ankitkumardev123.github.io/Note_App-react/)
+
+---
+
 ## 👨‍💻 About Me
 
 Hi! I'm **Ankit Kumar Dash**  
@@ -25,9 +30,9 @@ Hi! I'm **Ankit Kumar Dash**
 
 ## 🛠 Tech Stack
 
-- **Frontend:** React.js, Tailwind CSS (planned for future updates)
-- **Backend & Database:** Firebase (Firestore + Authentication)
-- **Version Control:** Git & GitHub
+- **Frontend:** React.js, Tailwind CSS (planned for future updates)  
+- **Backend & Database:** Firebase (Firestore + Authentication)  
+- **Version Control:** Git & GitHub  
 
 ---
 
@@ -44,4 +49,4 @@ Hi! I'm **Ankit Kumar Dash**
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/note-app.git
+   git clone https://github.com/Ankitkumardev123/Note_App-react.git

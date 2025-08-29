@@ -255,7 +255,7 @@ function Home() {
        >Get Started
         </button>
         </div>
-        <div className='infobar  z-[-1]  w-[100%] h-[50%]   flex items-start justify-center flex-row  pt-5' >
+        <div className='infobar  z-[-1]  w-[100%] h-[50%]   flex items-start justify-flex flex-row  pt-5' >
             <div className='a w-[100%] gap-[1rem] text-center  h-[20%] flex items-center justify-start flex-col '>
                <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
                 <span className='flex justify-center items-center h-[20%]'><img src={note} alt="" className='w-[7vmin]'/>New Notes</span></span>
@@ -286,7 +286,14 @@ function Home() {
 
         <input type="text" value={note_title} className='outline-none border-0 text-[6vmin] bg-transparent h-[50%] text-gray-400' 
         onChange={handlechange}placeholder='Give a title..'/>
-
+        {/* <div className='absolute top-[2%] right-[1%] h-[5%] w-[50%] flex justify-center items-center gap-2'>
+        <select name="" id="" className="dow_op w-[50%] h-[100%]  bg-orange-500 rounded-lg text-[3vmin] md:text-[2vmin] font-semibold text-white border-2 border-white">
+          <option value="TXT">{selected_note?.note_name}.txt</option>
+          <option value="DOCX">{selected_note?.note_name}.docx</option>
+          <option value="None" selected>Select a Format</option>
+        </select>
+          <button className='text-[3vmin] h-[110%] border-2 rounded-lg bg-orange-500 border-white px-2 '>Dowload</button>
+          </div> */}
         <span className='flex w-[100%] h-[100%] justify-start items-center flex-row  pl-1 '>
           <h5 className='text-[2vmin]'>Created - {selected_note?.time}</h5>
           <span className='flex w-[50%] h-[20%]  items-center justify-center text-[2vmin]'>

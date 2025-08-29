@@ -99,7 +99,7 @@ function Navbar() {
   
   return (
     <>
-     <div ref={slider} className='user slide absolute flex overflow-x-hidden overflow-y-auto scrollbar-hide gap-2 
+     <div ref={slider} className='user slide absolute flex overflow-x-hidden overflow-y-auto scrollbar-hide gap-1 
       justify-start items-center  flex-col w-[70vmin] top-[8.4%]  h-[110vh]
      bg-black bg-opacity-100 z-[30] rounded-r-xl border-4 border-white border-l-0 py-1'>
     <img src={userdata.profile_pic ??user} 
@@ -108,29 +108,29 @@ function Navbar() {
        ${islogined?'':'hidden'}`}>Update image</label>
     <input type="file" name="" id="input-file" accept='image/jpeg,image/png,image/jpg '  className='hidden'  onChange={(e)=>{handleimage(e.target.files[0])
     }}/>
-    <span className='text-center h-auto'>
-    <h1 className='text-[3vmin] font-semibold font-serif  p-0'>{userdata?.username}</h1>
-    <h1 className='font-thin text-gray-500 font-mono h-[2%] p-0 text-[2.6vmin]'>{userdata?.username}</h1>
+    <span className='text-center h-auto '>
+    <h1 className='user1 text-[3vmin] font-semibold font-serif  p-0'>{userdata?.username}</h1>
+    <h1 className='user1 font-thin text-gray-500 font-mono h-[2%] p-0 text-[2.6vmin]'>{userdata?.username}</h1>
     </span>
-    <div className=' w-[90%] h-[22%] flex  justify-center flex-col gap-3  items-center text-[3vmin]'>
+    <div className='user1 w-[90%] h-[22%] flex  justify-center flex-col gap-3  items-center text-[3vmin] '>
       <span className='w-[100%] flex  justify-start items-center '>
-        <h2 className='text-gray-400  font-semibold w-[40%] h-[80%] '>Emaill</h2>
+        <h2 className='text-gray-400  font-semibold w-[50%] h-[80%] '>Emaill</h2>
         <h2 className='font-semibold  w-[100%]  h-[80%] text-left font-mono '>{userdata?.email}</h2>
       </span>
       <span className='w-[100%]  flex  justify-start items-center'>
-        <h2 className='text-gray-400 font-semibold w-[40%] h-[80%]'>Mobile</h2>
+        <h2 className='text-gray-400 font-semibold w-[50%] h-[80%]'>Mobile</h2>
         <h2 className='font-semibold w-[100%] h-[80%]  text-left  font-mono'>{userdata?.phonenumber}</h2>
         </span>
 
       <span className='w-[100%] flex  justify-start items-center'>
-        <h2 className='text-gray-400 font-semibold w-[40%] h-[80%]'>Created</h2>
+        <h2 className='text-gray-400 font-semibold w-[50%] h-[80%]'>Created</h2>
         <h2 className='font-semibold w-[100%] h-[80%] text-left  font-mono'>{userdata?.created}</h2></span>
       <span className='w-[100%]  flex  justify-start items-center'>
-        <h2 className='text-gray-400 font-semibold w-[40%] h-[80%]'>Password</h2>
+        <h2 className='text-gray-400 font-semibold w-[50%] h-[80%]'>Password</h2>
         <h2 className='font-semibold w-[100%] h-[80%] text-left  font-mono'>{userdata?.password}</h2></span>
     </div>
     <div className='h-[1%] w-[90%] rounded-full bg-orange-600 text-black '>  </div>
-     <div className='total w-[90%] h-[22%] flex   justify-left flex-col   gap-3'>
+     <div className='total w-[90%] h-[20%] flex   justify-left flex-col   gap-3'>
     <span className='flex items-center w-[100%] justify-start  '>
       <img src={note} className='w-[6vmin] h-[6vmin]' alt="" />
     <h1 className='text-orange-600 text-[5vmin] pt-0.5 font-semibold font-mono' >Notes</h1></span>
@@ -143,7 +143,7 @@ function Navbar() {
      </h2></span>
      </div>
      
-     <button className='text-[4vmin] bg-black border-2 p-2 rounded-lg flex hover:border-orange-500'  onClick={async()=>{
+     <button className='text-[4vmin] bg-black border-4 p-2 rounded-lg flex hover:border-orange-500'  onClick={async()=>{
       if(islogined)
       {
        await signOut(Auth)

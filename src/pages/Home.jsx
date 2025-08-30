@@ -125,14 +125,14 @@ function Home() {
 
     <span className='ml-1 flex b w-[50%] justify-center items-center gap-[9%] h-[100%]'>
       
-      <img src={close} className={`w-[40%]  rotate-45 duration-200 ${create?"rotate-90":"rotate-45"}`} alt="" onClick={()=>{
+      <img src={close} className={`w-[4vmin] h-[4vmin]  rotate-45 duration-200 ${create?"rotate-90":"rotate-45"}`} alt="" onClick={()=>{
         setsearch(false)
         setcreate(prev=>!prev)
       if(create==true)
         
         setmsg('')
       }} />
-      <img src={`${!search?searchicon:close}`} className={`w-[35%]  duration-200 `} alt="" onClick={()=>{
+      <img src={`${!search?searchicon:close}`} className={`w-[4vmin] h-[4vmin]  duration-200 `} alt="" onClick={()=>{
         setcreate(false)
         setsearch(prev=>!prev)
       if(search==true)
@@ -196,7 +196,7 @@ function Home() {
      <span className='w-[100%] h-[5%] flex items-center pt-2  justify-start  pl-0.5 mb-2 mt-0.5'>
       <img src={note} className='w-[6vmin] h-[6vmin] ' alt="" />
      <h1 className='flex text-center text-[5vmin] text-orange-500   font-semibold font-mono justify-left items-center ' >Notes</h1>
-      <img src={`${!search_note?searchicon:close}`} className={`w-[10%]   duration-400 ml-10 ${selectedfolder?? 'hidden'}`} alt="" onClick={()=>{setsearch_note(prev=>!prev)
+      <img src={`${!search_note?searchicon:close}`} className={`w-[4vmin]   duration-400 ml-10 ${selectedfolder?? 'hidden'}`} alt="" onClick={()=>{setsearch_note(prev=>!prev)
       if(search==true)
         setsearch_notemsg('')
       }} />
@@ -287,7 +287,7 @@ function Home() {
         <input type="text" value={note_title} className='outline-none border-0 text-[6vmin] bg-transparent h-[50%] text-gray-400' 
         onChange={handlechange}placeholder='Give a title..'/>
         <div className='absolute top-[2%] right-[1%] h-[5%] w-[50%] flex justify-center items-center gap-5'>
-        <select name="" id="" className="dow_op w-[30vmin] h-[100%]  bg-orange-500 rounded-lg text-[3vmin] md:text-[2vmin] font-semibold text-white border-2 border-white">
+        <select name="" id="" className="dow_op w-[30vmin] h-[100%] text-center  bg-orange-500 rounded-lg text-[3vmin] font-semibold text-white border-2 border-white">
           <option value="TXT">{selected_note?.note_name}.txt</option>
           <option value="DOCX">{selected_note?.note_name}.docx</option>
           <option value="None" selected>Select a Format</option>

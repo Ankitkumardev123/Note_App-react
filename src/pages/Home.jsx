@@ -119,20 +119,20 @@ function Home() {
     <div ref={editbar2} className={`edit fixed w-[50vw]  h-[90vh] b-0 z-[5] bg-black top-[9.5%] bottom-0 border-[1vmin] border-orange-500 rounded-b-sm border-l-0 flex 
     flex-row${islogined?"":'hidden'}`}>
     <div className='w-[50%] h-[100%] flex justify-center flex-col items-center bg-black border-r-2  border-orange-500 '>
-    <span className=' w-[100%] h-[10%] flex items-center  justify-left pl-1  '>
+    <span className=' w-[100%] h-[8%] flex items-center  justify-start pl-1  '>
     <img src={folder} className='w-[7vmin] h-[7vmin]  mb-1' alt="" />
     <h1 className='flex text-center text-[5vmin] text-orange-500  w-[50%] font-semibold font-mono justify-left items-center ' >Folders</h1>
 
-    <span className='ml-1 flex b w-[50%] justify-center items-center gap-2 h-[100%]'>
+    <span className='ml-1 flex b w-[50%] justify-center items-center gap-[9%] h-[100%]'>
       
-      <img src={close} className={`w-[26%]  rotate-45 duration-200 ${create?"rotate-90":"rotate-45"}`} alt="" onClick={()=>{
+      <img src={close} className={`w-[40%]  rotate-45 duration-200 ${create?"rotate-90":"rotate-45"}`} alt="" onClick={()=>{
         setsearch(false)
         setcreate(prev=>!prev)
       if(create==true)
         
         setmsg('')
       }} />
-      <img src={`${!search?searchicon:close}`} className={`w-[26%]  duration-200 `} alt="" onClick={()=>{
+      <img src={`${!search?searchicon:close}`} className={`w-[35%]  duration-200 `} alt="" onClick={()=>{
         setcreate(false)
         setsearch(prev=>!prev)
       if(search==true)
@@ -168,7 +168,7 @@ function Home() {
     } >Add</button>
      
     </span>
-     <span className={`flex w-[100%] justify-start ml-2 items-center duration-400 ${search?"":"hidden"}  pl-2`}>
+     <span className={`flex w-[100%] justify-start ml-2 z-[2] items-center duration-400 ${search?"":"hidden"}  pl-2`}>
        <img src={searchicon} className={`w-[5vmin] h-[5vmin] mr-1`}/>
     <input type="text" value={Search_msg} className={`w-[70%] text-orange-500 outline-none border-0 border-b-4 bg-transparent text-[3vmin] `} placeholder='Enter folder name... 'onChange={e=>setsearch_msg(e.target.value)} 
      onKeyDown={e=>{
@@ -218,11 +218,11 @@ function Home() {
       <h2 className={`text-orange font-semibold  text-[2.5vmin] text-center w-[100%] h-[90%]   ${selectedfolder??"hidden"}`}>Total Notes-{selectedfolder?.notes?.length}</h2>
     </span>
 
-      <div className={`h-full  w-[100%] pt-0  flex flex-col gap-[1%]  overflow-x-hidden text-center justify-start items-center 
+      <div className={`h-full  w-[100%]   flex flex-col gap-[1%]  overflow-x-hidden text-center justify-start items-center 
          ${selectedfolder??""}`} ref={ani}>
         <h1 className={`text-[5vmin] text-orange-500 font-semibold  w-[100%] text-center  duration-200 ${selectedfolder?.folname?"hidden":''}`}>Choose a folder...</h1>
          <h1 className={`text-[5vmin] text-orange-500 font-semibold   duration-200 ${selectedfolder?.notes?.length==0?'':'hidden'}`}>Create a Note...</h1>
-      <div className={`notes  h-[100%] pt-1   w-[100%]   flex flex-col  items-start gap-[1.5%] overflow-y-auto scrollbar-hide overflow-x-hidden
+      <div className={`notes  h-[100%]    w-[100%]   flex flex-col  items-start gap-[1.5%] overflow-y-auto scrollbar-hide overflow-x-hidden
          text-center`}>
      {
       selectedfolder?.notes?.map((not,index1)=>
@@ -231,7 +231,7 @@ function Home() {
      }
      </div>
     </div>
-    <button ref={editbar2} className='fixed top-[5%] left-[100%] w-[7vmin] y-[7vmin] bg-black outline-none rouned-none rounded-r-[20%]
+    <button ref={editbar2} className='fixed top-[5%] left-[100%] w-[7vmin] z-[1] y-[7vmin] bg-black outline-none rouned-none rounded-r-[20%]
       border-[1vmin] border-orange-500 border-l-0' onClick={()=>{  
      dispatch(editbartoggle())
       setslider(slide)
@@ -286,14 +286,14 @@ function Home() {
 
         <input type="text" value={note_title} className='outline-none border-0 text-[6vmin] bg-transparent h-[50%] text-gray-400' 
         onChange={handlechange}placeholder='Give a title..'/>
-        {/* <div className='absolute top-[2%] right-[1%] h-[5%] w-[50%] flex justify-center items-center gap-2'>
-        <select name="" id="" className="dow_op w-[50%] h-[100%]  bg-orange-500 rounded-lg text-[3vmin] md:text-[2vmin] font-semibold text-white border-2 border-white">
+        <div className='absolute top-[2%] right-[1%] h-[5%] w-[50%] flex justify-center items-center gap-5'>
+        <select name="" id="" className="dow_op w-[30vmin] h-[100%]  bg-orange-500 rounded-lg text-[3vmin] md:text-[2vmin] font-semibold text-white border-2 border-white">
           <option value="TXT">{selected_note?.note_name}.txt</option>
           <option value="DOCX">{selected_note?.note_name}.docx</option>
           <option value="None" selected>Select a Format</option>
         </select>
           <button className='text-[3vmin] h-[110%] border-2 rounded-lg bg-orange-500 border-white px-2 '>Dowload</button>
-          </div> */}
+          </div>
         <span className='flex w-[100%] h-[100%] justify-start items-center flex-row  pl-1 '>
           <h5 className='text-[2vmin]'>Created - {selected_note?.time}</h5>
           <span className='flex w-[50%] h-[20%]  items-center justify-center text-[2vmin]'>

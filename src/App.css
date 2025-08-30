@@ -88,8 +88,11 @@ width: 65vmin;
 }
 }
 @media(max-width:425px){
+  .fols{
+    height: 4%;
+  }
   .user1{
-    font-size: 4vmin;
+    font-size: 3vmin;
   }
   .head{
     display: none;
@@ -127,6 +130,9 @@ width: 65vmin;
 }
 }
 @media(max-width:375px){
+   .fols{
+    height: 3.5%;
+  }
   .user{
     height: 100vh;
   }

@@ -47,7 +47,7 @@ function Note({not,items,searchmsg_note}) {
         
       },[])
   return (
-    <div className={`nots w-[100%] h-[5.5%] text-center flex-shrink-0  flex justify-center  items-center  pl-1 ${visible?'hidden':''}`}>
+    <div className={`fols nots w-[100%] h-[5.5%] text-center flex-shrink-0  flex justify-center  items-center  pl-1 ${visible?'hidden':''}`}>
         <span className='flex w-[100%] h-[100%] justify-center items-center'>
         <img src={post} className='w-[5.5vmin] h-[5.5vmin]  ' alt="" onClick={()=>{
           

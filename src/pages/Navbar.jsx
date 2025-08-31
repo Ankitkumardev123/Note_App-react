@@ -33,16 +33,7 @@ function Navbar() {
    const t2=gsap.timeline()
    const [img_user, setimg_user] = useState(userdata.profile_pic )
    
-   useEffect(()=>{
-      onAuthStateChanged(Auth,(user)=>{
-        if(user){
-          
-        }
-        else{
-          alert("You have succesfully logged out.")
-        }
-      })
-   },[])
+  
    useEffect(()=>{
     if(img_user !=null)
     dispatch(setprofilepic(img_user))
@@ -94,7 +85,10 @@ function Navbar() {
       }).then(res=>res.json()).then((data)=>{
         
         dispatch(setprofilepic(data.secure_url))
-        alert("Profile imaged succesfully changed!")
+        setTimeout(() => {
+          alert("Profile image succesfully changed!")
+        },1000);
+        
         setreset(false)
       }).catch((err)=>alert("Img can't be changed!"))
     }
@@ -154,9 +148,12 @@ function Navbar() {
      </div>
      
      <button className='text-[4vmin] bg-black border-4 p-2 rounded-lg flex hover:border-orange-500'  onClick={async()=>{
+      
       if(islogined)
       {
+      try{
        await signOut(Auth)
+      
         navigate('/')
         dispatch(setloginuser({
             username:"User_name",
@@ -170,9 +167,17 @@ function Navbar() {
    dispatch(menubartoggle(false))
    dispatch(setselectednote(null))
     dispatch( setlogined(false))
+     alert("You have succesfully logged out.")
+  }catch{
+    setTimeout(() => {
+      alert("Some issue arised!\nCheck you network connection.")
+     }, 100);
+  }
       }
-      else
+      else{
         navigate('/login')
+        dispatch(menubartoggle(false))
+      }
      }}><img src={islogined?logout:login} className='w-[5vmin] h-[5vmin] mt-1' alt="" 
     
      />Log<span className='text-orange-600'>{islogined?"out":"in"}</span></button>

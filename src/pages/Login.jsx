@@ -24,7 +24,7 @@ function Login() {
     try{
       setloading(true)
    const snap= await signInWithEmailAndPassword(Auth,user_logindata,user_password)
-      console.log(snap,"signed")
+     
     const q= query(collection(database, "users"), where("email", "==",`${user_logindata}`));
     const user= await getDocs(q)
    setloading(false)
@@ -36,12 +36,18 @@ function Login() {
 
     dispatch(setloginuser(userdata))
    dispatch(setlogined(true))
+   setTimeout(() => {
+      alert(`Succesfully logined, Welcome back ${userdata.username}`)
+     }, 100);
    
-   alert(`Succesfully logined, Welcome back ${userdata.username}`)
    navigate("/")
      const user1=user?.docs[0]
     }catch{
-      console.log("error")
+      setloading(false)
+     setTimeout(() => {
+      alert("Some issue arised!\nCheck you network connection.")
+     }, 100);
+      
     }
     finally{
       setloading(false)

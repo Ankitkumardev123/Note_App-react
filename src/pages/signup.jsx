@@ -47,17 +47,26 @@ function Signup() {
         
        try{
         setloading(true)
-     const user=createUserWithEmailAndPassword(Auth,user_gmail,user_password)
-     console.log(user)
+     const user= await createUserWithEmailAndPassword(Auth,user_gmail,user_password)
+    
         setloading(false)
-        alert(`Succesfully signedup, welcome to MyNote ${user_name}`)
+        setTimeout(() => {
+      alert(`Succesfully signed up, welcome to MyNote ${user_name}`)
+     }, 100);
+        
         dispatch(setcurentuser(data))
         dispatch(setlogined(true))
         navigate('/')
        }
        catch(error){
-        console.error("Error:",error)
-       }
+        setloading(false)
+     setTimeout(() => {
+      alert("Some issue arised in signup!\nCheck you network connection.")
+     }, 100);
+      
+       }finally{
+          setloading(false)
+        }
         setdata('')
          
          setpassword('')
@@ -80,10 +89,11 @@ function Signup() {
     </div>
    }
     <form onSubmit={handlelogin}>
-   <div className='absolute z-[1]  top-[8%]  h-[100vh] w-[100vw]  flex justify-center items-center  flex-col gap-2'>
-    <h1 className='head absolute top-[1%] left-[2%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
+   <div className='signup absolute z-[1]  top-[8%]  h-[102vh] w-[100vw]  flex justify-center items-center  flex-col gap-2'>
+    <h1 className='head absolute top-[0.2%] left-[5%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
             <span className='text-orange-700 text-[6vmin]'>Note</span></h1>
-            <div className='login signup absolute w-[35%] h-[82%]  bg-black rounded-xl border-2 mt-5 border-white flex justify-start items-center flex-col gap-[2%]'>
+            <div className='login signup absolute w-[35%] h-[82%]  bg-black rounded-xl border-2 mt-5 border-white flex justify-start 
+            items-center flex-col gap-[1%]'>
               <h1 className='am text-white font-semibold text-[5vmin] font-mono  mt-2 h-[7%] text-center '><span>Sign</span><span className='text-orange-500'>up</span></h1>
               <span className='w-[90%] flex items-center h-[40%]   gap-[10%] justify-start flex-col'>
               <input value={user_name} onChange={e=>setusename(e.target.value)} type="text" placeholder='Enter a username...' className=' 
@@ -107,13 +117,14 @@ function Signup() {
               <img src={visible?eye2:eye1} alt="" className='eye1 absolute w-[5vmin]  z-[5]  right-[9%] duration-200' onClick={()=>setvisible(prev=>!prev)}/>
               </div>
               </span>
-              <div className='tick text-[2vmin] w-[90%] h-[16%]   flex items-start justify-center flex-col gap-1 pt-4'>
+              <div className='tick text-[2vmin] w-[90%] h-[18%]   flex items-start justify-center flex-col gap-1 '>
                   <span className='flex justify-start items-center text-[3.2vmin] w-[100%] '><input type="checkbox" name="" id="" className='accent-orange-600  h-[100%] w-[4%] '/>Remember me</span>
                   
                 <a href="" className='text-orange-500 w-[100%] h-[50%] text-[3.5vmin] text-left hover:underline'>Already have an account?Login?</a>
                 
               </div>
-              <button className='b text-[4.5vmin] border-4  text-center font-mono font-semibold border-white bg-orange-500 py-1 px-2 rounded-lg
+              <button className='b text-[4.5vmin] border-4  text-center font-mono font-semibold border-white bg-orange-500 
+              py-1 px-2 rounded-lg
                hover:text-black hover:bg-orange-500  hover:border-orange-700 m-0'>Signup</button>
               
               <div className='w-[90%] h-[20%]  flex-col justify-center items-center py-2  '>

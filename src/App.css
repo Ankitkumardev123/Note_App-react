@@ -83,12 +83,24 @@ width: 65vmin;
   width: 70%;
   margin-top: 5rem;
 }
-.tick{
-  padding: 0;
-}
+
 }
 @media(max-width:425px){
+  .infobox{
+    height: 2.5%;
+    margin-left: 0rem;
+    margin-left: 0.7rem;
+  }
+  .signup{
+    height: 90vh;
+  }
+  .tick{
+    height: 6%;
+  }
   .fols{
+    height: 3.7%;
+  }
+  .nots{
     height: 4%;
   }
   .user1{
@@ -130,9 +142,13 @@ width: 65vmin;
 }
 }
 @media(max-width:375px){
-   .fols{
+  .nold{
     height: 3.5%;
   }
+  .fold{
+    height: 5%;
+  }
+  
   .user{
     height: 100vh;
   }
@@ -146,9 +162,7 @@ width: 65vmin;
   gap: 0;
 
 }
-.nots,.fols{
-  height: 5.5%;
-}
+
 .head{
   height: 8%;
 }

@@ -123,11 +123,11 @@ function Home() {
     <div ref={editbar2} className={`edit fixed w-[50vw]  h-[90vh] b-0 z-[5] bg-black top-[9.5%] bottom-0 border-[1vmin] border-orange-500 rounded-b-sm border-l-0 flex 
     flex-row${islogined?"":'hidden'}`}>
     <div className='w-[50%] h-[100%] flex justify-center flex-col items-center bg-black border-r-2  border-orange-500 '>
-    <span className=' w-[100%] h-[8%] flex items-center  justify-start pl-1  '>
+    <span className='fold w-[100%] h-[8%] flex items-center  justify-start pl-1  '>
     <img src={folder} className='w-[7vmin] h-[7vmin]  mb-1' alt="" />
     <h1 className='flex text-center text-[5vmin] text-orange-500  w-[50%] font-semibold font-mono justify-left items-center ' >Folders</h1>
 
-    <span className='ml-1 flex b w-[50%] justify-center items-center gap-[9%] h-[100%]'>
+    <span className=' flex b w-[50%] justify-center items-center gap-[9%] h-[100%]'>
       
       <img src={close} className={`w-[4vmin] h-[4vmin]  rotate-45 duration-200 ${create?"rotate-90":"rotate-45"}`} alt="" onClick={()=>{
         setsearch(false)
@@ -144,7 +144,7 @@ function Home() {
       }} />
     </span>
     </span>
-    <span className={`flex w-[100%] h-[7%]  justify-center  items-center duration-400 mb-2 pl-2 ${create?"":"hidden"}  `}>
+    <span className={`flex w-[100%] h-[4%] pt-2 justify-center  items-center duration-400 mb-2 pl-2 ${create?"":"hidden"}  `}>
      <img src={mini} value={msg} className='w-[5vmin] h-[5vmin]' alt="" />
     <input type="text" value={msg} className={`w-[50%] text-orange-500 outline-none border-0 border-b-4 bg-transparent ${create?"":"hidden"} text-[3vmin] `} placeholder='Give a name..'onChange={e=>setmsg(e.target.value)} onKeyDown={e=>{
       if(e.key==="Enter"){
@@ -172,7 +172,7 @@ function Home() {
     } >Add</button>
      
     </span>
-     <span className={`flex w-[100%] justify-start ml-2 z-[2] items-center duration-400 ${search?"":"hidden"}  pl-2`}>
+     <span className={`flex w-[100%] justify-start ml-2  items-center duration-400 ${search?"":"hidden"}  pl-2`}>
        <img src={searchicon} className={`w-[5vmin] h-[5vmin] mr-1`}/>
     <input type="text" value={Search_msg} className={`w-[70%] text-orange-500 outline-none border-0 border-b-4 bg-transparent text-[3vmin] `} placeholder='Enter folder name... 'onChange={e=>setsearch_msg(e.target.value)} 
      onKeyDown={e=>{
@@ -184,7 +184,8 @@ function Home() {
      }} />
     </span>
   
-    <div className='folders h-[100%] w-[100%] pl-[0.5vmin]  flex-col gap-[1.5%] overflow-y-auto overflow-x-hidden scrollbar-hide flex justify-start items-center' ref={ani1}>
+    <div className='folders h-[100%] w-[100%] pl-[0.5vmin]  flex-col gap-[1.5%] overflow-y-auto overflow-x-hidden scrollbar-hide flex
+     justify-start items-center' ref={ani1}>
     
      {
       
@@ -197,7 +198,7 @@ function Home() {
 
     </div>
      <div className={`w-[50%] duration-400 h-[100%] flex flex-col items-center bg-black ${folders?"":'hidden'}`}>
-     <span className='w-[100%] h-[5%] flex items-center pt-2  justify-start  pl-0.5 mb-2 mt-0.5'>
+     <span className='nold w-[100%] h-[5%] flex items-center pt-2  justify-start  pl-0.5 mb-2 mt-0.5'>
       <img src={note} className='w-[6vmin] h-[6vmin] ' alt="" />
      <h1 className='flex text-center text-[5vmin] text-orange-500   font-semibold font-mono justify-left items-center ' >Notes</h1>
       <img src={`${!search_note?searchicon:close}`} className={`w-[4vmin]   duration-400 ml-10 ${selectedfolder?? 'hidden'}`} alt="" onClick={()=>{setsearch_note(prev=>!prev)
@@ -215,14 +216,14 @@ function Home() {
       }
      }} />
     </span>
-    <span className='ml-3 w-[100%] flex text-center h-[5%] justify-start gap-[1%]' ref={ani}>
-      <img src={mini} className={`w-[4vmin] h-[4vmin] mb-1 ${selectedfolder??"hidden"}`}alt=""/>
-      <h2 className={`text-white text-[2.5vmin] h-[100%] $ ${selectedfolder??"hidden"}`}>{
+    <span className='infobox ml-4 w-[100%] flex mb-1 items-center h-[7%] justify-center gap-[2%]' ref={ani}>
+      <img src={mini} className={`w-[4vmin] h-[4vmin] grid place-items-center  ${selectedfolder??"hidden"}`}alt=""/>
+      <h2 className={`text-white text-[2vmin] h-[100%] w-[30%]  text-left grid place-items-center $ ${selectedfolder??"hidden"}`}>{
       selectedfolder?.folname }</h2>
-      <h2 className={`text-orange font-semibold  text-[2.5vmin] text-center w-[100%] h-[90%]   ${selectedfolder??"hidden"}`}>Total Notes-{selectedfolder?.notes?.length}</h2>
+      <h2 className={`text-orange font-semibold  text-[2vmin]  w-[100%] h-[100%] grid place-items-center   ${selectedfolder??"hidden"}`}>Total Notes-{selectedfolder?.notes?.length}</h2>
     </span>
 
-      <div className={`h-full  w-[100%]   flex flex-col gap-[1%]  overflow-x-hidden text-center justify-start items-center 
+      <div className={`h-[100%]  w-[100%]   flex flex-col gap-[1%]  overflow-x-hidden text-center justify-start items-center 
          ${selectedfolder??""}`} ref={ani}>
         <h1 className={`text-[5vmin] text-orange-500 font-semibold  w-[100%] text-center  duration-200 ${selectedfolder?.folname?"hidden":''}`}>Choose a folder...</h1>
          <h1 className={`text-[5vmin] text-orange-500 font-semibold   duration-200 ${selectedfolder?.notes?.length==0?'':'hidden'}`}>Create a Note...</h1>
@@ -248,7 +249,7 @@ function Home() {
     </div>
     <div className={`absolute  top-[7%] z-[1]   h-[110vh] gap-1 w-[100vw] flex   justify-start items-center  flex-col ${islogined?"hidden":''}`}>
       <div className='t w-[100%] h-[50%] flex flex-col items-center justify-start gap-2  py-1'>
-       <h1 className='text-white text-[10vmin] pt-1 w-[100%] text-center'>Welcome to <span className='text-white font-serif '>My</span>
+       <h1 className='text-white text-[10vmin] pt-1 w-[100%] text-center mt-2'>Welcome to <span className='text-white font-serif '>My</span>
             <span className='text-orange-500 text-[9vmin]'>Note</span></h1>
         <p className='text-white text-[5vmin] w-[50%] text-center'>Your personal space to save ,edit and organize your thoughts securely and safely...</p>
         <button

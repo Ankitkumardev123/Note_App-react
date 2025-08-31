@@ -19,16 +19,17 @@ import great from "../images/great.png"
 import post from "../images/post.png"
 import notess from "../images/notess.png"
 function Home() {
+  const select=useRef(null)
   const navigate=useNavigate()
     let folders=useSelector(state=>state.noted.Folders)
-   
+   const[dowload_on,setdownload]=useState(false)
   const [create, setcreate] = useState(false)
   const [msg, setmsg] = useState('')
   const [search, setsearch] = useState(false)
   const [Search_msg, setsearch_msg] = useState('')
   const [search_note, setsearch_note] = useState(false)
   const [Search_notemsg, setsearch_notemsg] = useState('')
-  
+  const [format,setformat]=useState(null)
   const editbar2=useRef(null)
   const ani=useRef(null)
   const ani1=useRef(null)
@@ -51,7 +52,7 @@ function Home() {
    
   },[create])
 
- 
+
  useEffect(()=>{
     setslider(slide)
    
@@ -113,7 +114,10 @@ function Home() {
     }))
     
     }
-    
+    const handledownload=()=>{
+      const filedata=`${note_title}\n\n${selected_note?.notecontent}`
+      handlenote(filedata)
+    }
   return (
     <>
     <div ref={editbar2} className={`edit fixed w-[50vw]  h-[90vh] b-0 z-[5] bg-black top-[9.5%] bottom-0 border-[1vmin] border-orange-500 rounded-b-sm border-l-0 flex 
@@ -281,19 +285,36 @@ function Home() {
       <h1 className='text-[8vmin] font-semibold duration-200'>No note selected. Start by picking or creating one!</h1>
       </span>
         
+  <div className={`absolute  z-[30] bg-gray-500 opacity-70 grid place-items-center   w-[100vw] h-[100vh] ${dowload_on?"":'hidden'}`}>
+    <div className='relative w-[15rem] rounded-lg h-64 bg-black border-4 flex flex-col items-center justify-center gap-2'>
       
-      <div className={`h-[20%] w-[100%] flex flex-col justify-center  pl-[4%] ${selected_note?'':"hidden"} ${selectedfolder?.notes.length==0?'hidden':""} `}>
+       <img src={close} alt="" className='absolute w-7  top-3 right-3 ' onClick={()=>setdownload(false)} />
+        
+       <label htmlFor="select" className='  text-white font-bold text-lg w-[90%] text-center'>Select a format</label>
+      <select onChange={(e)=>setformat(e.target.value)} ref={select} name="" id="s" className='w-[80%] h-[20%] text-md font-semibold rounded-md border-[0.1rem] border-gray-500 bg-gray-900'>
+        <option value="TXT" selected>TXT</option>
+        <option value="DOCX" >DOCX</option>
 
-        <input type="text" value={note_title} className='outline-none border-0 text-[6vmin] bg-transparent h-[50%] text-gray-400' 
+      </select>
+      <button className='w-[80%] font-semibold bg-orange-600 py-2 text-white rounded-md brightness-150 text-md' onClick={()=>handledownload()}>Download</button>
+      <h1 className='text-white text-md font-semibold'>Selcted format : {format}</h1>
+      <h1 className='text-white text-md font-semibold'>File : {selected_note?.note_name}.{format?.toLocaleLowerCase()}</h1>
+      
+    </div>
+        
+  </div>
+      <div className={`h-[25%] w-[100%] z-[20] flex flex-col justify-center  pl-[4%] ${selected_note?'':"hidden"}
+       ${selectedfolder?.notes.length==0?'hidden':""} `}>
+        <span className='h-[40%] w-[100%] mt-2 flex justify-start items-center '>
+        <input type="text" value={note_title} className='outline-none border-0 text-2xl gap-2
+         bg-transparent h-[100%] text-left text-gray-400 w-[70%]' 
         onChange={handlechange}placeholder='Give a title..'/>
-        <div className='absolute top-[2%] right-[1%] h-[5%] w-[50%] flex justify-center items-center gap-5'>
-        <select name="" id="" className="dow_op w-[30vmin] h-[100%] text-center  bg-orange-500 rounded-lg text-[3vmin] font-semibold text-white border-2 border-white">
-          <option value="TXT">{selected_note?.note_name}.txt</option>
-          <option value="DOCX">{selected_note?.note_name}.docx</option>
-          <option value="None" selected>Select a Format</option>
-        </select>
-          <button className='text-[3vmin] h-[110%] border-2 rounded-lg bg-orange-500 border-white px-2 '>Dowload</button>
-          </div>
+        <button onClick={()=>{setdownload(true)
+          setformat('TXT')
+        }} className='text-md border-orange-500 px-4 py-1 border-2 rounded-lg text-orange-500 font-semibold '>
+          Dowload
+        </button>
+    </span>
         <span className='flex w-[100%] h-[100%] justify-start items-center flex-row  pl-1 '>
           <h5 className='text-[2vmin]'>Created - {selected_note?.time}</h5>
           <span className='flex w-[50%] h-[20%]  items-center justify-center text-[2vmin]'>
@@ -320,7 +341,8 @@ function Home() {
             height:"100%",
           }
         })
-      ]}   theme={oneDark} maxHeight='100vh' width='100vw' height='100vh' value={selected_note?.notecontent || ''} onChange={(value)=>{
+      ]}   theme={oneDark} maxHeight='100vh' width='100vw' height='100vh' 
+      value={selected_note?.notecontent || ''} onChange={(value)=>{
         
         handlenote(value)}} basicSetup={{
       lineNumbers:false,

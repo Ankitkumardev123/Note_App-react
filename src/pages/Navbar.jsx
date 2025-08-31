@@ -18,7 +18,7 @@ function Navbar() {
   const islogined=useSelector(state=>state.noted.logined)
   const ClOUD_NAME="dwlfcrhc8";
   const UPLOAD_PRESET="noteapp";
-
+  const [reset, setreset] = useState(false)
 
  const [visible, setvisible] = useState(false)
   
@@ -39,7 +39,7 @@ function Navbar() {
           
         }
         else{
-          
+          alert("You have succesfully logged out.")
         }
       })
    },[])
@@ -84,6 +84,7 @@ function Navbar() {
   }
   const handleimage=(file)=>{
     if(file!=null){
+      setreset(true)
       const fromData=new FormData();
       fromData.append("file",file);
       fromData.append("upload_preset",UPLOAD_PRESET)
@@ -91,8 +92,11 @@ function Navbar() {
         method:"POST",
         body:fromData
       }).then(res=>res.json()).then((data)=>{
-        console.log(data)
-        dispatch(setprofilepic(data.secure_url))}).catch((err)=>console.log(err))
+        
+        dispatch(setprofilepic(data.secure_url))
+        alert("Profile imaged succesfully changed!")
+        setreset(false)
+      }).catch((err)=>alert("Img can't be changed!"))
     }
      
   }
@@ -102,8 +106,14 @@ function Navbar() {
      <div ref={slider} className='user slide absolute flex overflow-x-hidden overflow-y-auto scrollbar-hide gap-1 
       justify-start items-center  flex-col w-[70vmin] top-[8.4%]  h-[110vh]
      bg-black bg-opacity-100 z-[30] rounded-r-xl border-4 border-white border-l-0 py-1'>
+      <div className={`absolute w-32 h-32 sm:w-40  sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40 z-[11] 
+       ${reset?'':"hidden"} opacity-40 bg-gray-400 rounded-full grid place-items-center  `}>
+        <div className='w-14 h-14 border-8 rounded-full opacity-1 z-[12]  border-white border-t-gray-900  animate-spin grid place-items-center'>
+          
+        </div>
+      </div>
     <img src={userdata.profile_pic ??user} 
-    className={` w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40   rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
+    className={` w-32 h-32 sm:w-40 z-[10] sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40   rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
     <label htmlFor="input-file" className={`bg-orange-500 py-1 px-3 text-[3vmin] font-semibold hover:bg-orange-600 transition-all shadow-sm rounded-lg border-[0.5vmin]
        ${islogined?'':'hidden'}`}>Update image</label>
     <input type="file" name="" id="input-file" accept='image/jpeg,image/png,image/jpg '  className='hidden'  onChange={(e)=>{handleimage(e.target.files[0])

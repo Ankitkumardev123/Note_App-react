@@ -7,7 +7,8 @@ import close from "../images/close.png"
 import pencils from "../images/pencils.png"
 import post from "../images/post.png"
 import save from "../images/save.png"
-function Note({not,items,searchmsg_note}) {
+function Note({not,items,searchmsg_note,setnotename,noten}) {
+   
   const [visible, setvisible] = useState(false)
     const [edit, setedit] = useState(false)
     const [rename, setrename] = useState(true)
@@ -60,6 +61,8 @@ function Note({not,items,searchmsg_note}) {
        }/>
        <input type="text" disabled={rename} value={msg} className='outline-none w-[100%] h-[100%]  bg-transparent text-[3vmin]' onChange={(e)=>{setmsg(e.target.value)
         dispatch(setselectednote(not))
+        
+          
        }} />
         </span>
         <span className={`flex w-[45%] h-[100%]  items-center justify-right flex-row
@@ -70,7 +73,9 @@ function Note({not,items,searchmsg_note}) {
                     const prop={
                       note_name:msg
                     }
-                   
+                    noten(msg)
+                    dispatch(updatenote({id:not.id,folid:selectedfolderid,prop}))
+                    
                   }
                   
                 }} className='w-[4.5vmin]  rounded-lg duration-200'/>

@@ -21,7 +21,7 @@ const initialState={
    Folders:[],
    selectednote:null,
    selectedfolderid:null,
-
+   fetching:true,
    
 }
 const handledata=async(data)=>{
@@ -165,10 +165,13 @@ const notesslices=createSlice({
         setloginuser:(state,action)=>{
             
             state.currentuser={...action.payload}
+        },
+        setfetching:(state,action)=>{
+            state.fetching=action.payload ?? !state.fetching
         }
        
 }})
 
 export const {setlogined,menubartoggle,editbartoggle,deletefolder,deletenote,addfolder,addNote,updatenote,updatefolder,setselectednote,setselectfolder,
-    setfolders,setprofilepic,setcurentuser,setuserfolder,setloginuser} =notesslices.actions;
+    setfolders,setprofilepic,setcurentuser,setuserfolder,setloginuser , setfetching} =notesslices.actions;
 export default notesslices.reducer;

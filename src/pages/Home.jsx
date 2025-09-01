@@ -18,6 +18,9 @@ import mini from "../images/mini.png"
 import great from "../images/great.png"
 import post from "../images/post.png"
 import notess from "../images/notess.png"
+import * as docx from 'docx'
+import { Format } from '@cloudinary/url-gen/qualifiers'
+import { saveAs } from 'file-saver'
 function Home() {
   const select=useRef(null)
   const navigate=useNavigate()
@@ -45,6 +48,10 @@ function Home() {
   const [slider,setslider]=useState(slide)
   const [note_title,setnote_title]=useState('')
   const dispatch=useDispatch()
+  
+  const [notecontent,setnotecontent]=useState(selected_note?.notecontent ||  '')
+  const [notename,setnotename]=useState(selected_note?.notename || '' )
+ 
   const [length, setlength] = useState(selected_note?.notecontent.length || 0)
  useEffect(()=>{
   if(folders?.length)
@@ -61,9 +68,12 @@ function Home() {
  
   
   useEffect(()=>{
-   
+    setdownload(false)
+     select.current.value="TXT"
     setnote_title(selected_note?.notetitle || '')
     setlength(selected_note?.['notecontent'].length || 0)
+    setnotename(selected_note?.note_name || '')
+    setnotecontent(selected_note?.notecontent ||'')
   },[selected_note])
 
  useEffect(()=>{
@@ -112,11 +122,57 @@ function Home() {
       }
       
     }))
-    
+ 
     }
-    const handledownload=()=>{
-      const filedata=`${note_title}\n\n${selected_note?.notecontent}`
-      handlenote(filedata)
+    const handledownload=async(name,title,content)=>{
+     
+      if(!selected_note) return
+      if(format=='TXT'){
+      const filedata=`Title:-${title}\n\nNote Content:-\n${content}`
+      const blob=new Blob([filedata],{
+        type:"text/plain"
+      });
+      const url=URL.createObjectURL(blob)
+      const a=document.createElement('a')
+      a.href=url
+      a.download=`${name}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+    else if(format == "DOCX"){
+    
+      const docx_doc =new docx.Document({
+        sections:[{
+          properties:{},
+          children:[
+            new docx.Paragraph({
+              children:[new docx.TextRun ({
+                text:title,bold:true,size:32
+              })]
+              
+            }),
+            new docx.Paragraph({
+              children:[new docx.TextRun ({
+                text:'\n\n',size:24
+              })]
+              
+            }),
+              new docx.Paragraph({
+              children:[new docx.TextRun ({
+                text:content,size:20
+              })]
+              
+            }),
+          ]
+        }
+        ]
+      })
+      docx.Packer.toBlob(docx_doc).then((blob)=>{
+        saveAs(blob,`${name}.docx`);
+      })
+    }
     }
   return (
     <>
@@ -231,7 +287,7 @@ function Home() {
          text-center`}>
      {
       selectedfolder?.notes?.map((not,index1)=>
-        <Note key={not.id} not={not} items={{folders}}  index1={index1} set={setindex_note} searchmsg_note={Search_notemsg} onClick={()=>dispatch(setselectednote(not))}/>
+        <Note key={not.id} not={not} items={{folders}} noten={setnotename} index1={index1} set={setindex_note} searchmsg_note={Search_notemsg} onClick={()=>dispatch(setselectednote(not))}/>
       )
      }
      </div>
@@ -247,11 +303,11 @@ function Home() {
       </button>
      </div>
     </div>
-    <div className={`absolute  top-[7%] z-[1]   h-[110vh] gap-1 w-[100vw] flex   justify-start items-center  flex-col ${islogined?"hidden":''}`}>
+    <div className={`h absolute  top-[7%] z-[1]   h-[110vh] gap-1 w-[100vw] flex   justify-start items-center  flex-col ${islogined?"hidden":''}`}>
       <div className='t w-[100%] h-[50%] flex flex-col items-center justify-start gap-2  py-1'>
        <h1 className='text-white text-[10vmin] pt-1 w-[100%] text-center mt-2'>Welcome to <span className='text-white font-serif '>My</span>
             <span className='text-orange-500 text-[9vmin]'>Note</span></h1>
-        <p className='text-white text-[5vmin] w-[50%] text-center'>Your personal space to save ,edit and organize your thoughts securely and safely...</p>
+        <p className=' text-white text-[5vmin] w-[50%] text-center'>Your personal space to save ,edit and organize your thoughts securely and safely...</p>
         <button
        className='text-[5vmin] border-[0.3rem]      border-white p-2 text-white bg-orange-500 rounded-xl hover:bg-orange-700'
        onClick={()=>{
@@ -264,7 +320,7 @@ function Home() {
             <div className='a w-[100%] gap-[1rem] text-center  h-[20%] flex items-center justify-start flex-col '>
                <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
                 <span className='flex justify-center items-center h-[20%]'><img src={note} alt="" className='w-[7vmin]'/>New Notes</span></span>
-                <p className='p text-white text-[4vmin]  w-[70%] text-center'>Write down anything instantly,with diffrent styling...</p>
+                <p className='texts p text-white text-[4vmin]  w-[70%] text-center'>Write down anything instantly,with diffrent styling...</p>
             </div>
             <div className='a w-[100%] text-center gap-[1rem]  h-[20%] flex items-center justify-start flex-col'>
                <span className='a w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
@@ -289,17 +345,21 @@ function Home() {
   <div className={`absolute  z-[30] bg-gray-500 opacity-70 grid place-items-center   w-[100vw] h-[100vh] ${dowload_on?"":'hidden'}`}>
     <div className='relative w-[15rem] rounded-lg h-64 bg-black border-4 flex flex-col items-center justify-center gap-2'>
       
-       <img src={close} alt="" className='absolute w-7  top-3 right-3 ' onClick={()=>setdownload(false)} />
+       <img src={close} alt="" className='absolute w-7  top-3 right-3 ' onClick={()=>{setdownload(false)
+        select.current.value="TXT"
+       }} />
         
        <label htmlFor="select" className='  text-white font-bold text-lg w-[90%] text-center'>Select a format</label>
-      <select onChange={(e)=>setformat(e.target.value)} ref={select} name="" id="s" className='w-[80%] h-[20%] text-md font-semibold rounded-md border-[0.1rem] border-gray-500 bg-gray-900'>
-        <option value="TXT" selected>TXT</option>
+      <select onChange={(e)=>setformat(e.target.value)} ref={select}  name="" id="s" className='w-[80%] h-[20%] text-md font-semibold rounded-md border-[0.1rem] border-gray-500 bg-gray-900'>
+        
         <option value="DOCX" >DOCX</option>
-
+      <option value="TXT" selected>TXT</option>
       </select>
-      <button className='w-[80%] font-semibold bg-orange-600 py-2 text-white rounded-md brightness-150 text-md' onClick={()=>handledownload()}>Download</button>
+      <button className='w-[80%] font-semibold bg-orange-600 py-2 text-white rounded-md brightness-150 text-md' onClick={()=>{
+        handledownload(notename,note_title,notecontent)
+      }}>Download</button>
       <h1 className='text-white text-md font-semibold'>Selcted format : {format}</h1>
-      <h1 className='text-white text-md font-semibold'>File : {selected_note?.note_name}.{format?.toLocaleLowerCase()}</h1>
+      <h1 className='text-white text-md font-semibold'>File : {notename}.{format?.toLocaleLowerCase()}</h1>
       
     </div>
         
@@ -344,7 +404,7 @@ function Home() {
         })
       ]}   theme={oneDark} maxHeight='100vh' width='100vw' height='100vh' 
       value={selected_note?.notecontent || ''} onChange={(value)=>{
-        
+        setnotecontent(value)
         handlenote(value)}} basicSetup={{
       lineNumbers:false,
       highlightActiveLine:false,

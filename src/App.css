@@ -79,10 +79,7 @@ width: 65vmin;
 .eye{
   right: 25%;
 }
-.signup{
-  width: 70%;
-  margin-top: 5rem;
-}
+
 
 }
 @media(max-width:425px){
@@ -109,8 +106,9 @@ width: 65vmin;
   .head{
     display: none;
   }
+  
 .infobar{
-  height: 100%;
+
  
   gap: 5%;
   justify-content:flex-start;
@@ -140,6 +138,7 @@ width: 65vmin;
 .b{
   font-size: 7vmin;
 }
+
 }
 @media(max-width:375px){
   .nold{

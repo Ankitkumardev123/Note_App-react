@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Auth, database } from '../firebase/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
-import { setcurentuser, setloginuser,setlogined } from '../noteslice/noteslices'
+import { setcurentuser, setloginuser,setlogined, setfetching } from '../noteslice/noteslices'
 import {  collection, getDocs, query,where} from "firebase/firestore"; 
 
 import eye2 from "../images/eye2.png"
@@ -19,7 +19,7 @@ function Login() {
   const dispatch=useDispatch()
   const navigate=useNavigate()
   const handlelogin=async(e)=>{
-   
+    dispatch(setfetching(false))
     e.preventDefault();
     try{
       setloading(true)
@@ -27,6 +27,7 @@ function Login() {
      
     const q= query(collection(database, "users"), where("email", "==",`${user_logindata}`));
     const user= await getDocs(q)
+   
    setloading(false)
     if(user.empty)
     {
@@ -36,11 +37,12 @@ function Login() {
 
     dispatch(setloginuser(userdata))
    dispatch(setlogined(true))
+   
+   
+   navigate("/")
    setTimeout(() => {
       alert(`Succesfully logined, Welcome back ${userdata.username}`)
      }, 100);
-   
-   navigate("/")
      const user1=user?.docs[0]
     }catch{
       setloading(false)

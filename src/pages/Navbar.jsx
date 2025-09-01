@@ -1,9 +1,9 @@
 import React, { useEffect, useState,useRef, use} from 'react'
-import { menubartoggle,editbartoggle,setfolders,setprofilepic, setcurentuser, setloginuser, setlogined, setselectednote } from '../noteslice/noteslices.js'
+import { menubartoggle,editbartoggle,setfolders,setprofilepic, setcurentuser, setloginuser, setlogined, setselectednote, setfetching } from '../noteslice/noteslices.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, NavLink } from 'react-router-dom'
 import gsap from 'gsap'
-import { onAuthStateChanged, signOut } from 'firebase/auth'
+import {  signOut } from 'firebase/auth'
 import { Auth } from '../firebase/firebase.js'
 
 import close from "../images/close.png"
@@ -167,6 +167,7 @@ function Navbar() {
    dispatch(menubartoggle(false))
    dispatch(setselectednote(null))
     dispatch( setlogined(false))
+   dispatch(setfetching(false))
      alert("You have succesfully logged out.")
   }catch{
     setTimeout(() => {

@@ -66,9 +66,10 @@ const handlerelogin=
 
 
 const handleupdate= async()=>{
+    try{
   const q=query(collection(database,"users"),where('email','==',userdata?.email))
   const datafetch=await getDocs(q)
-  
+
   if(datafetch.empty)
   {
     alert("User not found for update.");
@@ -79,6 +80,9 @@ const handleupdate= async()=>{
     ...userdata
   })
   console.log('updated')
+  }catch(error){
+    alert("Oops! can't auto save chnages...\nCheck Your Network connection!!")
+  }
 }
   useEffect(()=>{
    

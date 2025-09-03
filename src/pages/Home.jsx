@@ -336,7 +336,7 @@ function Home() {
             </div>
         </div>
     </div>
-     <div className={`fixed  top-[6%]  h-[100%] z-5 left-0 w-[100vw] flex justify-center items-center  flex-col $
+     <div className={`fixed  top-[7%]  h-[100%] z-5 left-0 w-[100vw] flex justify-center items-center  flex-col $
       ${islogined?"":'hidden'}`}> 
       <span className={`flex h-[20%] w-[100%] justify-center items-center ${selected_note?"hidden":""}`}>
         <img src={note} alt=""  width={'50vmin'} height={'50vmin'} />
@@ -365,11 +365,11 @@ function Home() {
     </div>
         
   </div>
-      <div className={`h-[20%] w-[100%] z-[20] flex flex-col justify-start  pl-[5%] ${selected_note?'':"hidden"}
+      <div className={`h-[15%] w-[100%] z-[20] flex flex-col justify-center  items-start pl-[5%] ${selected_note?'':"hidden"}
        ${selectedfolder?.notes.length==0?'hidden':""} `}>
         <span className='h-[40%] w-[100%] mt-2 flex justify-start items-center '>
         <input type="text" value={note_title} className='outline-none border-0 text-2xl gap-2
-         bg-transparent h-[100%] text-left text-gray-400 w-[70%]' 
+         bg-transparent h-[100%] text-left text-orange-500 w-[70%]  pl-1' 
         onChange={handlechange}placeholder='Give a title..'/>
         <button onClick={()=>{setdownload(true)
           setformat('TXT')
@@ -391,7 +391,7 @@ function Home() {
       </div>
       
       
-       <textarea value={notecontent || ''} onChange={(e)=>{
+       <textarea placeholder='Write note content hear.....' value={notecontent || ''} onChange={(e)=>{
         
         setnotecontent(e.target.value)
         handlenote(e.target.value)}} className={`shadow-lg text-[3vmin] w-[100vw] h-[80vh] bg-gray-900 overflow-scroll p-5 border-t-4 border-t-orange-600 outline-none  ${!selected_note?'hidden':""} scrollbar-hide` }>

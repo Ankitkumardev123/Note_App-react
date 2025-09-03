@@ -365,7 +365,7 @@ function Home() {
     </div>
         
   </div>
-      <div className={`h-[15%] w-[100%] z-[20] flex flex-col justify-start  pl-[5%] ${selected_note?'':"hidden"}
+      <div className={`h-[20%] w-[100%] z-[20] flex flex-col justify-start  pl-[5%] ${selected_note?'':"hidden"}
        ${selectedfolder?.notes.length==0?'hidden':""} `}>
         <span className='h-[40%] w-[100%] mt-2 flex justify-start items-center '>
         <input type="text" value={note_title} className='outline-none border-0 text-2xl gap-2

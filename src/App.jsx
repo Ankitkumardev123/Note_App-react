@@ -78,12 +78,13 @@ const handleupdate= async()=>{
   await updateDoc(doc(database,"users",user?.id),{
     ...userdata
   })
+  console.log('updated')
 }
   useEffect(()=>{
    
     if(folders.length==0)
     {
-       
+       0
   dispatch(setfolders(userdata?.user_folders))
  
       setloginuser({...userdata,user_folders:folders})
@@ -95,6 +96,7 @@ useEffect(()=>{
   if(userdata.email !=="notfound@gmail.com"){
  
     handleupdate()
+    
   }
 },[userdata])
   return (

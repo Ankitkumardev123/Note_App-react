@@ -336,7 +336,7 @@ function Home() {
             </div>
         </div>
     </div>
-     <div className={`fixed  top-[5%]  h-[100%] z-5 left-0 w-[100vw] flex justify-center items-center  flex-col $
+     <div className={`fixed  top-[6%]  h-[100%] z-5 left-0 w-[100vw] flex justify-center items-center  flex-col $
       ${islogined?"":'hidden'}`}> 
       <span className={`flex h-[20%] w-[100%] justify-center items-center ${selected_note?"hidden":""}`}>
         <img src={note} alt=""  width={'50vmin'} height={'50vmin'} />

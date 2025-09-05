@@ -146,7 +146,7 @@ function Home() {
     else if(format == "DOCX"){
       const content= notecontent.split("\n").map(line=>{
         return new docx.Paragraph({
-          text:line,size:29,bold:true
+          text: String(line),size:32,bold:true
         })
       })
       const docx_doc =new docx.Document({
@@ -155,17 +155,25 @@ function Home() {
           children:[
             new docx.Paragraph({
               children:[new docx.TextRun ({
-                text:`Title:-\n${title || `Untitled`}`,bold:true,size:32
+                text:`Note Title:-`,bold:true,size:32,underline:true
+              })]
+              ,
+              
+            }),
+           new docx.Paragraph({
+              children:[new docx.TextRun ({
+                text:String(title || "Untitled"),bold:true,size:30,
+              })]
+              ,
+              
+            }),
+              new docx.Paragraph({
+              children:[new docx.TextRun ({
+                text:`Note Content:-`,size:30,underline:true,bold:true
               })]
               
             }),
             ...content,
-              new docx.Paragraph({
-              children:[new docx.TextRun ({
-                text:`Content:-${content || 'No content written'}`,size:30
-              })]
-              
-            }),
           ]
         }
         ]

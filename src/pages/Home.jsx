@@ -186,7 +186,7 @@ function Home() {
     }
   return (
     <>
-    <div ref={editbar2} className={`edit fixed w-[50vw]  h-[90vh] b-0 z-[5] bg-black top-[9.5%] bottom-0 border-4 border-orange-500 rounded-b-sm border-l-0 flex 
+    <div ref={editbar2} className={`edit fixed w-[50vw]  h-[90vh] b-0 z-50 bg-black top-[9.5%] bottom-0 border-4 border-orange-500 rounded-b-sm border-l-0 flex 
     flex-row ${islogined?"":'hidden'}`}>
     <div className='w-[50%] h-[100%] flex justify-center flex-col items-center bg-black border-r-2  border-orange-500 '>
     <span className='fold w-[100%] h-[8%] flex items-center  justify-start pl-1  '>
@@ -345,11 +345,11 @@ function Home() {
             </div>
         </div>
     </div>
-     <div className={`fixed  top-[7%]  h-[100vh] z-5 left-0 w-[100vw] flex justify-center items-center  flex-col overflow-hidden
+     <div className={`absolute  top-[7%] z-[1] h-[100%]   w-[100vw] flex  flex-col justify-center items-center 
       ${islogined?"":'hidden'}`}> 
-      <span className={`flex h-[20%] w-[100%] justify-center items-center ${selected_note?"hidden":""}`}>
+      <span className={` h-[20%] w-[100%] px-2 flex justify-center items-center ${selected_note?"hidden":""}`}>
         <img src={note} alt=""  width={'50vmin'} height={'50vmin'} />
-      <h1 className='text-[8vmin] font-semibold duration-200'>No note selected. Start by picking or creating one!</h1>
+      <h1 className='text-[5vmin] font-semibold duration-200'>No note selected. Start by picking or creating one!</h1>
       </span>
         
   <div className={`absolute  z-[30] bg-gray-500 bg-opacity-70 grid place-items-center   w-[100vw] h-[100vh] ${dowload_on?"":'hidden'}`}>
@@ -374,7 +374,7 @@ function Home() {
     </div>
         
   </div>
-      <div className={`h-[15%] w-[100%] z-[20] flex flex-col justify-center  items-start pl-[5%] ${selected_note?'':"hidden"}
+      <div className={`h-[20%] w-[100%] z-[20] flex flex-col justify-center  items-start pl-[5%] ${selected_note?'':"hidden"}
        ${selectedfolder?.notes.length==0?'hidden':""} `}>
         <span className='h-[40%] w-[100%] mt-2 flex justify-start items-center '>
         <input type="text" value={note_title} className='outline-none border-0 text-2xl gap-2
@@ -399,7 +399,7 @@ function Home() {
 
       </div>
       
-      
+      <div className={`w-[100%] h-[80%]  border-t-4 border-t-orange-600 border-b-4 border-b-orange-600 ${selected_note?'':"hidden"}`}>
        <textarea ref={textarea} placeholder='Write note content hear.....' value={notecontent || ''} onChange={(e)=>{
         
         setnotecontent(e.target.value)
@@ -408,10 +408,10 @@ function Home() {
       
       }
         
-        } className={`shadow-lg text-[3vmin] w-[100vw] min-h-[80%] mb-5 bg-gray-900 overflow-y-auto p-5  border-t-4 border-t-orange-600 outline-none   ${!selected_note?'hidden':""} scrollbar-hide` }>
+        } className={`shadow-lg text-[3vmin] w-[100vw] h-[100%]  bg-gray-900 overflow-y-auto p-5  outline-none   ${!selected_note?'hidden':""} scrollbar-hide` }>
      
       </textarea>
-
+        </div>
     
      </div>
     </>

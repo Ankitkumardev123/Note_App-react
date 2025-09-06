@@ -24,6 +24,7 @@ import { saveAs } from 'file-saver'
 import { auto } from '@cloudinary/url-gen/qualifiers/quality'
 function Home() {
   const select=useRef(null)
+  const textarea=useRef(null)
   const navigate=useNavigate()
     let folders=useSelector(state=>state.noted.Folders)
    const[dowload_on,setdownload]=useState(false)
@@ -281,7 +282,7 @@ function Home() {
       }
      }} />
     </span>
-    <span className={`infobox ml-4 w-[100%] flex mb-1 items-center h-[7%] justify-center gap-[2%] `} ref={ani}>
+    <span className={`infobox ml-4 w-[100%] flex  items-center h-[4%] justify-center gap-[2%] `} ref={ani}>
       <img src={mini} className={`w-[4vmin] h-[4vmin] grid place-items-center  ${selectedfolder??"hidden"}`}alt=""/>
       <h2 className={`text-white text-[2vmin] h-[100%] w-[30%]  text-left grid place-items-center $ ${selectedfolder??"hidden"}`}>{
       selectedfolder?.folname }</h2>
@@ -325,26 +326,26 @@ function Home() {
        >Get Started
         </button>
         </div>
-        <div className='infobar  z-[-1]  w-[100%] h-[50%]   flex items-start justify-flex flex-row  pt-5' >
+        <div className='infobar  z-[-1]  w-[100%] h-[50%]  gap-4 flex items-start justify-center   pt-5' >
             <div className='a w-[100%] gap-[1rem] text-center  h-[20%] flex items-center justify-start flex-col '>
                <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
                 <span className='flex justify-center items-center h-[20%]'><img src={note} alt="" className='w-[7vmin]'/>New Notes</span></span>
-                <p className='texts p text-white text-[4vmin]  w-[70%] text-center'>Write down anything instantly,with diffrent styling...</p>
+                <p className=' p text-white text-[4vmin]  w-[90%] text-center'>Write down anything instantly,with diffrent styling.By organizing notes efficiently,,,</p>
             </div>
             <div className='a w-[100%] text-center gap-[1rem]  h-[20%] flex items-center justify-start flex-col'>
                <span className='a w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
                 <img src={folder} alt="" className='w-[7vmin]'/><span>Sort Easily</span></span>
-                <p className='p text-white text-[4vmin]  w-[90%] text-center'>Sort your Notes with tags and folders,search instantly and keep everything neat and accessible...</p>
+                <p className='p text-white text-[4vmin]  w-[95%] text-center'>Sort your Notes with tags and folders,search instantly and keep everything neat and accessible...</p>
             </div>
-             <div className='a a1 w-[100%] text-center gap-[1rem] h-[20%] flex items-center justify-start flex-col'>
+             <div className='a  w-[100%] text-center gap-[1rem] h-[20%] flex items-center justify-start flex-col'>
                <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
                 <img src={notess} alt="" className='w-[7vmin]'/>
                 <span>Edit Notes</span></span>
-                <p className='p text-white text-[4vmin]  w-[80%] text-center'>Keep your notes fresh by editing them whenever inspiration strikes...</p>
+                <p className='p text-white text-[4vmin]  w-[85%] text-center'>Keep your notes fresh by editing them whenever inspiration strikes...</p>
             </div>
         </div>
     </div>
-     <div className={`fixed  top-[7%]  h-[100vh] z-5 left-0 w-[100vw] flex justify-center items-center  flex-col $
+     <div className={`fixed  top-[7%]  h-[100vh] z-5 left-0 w-[100vw] flex justify-center items-center  flex-col overflow-hidden
       ${islogined?"":'hidden'}`}> 
       <span className={`flex h-[20%] w-[100%] justify-center items-center ${selected_note?"hidden":""}`}>
         <img src={note} alt=""  width={'50vmin'} height={'50vmin'} />
@@ -399,10 +400,15 @@ function Home() {
       </div>
       
       
-       <textarea placeholder='Write note content hear.....' value={notecontent || ''} onChange={(e)=>{
+       <textarea ref={textarea} placeholder='Write note content hear.....' value={notecontent || ''} onChange={(e)=>{
         
         setnotecontent(e.target.value)
-        handlenote(e.target.value)}} className={`shadow-lg text-[3vmin] w-[100vw] h-[80vh] bg-gray-900 overflow-scroll p-5 border-t-4 border-t-orange-600 outline-none  ${!selected_note?'hidden':""} scrollbar-hide` }>
+        handlenote(e.target.value)
+      
+      
+      }
+        
+        } className={`shadow-lg text-[3vmin] w-[100vw] min-h-[80%] mb-5 bg-gray-900 overflow-y-auto p-5  border-t-4 border-t-orange-600 outline-none   ${!selected_note?'hidden':""} scrollbar-hide` }>
      
       </textarea>
 

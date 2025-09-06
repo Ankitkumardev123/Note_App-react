@@ -84,7 +84,7 @@ function Signup() {
   return (
     <>
     {loading &&
-  <div className='absolute w-[100vw] top-[8%] z-[50]  h-[100vh] bg-black bg-opacity-50 grid place-items-center'>
+  <div className='fixed w-[100vw]  z-[50]  h-[100vh] bg-black bg-opacity-50 grid place-items-center'>
         <div className='w-[100px] h-[100px] rounded-full bg-transparent border-4 animate-spin border-t-gray-700'></div>
     </div>
    }

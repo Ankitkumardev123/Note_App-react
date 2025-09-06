@@ -67,7 +67,7 @@ function Login() {
   return (
    <>
    {loading &&
-  <div className='absolute w-[100vw] top-[8%] z-[50]  h-[100vh] bg-black bg-opacity-50 grid place-items-center'>
+  <div className='fixed w-[100vw] h-[100%] z-[50]   bg-black bg-opacity-50 grid place-items-center'>
         <div className='w-[10vmin] h-[10vmin] rounded-full bg-transparent border-4 animate-spin border-t-gray-700'></div>
     </div>
    }

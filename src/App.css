@@ -16,8 +16,9 @@ body{
 h1,h2,h3,h4{
   cursor:default;
 }
-@media(max-width:1204px){
-.infobar{
+
+@media(max-width:1024px){
+  .infobar{
  
   width: 100%;
   flex-direction: column;
@@ -26,22 +27,6 @@ h1,h2,h3,h4{
   
   gap:10%;
 }
-.t{
-  height: 60%;
-}
-.a{
- width: 100%; 
- 
-}
-.p{
-  width: 100%;
-}
-.a1{
-  margin-top: 5%;
-}
-
-}
-@media(max-width:1024px){
 .nav {
   gap: 0%;
   gap: 4%;
@@ -69,6 +54,7 @@ width: 65vmin;
 @media(max-width:768px){
 .infobar{
   height: 100%;
+  gap: 20%;
 }
 .t{
   height: 100%;
@@ -83,11 +69,7 @@ width: 65vmin;
 
 }
 @media(max-width:425px){
-  .infobox{
-    height: 2.5%;
-    margin-left: 0rem;
-    margin-left: 0.7rem;
-  }
+  
   .signup{
     height: 90vh;
   }
@@ -107,12 +89,7 @@ width: 65vmin;
     display: none;
   }
   
-.infobar{
 
- 
-  gap: 5%;
-  justify-content:flex-start;
-}
 .t{
   height: 50%;
 }
@@ -141,6 +118,12 @@ width: 65vmin;
 
 }
 @media(max-width:375px){
+  .infobar{
+    padding-top: 2rem;
+ gap: 10%;
+ 
+  justify-content:flex-start;
+}
   .nold{
     height: 3.5%;
   }

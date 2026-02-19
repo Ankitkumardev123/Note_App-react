@@ -81,10 +81,10 @@ function Login() {
               <input type="text" value={user_logindata} onChange={(e)=>setuserdata(e.target.value)} placeholder='Enter your gmail..' 
               className='outline-none  bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[40%] text-white placeholder:text-white text-[1.2rem]'/>
              
-             <div className='realtive w-[100%] h-[40%] flex justify-right items-center'>
+             <div className='relative w-[100%] h-[40%] flex justify-right items-center'>
                 <input type={visible?"text":"password"} value={user_password} onChange={(e)=>setpassword(e.target.value)} placeholder='Enter password...' className='
                 outline-none  bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[100%] text-white placeholder:text-white text-[1.2rem]'/>
-              <img src={visible?eye2:eye1} alt="" className='eye absolute w-[1.7rem] right-[37%] flex duration-200 pb-1' onClick={()=>setvisible(prev=>!prev)}/>
+              <img src={visible?eye2:eye1} alt="" className=' absolute w-[1.7rem] right-[5%] flex duration-200 ' onClick={()=>setvisible(prev=>!prev)}/>
               </div>
               </span>
               <div className='text-[2.5vmin] w-[90%] h-[5%]  flex items-center justify-center '>

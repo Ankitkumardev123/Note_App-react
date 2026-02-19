@@ -1,13 +1,14 @@
 import React,{useEffect, useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { addNote,deletefolder, updatefolder,setselectfolder,setselectednote} from '../noteslice/noteslices'
-
+import gsap from 'gsap'
 import close from "../images/close.png"
 import folder from "../images/folder.png"
 import pencils from "../images/pencils.png"
 import post from "../images/post.png"
 import save from "../images/save.png"
-function Folder({fold,set1,searchmsg}) {
+import { useGSAP } from '@gsap/react'
+function Folder({fold,set1,searchmsg,fol_ser}) {
     const [visible, setvisible] = useState(false)
     const [edit, setedit] = useState(false)
     const [rename, setrename] = useState(true)
@@ -19,6 +20,7 @@ function Folder({fold,set1,searchmsg}) {
     const selected_folders=folders.find(fol=>fol.id==selected_folder)
     const selected_note=useSelector(state=>state.noted.selectednote)
     const dispatch=useDispatch()
+    let folder_length=folders?.length
   useEffect(()=>{
     set1(false)
   },[create,rename,create,note_title])
@@ -31,7 +33,32 @@ function Folder({fold,set1,searchmsg}) {
        
     }
 }
+const del_ani=()=>{
+  gsap.to(`#${fol_ser}`,{
+    x:-100,
+    opacity:0,
+    ease:'circ',
+    duration:0.8
+  })
+}
+useGSAP(()=>{
+  
+      if(folders.length>folder_length)
+  {
+    gsap.from(`#fol${folders.length}`,{
+    yPercent:-100,
+    opacity:0,
+    ease:'circ',
+    duration:1
+  })
+  }
+  folder_length=folders.length
+ 
+
+},[folders.length])
+
 useEffect(()=>{
+
     if(fold.id==1)
         dispatch(setselectfolder(fold.id))
 },[])
@@ -56,7 +83,7 @@ useEffect(()=>{
 
   return (
     <>
-    <div className={`fols w-[100%] h-[5.5%]   flex justify-center  items-center  pl-1 ${visible?'hidden':''}`}
+    <div id={`${fol_ser}`} className={`fols w-[100%] h-[5.5%] z-20   flex justify-center  items-center  pl-1 ${visible?'hidden':''}`}
     >
         <span className=' w-[100%] h-[100%] flex justify-center items-center'>
         <img src={folder} className={`w-[5.5min] h-[5.5vmin]  ${fold.id==1?"grayscale":''} `} alt="" onClick={()=>{
@@ -105,10 +132,16 @@ useEffect(()=>{
                         dispatch(updatefolder({folid:fold.id,prop}))
                     }
                 }} className={fold.id==1?"hidden":'w-[5vmin] p-0.5 rounded-lg duration-200'}/>
-            <img src={close}  alt="" className={fold.id==1?"hidden":'w-[5vmin] p-0.5 rounded-lg'}
-            onClick={()=>{dispatch(deletefolder({id:fold.id}))
+            <img src={close}  alt="" className={fold.id==1?"hidden":'w-[5vmin] p-0.5 rounded-lg z-30'}
+            onClick={()=>{
+              console.log('clicked')
+              del_ani()
+              setTimeout(() => {
+                dispatch(deletefolder({id:fold.id}))
               dispatch(setselectfolder(null))
               dispatch(setselectednote(null))
+              }, 500);
+              
             }}/>
         </span>
     </div>

@@ -22,6 +22,7 @@ import * as docx from 'docx'
 import { Format } from '@cloudinary/url-gen/qualifiers'
 import { saveAs } from 'file-saver'
 import { auto } from '@cloudinary/url-gen/qualifiers/quality'
+import { useGSAP } from '@gsap/react'
 function Home() {
   const select=useRef(null)
   const textarea=useRef(null)
@@ -47,7 +48,7 @@ function Home() {
   const islogined=useSelector(state=>state.noted.logined)
   const selectedfolder=folders?.find(f=>f.id==selected_folderid);
   const[notes,setnotes]=useState()
-  const [slider,setslider]=useState(slide)
+  let welcome=0;
   const [note_title,setnote_title]=useState('')
   const dispatch=useDispatch()
   
@@ -60,14 +61,79 @@ function Home() {
     dispatch(setuserfolder(folders))
    
   },[create])
-
-
- useEffect(()=>{
-    setslider(slide)
-   
+   useEffect(()=>{
+    if(slide==false)
+  setcreate(false)
+   console.log(folders)
   },[slide])
 
- 
+useGSAP(()=>{
+  gsap.to(".slider1",{
+    fontSize:'15vmin',
+    duration:0,
+  })
+    gsap.to('.slider',{
+      xPercent:-100,
+      yPercent:90,
+      duration:0,
+      fontSize:'15vmin',
+    })
+     gsap.to(editbar2.current,{
+         duration:0,
+          xPercent:-100,
+        
+        })
+  })
+
+  useGSAP(()=>{
+    let t1=gsap.timeline()
+    
+    t1.to('.slider',{
+      xPercent:0,
+      duration:2,
+      delay:0.8,
+      ease:"elastic.out",
+      
+    })
+
+    t1.to('.slider',{
+       xPercent:0,
+       yPercent:3,
+      duration:2,
+      delay:0.1,
+      ease:"bounce.out",
+      fontSize:"10vmin"
+    })
+    t1.to(".slider1",{
+      fontSize:"8vmin"
+     
+    })
+    t1.from('.blink',{
+      delay:0.5,
+      yPercent:100,
+      opacity:0,
+      ease:"circ",
+      duration:2,
+     
+    })
+    t1.play();
+   })
+
+ useGSAP(()=>{
+   if(slide==true)
+
+      gsap.to(editbar2.current,{
+          duration:1,
+          xPercent:0,
+          ease:'power4.out'
+        })
+      else
+        gsap.to(editbar2.current,{
+         duration:1,
+          xPercent:-100,
+        ease:'power4.in'
+        })
+  },[slide])
   
   useEffect(()=>{
     setdownload(false)
@@ -78,30 +144,9 @@ function Home() {
     setnotecontent(selected_note?.notecontent ||'')
   },[selected_note])
 
- useEffect(()=>{
-  if(slide==false)
-  setcreate(false)
- },[slide])
 
-     useEffect(()=>{
-      
-      if(slider==false){
-        gsap.to(editbar2.current,{
-          xPercent:-100.1,
-          duration:0,
-          ease:"back-out"
-        });
-      }
-        else{
-          gsap.to(editbar2.current,{
-          xPercent:0,
-          duration:0.5,
-          ease:"power1.out"
-        });
-        
-        }
-      }
-   ,[slider])
+
+    
    const handlechange=(e)=>{
     const new_title=e.target.value;
     setnote_title(new_title)
@@ -125,7 +170,7 @@ function Home() {
       }
       
     }))
- 
+   
     }
     const handledownload=async(name,title,content)=>{
      
@@ -186,8 +231,9 @@ function Home() {
     }
   return (
     <>
-    <div ref={editbar2} className={`edit fixed w-[50vw]  h-[90vh] b-0 z-50 bg-black top-[9.5%] bottom-0 border-4 border-orange-500 rounded-b-sm border-l-0 flex 
-    flex-row ${islogined?"":'hidden'}`}>
+    <div ref={editbar2} className={`edit  fixed w-[50vw]  h-[90vh] b-0 z-50 bg-black top-[9.5%] bottom-0 border-4
+     border-orange-500 rounded-b-sm border-l-0 flex 
+    flex-row ${islogined?'':'hidden'} `}>
     <div className='w-[50%] h-[100%] flex justify-center flex-col items-center bg-black border-r-2  border-orange-500 '>
     <span className='fold w-[100%] h-[8%] flex items-center  justify-start pl-1  '>
     <img src={folder} className='w-[7vmin] h-[7vmin]  mb-1' alt="" />
@@ -256,14 +302,14 @@ function Home() {
      {
       
       folders?.map((folder,index)=>
-        <Folder key={folder.id} fold={folder} ind={index}  set1={setcreate} searchmsg={Search_msg}  />
+        <Folder key={folder.id} fold={folder} ind={index} fol_ser={`fol${index}`}  set1={setcreate} searchmsg={Search_msg}  />
       )
      }
      
     </div>
 
     </div>
-     <div className={`w-[50%] duration-400 h-[100%] flex flex-col items-center bg-black ${selectedfolder??"hidden"}}`}>
+     <div className={`relative w-[50%] duration-400 h-[100%] flex flex-col items-center bg-black ${selectedfolder??"hidden"}}`}>
      <span className='nold w-[100%] h-[5%] flex items-center pt-2  justify-start  pl-0.5 mb-2 mt-0.5'>
       <img src={note} className='w-[6vmin] h-[6vmin] ' alt="" />
      <h1 className='flex text-center text-[5vmin] text-orange-500   font-semibold font-mono justify-left items-center ' >Notes</h1>
@@ -302,46 +348,49 @@ function Home() {
      }
      </div>
     </div>
-    <button ref={editbar2} className={`fixed top-[5%] left-[100%] w-[7vmin] z-[1] y-[7vmin] bg-black outline-none rouned-none rounded-r-[20%]
+    <button ref={editbar2} className={`absolute top-[5%] left-[100%] w-[7vmin] z-[1] y-[7vmin] bg-black outline-none rouned-none rounded-r-[20%]
       border-4 border-orange-500 border-l-0`} onClick={()=>{  
      dispatch(editbartoggle())
-      setslider(slide)
+     
       dispatch(menubartoggle(false))
     }}>
-      <img src={great} alt="" className={`duration-200 ${slide?"rotate-0":"rotate-180"}`} />
+      <img src={great} alt="" className={` duration-200 ${slide?"rotate-0":"rotate-180"}`} />
       
       </button>
      </div>
     </div>
-    <div className={`h absolute  top-[7%] z-[1]   h-[110vh] gap-1 w-[100vw] flex   justify-start items-center  flex-col ${islogined?"hidden":''}`}>
-      <div className='t w-[100%] h-[50%] flex flex-col items-center justify-start gap-2  py-1'>
-       <h1 className='text-white text-[10vmin] pt-1 w-[100%] text-center mt-2'>Welcome to <span className='text-white font-serif '>My</span>
-            <span className='text-orange-500 text-[9vmin]'>Note</span></h1>
-        <p className=' text-white text-[5vmin] w-[50%] text-center'>Your personal space to save ,edit and organize your thoughts securely and safely...</p>
+    <div className={`h absolute top-[7%] z-[1]   h-[110vh] gap-1 w-[100vw] flex   justify-start items-center  flex-col ${islogined?"hidden":''}`}>
+      <div className=' w-[100%] h-[50%] flex flex-col items-center justify-start gap-2  py-1'>
+       <h1 className='slider text-white text-[15vmin] pt-1 w-[100%] text-center mt-2 font-semibold'>Welcome to 
+        <span className=' text-white font-serif '> My</span>
+            <span className='slider1 text-orange-500 text-[8vmin]  font-mono'>Note</span></h1>
+        <p className='blink  info1 text-white text-[5vmin] w-[50%] text-center font-serif  '>
+          Your personal space to save ,edit and organize your thoughts securely and safely...</p>
         <button
-       className='text-[5vmin] border-[0.3rem]      border-white p-2 text-white bg-orange-500 rounded-xl hover:bg-orange-700'
+       className='blink  text-[5vmin] border-[1.2vmin]      border-white p-2 text-white bg-orange-500 rounded-xl hover:bg-orange-700'
        onClick={()=>{
         
         navigate("/login")}}
        >Get Started
         </button>
         </div>
-        <div className='infobar  z-[-1]  w-[100%] h-[50%]  gap-4 flex items-start justify-center   pt-5' >
-            <div className='a w-[100%] gap-[1rem] text-center  h-[20%] flex items-center justify-start flex-col '>
-               <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
-                <span className='flex justify-center items-center h-[20%]'><img src={note} alt="" className='w-[7vmin]'/>New Notes</span></span>
-                <p className=' p text-white text-[4vmin]  w-[90%] text-center'>Write down anything instantly,with diffrent styling.By organizing notes efficiently,,,</p>
+        <div className='infobar blink  z-[-1]  w-[100%] h-[50%]  gap-4 flex items-start justify-center   pt-5' >
+            <div className='blink a w-[100%] gap-[1rem] text-center  h-[20%] flex items-center justify-start flex-col '>
+               <span className='w-[100%] h-[10%]  text-[6.5vmin] text-white  flex items-center justify-center flex-row'>
+                <span className='flex justify-center items-center h-[20%] font-bold'><img src={note} alt="" className='w-[7vmin]'/>New Notes</span></span>
+                <p className='  p text-white text-[3.5vmin]  w-[90%] text-center font-mono'>
+                  Write down anything instantly,with diffrent styling.By organizing notes efficiently...</p>
             </div>
-            <div className='a w-[100%] text-center gap-[1rem]  h-[20%] flex items-center justify-start flex-col'>
-               <span className='a w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
-                <img src={folder} alt="" className='w-[7vmin]'/><span>Sort Easily</span></span>
-                <p className='p text-white text-[4vmin]  w-[95%] text-center'>Sort your Notes with tags and folders,search instantly and keep everything neat and accessible...</p>
+            <div className='blink a w-[100%] text-center gap-[1rem]  h-[20%] flex items-center justify-start flex-col'>
+               <span className='a w-[100%] h-[10%] gap-1 text-[6.5vmin] text-white font-bold  flex items-center justify-center flex-row'>
+                <img src={folder} alt="" className='w-[7.2vmin] '/><span className=''>Sort Easily</span></span>
+                <p className='blink p text-white text-[3.5vmin]  w-[90%] text-center font-mono'>Sort your Notes with tags and folders,search instantly and keep everything neat and accessible...</p>
             </div>
-             <div className='a  w-[100%] text-center gap-[1rem] h-[20%] flex items-center justify-start flex-col'>
-               <span className='w-[100%] h-[10%]  text-[5vmin] text-white  flex items-center justify-center flex-row'>
+             <div className='blink a  w-[100%] text-center gap-[1rem] h-[20%] flex items-center justify-start flex-col'>
+               <span className='w-[100%] h-[10%]  text-[6.5vmin] text-white font-bold flex items-center justify-center flex-row'>
                 <img src={notess} alt="" className='w-[7vmin]'/>
                 <span>Edit Notes</span></span>
-                <p className='p text-white text-[4vmin]  w-[85%] text-center'>Keep your notes fresh by editing them whenever inspiration strikes...</p>
+                <p className='p text-white text-[3.5vmin]  w-[85%] text-center font-mono'>Keep your notes fresh by editing them whenever inspiration strikes...</p>
             </div>
         </div>
     </div>

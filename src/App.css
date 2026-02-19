@@ -16,7 +16,8 @@ body{
 h1,h2,h3,h4{
   cursor:default;
 }
-
+/* .edit{
+  /* transform: translateX(-550px); */
 @media(max-width:1024px){
   .infobar{
  
@@ -47,12 +48,11 @@ width: 65vmin;
 .login{
   width: 60%;
 }
-.eye{
-  right: 30%;
-}
+
 }
 @media(max-width:768px){
 .infobar{
+  padding-top: 10rem;
   height: 100%;
   gap: 20%;
 }
@@ -62,14 +62,15 @@ width: 65vmin;
 .login{
   width: 60%;
 }
-.eye{
-  right: 25%;
-}
 
 
 }
 @media(max-width:425px){
-  
+  .infobar{
+  padding-top: 2rem;
+  height: 100%;
+  gap: 20%;
+}
   .signup{
     height: 90vh;
   }
@@ -101,9 +102,7 @@ width: 65vmin;
   align-items: center;
   background-color: #000000;
 }
-.eye{
-  right: 9%;
-}
+
 .signup{
   width: 100%;
   height: 100%;
@@ -120,7 +119,7 @@ width: 65vmin;
 @media(max-width:375px){
   .infobar{
     padding-top: 2rem;
- gap: 10%;
+ gap: 15%;
  
   justify-content:flex-start;
 }

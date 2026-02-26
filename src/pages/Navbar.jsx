@@ -27,41 +27,31 @@ function Navbar() {
   const folder_len=folders?.length
   let note_length=folders?.reduce((count,folder)=>count+folder?.notes?.length,0)
   let menu=useSelector(state=>state.noted.menubar)
+ 
+  let items=useRef()
    const slider=useRef(null)
   const dispatch=useDispatch()
   const editbar=useSelector(state=>state.noted.editbar)
-  
+  let count=0
    const [img_user, setimg_user] = useState(userdata.profile_pic )
    
-  
+  const [open, setopen] = useState(false)
    useEffect(()=>{
     if(img_user !=null)
     dispatch(setprofilepic(img_user))
       
    },[img_user])
-   useEffect(()=>{
-   gsap.set(slider.current,{
-    xPercent:-200, 
-    duration:0
-   })
-  
-   },[slider])
-   useGSAP(()=>{
-     gsap.to(slider.current,{
-      xPercent:-200,
-     duration:0,
-    
-      ease:'expo.in',
-    })
- 
-     })
- 
-   useGSAP(()=>{
    
-    if(menu==false)
+  
+  
+ 
+ let  slider_move=(menu)=>{ 
+   
+   
+    if(menu)
      {
        gsap.to(slider.current,{
-      xPercent:-200,
+      x:'-200%',
       duration:1,
     
       ease:'expo.in',
@@ -71,27 +61,27 @@ function Navbar() {
     else
       {
          gsap.to(slider.current,{
-    xPercent:0,
+    x:'0%',
     duration:1,
-    delay:0.5,
+    
     ease:'power5.in',
    })
-   gsap.from('.use',{
-    yPercent:-100,
-    opacity:0,
-    yoyoEase:2,
-    duration:0.5,
-    delay:1,
-    ease:'bounce.out',
-    stagger:0.2,
-   })
+   
   }
-    }
-   ,[menu])
-  const handleclick=()=>{0
+   
+  }
+useEffect(()=>{
+if(editbar){
+ 
+   slider_move(true)
+}
+
+},[editbar])
+  const handleclick=()=>{
+    
     dispatch(menubartoggle())
     dispatch(editbartoggle(false))
-    
+    slider_move(menu)
   }
   const handleimage=(file)=>{
     if(file!=null){
@@ -117,9 +107,11 @@ function Navbar() {
   
   return (
     <>
-     <div ref={slider} className='user slide absolute flex overflow-x-hidden overflow-y-auto scrollbar-hide gap-1 
+     <div ref={slider} className='user slide absolute flex overflow-x-hidden
+      overflow-y-auto  scrollbar-hide gap-1 
       justify-start items-center  flex-col w-[70vmin] top-[8.4%]  h-[110vh]
-     bg-black bg-opacity-100 z-[30] rounded-r-xl border-4 border-white border-l-0 py-1'>
+     bg-black bg-opacity-100 z-[30] rounded-r-xl border-4 border-white border-l-0 
+     py-1 translate-x-[-200%]'>
       <div className={`absolute w-32 h-32 sm:w-40  sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40 z-[11] 
        ${reset?'':"hidden"} opacity-40 bg-gray-400 rounded-full grid place-items-center  `}>
         <div className='w-14 h-14 border-8 rounded-full opacity-1 z-[12]  border-white border-t-gray-900  animate-spin grid place-items-center'>
@@ -127,31 +119,35 @@ function Navbar() {
         </div>
       </div>
     <img src={userdata.profile_pic ??user} 
-    className={`use w-32 h-32 sm:w-40 z-[10] sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40   rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
-    <label htmlFor="input-file" className={`t bg-orange-500 py-1 px-3 text-[3vmin] font-semibold hover:bg-orange-600 transition-all shadow-sm rounded-lg border-[0.5vmin]
+    className={`use  w-32 h-32 sm:w-40 z-[10] sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40   
+    rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
+    <label htmlFor="input-file"
+     className={` bg-orange-500   text-[3vmin]  px-3 py-1 font-semibold hover:bg-orange-600 transition-all shadow-sm rounded-lg
+       border-2
        ${islogined?'':'hidden'}`}>Update image</label>
     <input type="file" name="" id="input-file" accept='image/jpeg,image/png,image/jpg '  className='hidden'  onChange={(e)=>{handleimage(e.target.files[0])
     }}/>
-    <span className='use text-center h-auto '>
+    <span ref={items} className='use text-center h-auto '>
     <h1 className='user1 text-[3vmin] font-semibold font-serif  p-0'>{userdata?.username}</h1>
     <h1 className='user1 font-thin text-gray-500 font-mono h-[2%] p-0 text-[2.6vmin]'>{userdata?.username}</h1>
     </span>
-    <div className='user1 w-[90%] h-[22%] flex  justify-center flex-col gap-3  items-center text-[3vmin] '>
-      <span className='use w-[100%] flex  justify-start items-center '>
+    <div className='user1 w-[90%] h-[22%] flex my-1 justify-center flex-col gap-3  items-center text-[3vmin] '>
+      <span  className='use w-[100%] flex  justify-start items-center '>
         <h2 className='text-gray-400  font-semibold w-[50%] h-[80%] '>Emaill</h2>
         <h2 className='font-semibold  w-[100%]  h-[80%] text-left font-mono '>{userdata?.email}</h2>
       </span>
       <span className='use w-[100%]  flex  justify-start items-center'>
         <h2 className='text-gray-400 font-semibold w-[50%] h-[80%]'>Mobile</h2>
-        <h2 className='font-semibold w-[100%] h-[80%]  text-left  font-mono'>{userdata?.phonenumber}</h2>
+        <h2 className='font-semibold g w-[100%] h-[80%]  text-left  font-mono'>{userdata?.phonenumber}</h2>
         </span>
 
-      <span className='use w-[100%] flex  justify-start items-center'>
+      <span className='use  w-[100%] flex  justify-start items-center'>
         <h2 className='text-gray-400 font-semibold w-[50%] h-[80%]'>Created</h2>
         <h2 className='font-semibold w-[100%] h-[80%] text-left  font-mono'>{userdata?.created}</h2></span>
       <span className='use w-[100%]  flex  justify-start items-center'>
         <h2 className='text-gray-400 font-semibold w-[50%] h-[80%]'>Password</h2>
         <h2 className='font-semibold w-[100%] h-[80%] text-left  font-mono'>{userdata?.password}</h2></span>
+       
     </div>
     <div className='h-[1%] w-[90%] rounded-full bg-orange-600 text-black '>  </div>
      <div className='total w-[90%] h-[20%] flex   justify-left flex-col   gap-3'>
@@ -203,10 +199,10 @@ function Navbar() {
     
      />Log<span className='text-orange-600'>{islogined?"out":"in"}</span></button>
     </div>
-    <div className='fixed z-[2] gap-[10%]  border-2 flex flex-row items-center rounded-lg bg-black w-[100vw] h-[8vh] top-[0%] left-0 right-0'>
+    <div className='fixed   z-[2] gap-[10%]  border-2 flex flex-row items-center rounded-lg bg-black w-[100vw] h-[8vh] top-[0%] left-0 right-0'>
         <span className='flex items-center justify-left pl-2'>
           <img src={menu?close:Menu} className='img w-[6vmin] h-[6vmin] z-50 p-0.5' alt="" onClick={()=>{
-            handleclick()
+           handleclick()
           }
           }/>
         <h2 className=' text-center font-mono p-0.5  '>
@@ -227,7 +223,7 @@ function Navbar() {
         after:h-[3px] after:w-0 after:bg-white hover:after:w-full focus-visible:after:w-full after:z-[-1] after:transition-all after:duration-300
         ' onClick={()=>{
           
-           dispatch(menubartoggle())
+           handleclick()
            
         }}>Profile</h3>
          <NavLink

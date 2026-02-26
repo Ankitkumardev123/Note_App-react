@@ -79,11 +79,13 @@ function Login() {
               <h1 className='am text-white font-semibold text-[6vmin] font-mono   mt-[2vmin] mb-1 h-[10%] text-center'><span>Log</span><span className='text-orange-500'>in</span></h1>
               <span className='w-[90%] h-[20%] flex items-center   gap-[4vmin] justify-start flex-col'>
               <input type="text" value={user_logindata} onChange={(e)=>setuserdata(e.target.value)} placeholder='Enter your gmail..' 
-              className='outline-none  bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[40%] text-white placeholder:text-white text-[1.2rem]'/>
+              className='outline-none  bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[40%] text-white
+               placeholder:text-white text-[1rem]'/>
              
              <div className='relative w-[100%] h-[40%] flex justify-right items-center'>
                 <input type={visible?"text":"password"} value={user_password} onChange={(e)=>setpassword(e.target.value)} placeholder='Enter password...' className='
-                outline-none  bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[100%] text-white placeholder:text-white text-[1.2rem]'/>
+                outline-none  bg-transparent border-b-orange-500 border-b-2 w-[100%] h-[100%] text-white 
+                placeholder:text-white text-[1rem]'/>
               <img src={visible?eye2:eye1} alt="" className=' absolute w-[1.7rem] right-[5%] flex duration-200 ' onClick={()=>setvisible(prev=>!prev)}/>
               </div>
               </span>

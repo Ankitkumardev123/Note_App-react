@@ -67,29 +67,13 @@ function Home() {
    console.log(folders)
   },[slide])
 
-useGSAP(()=>{
-  gsap.to(".slider1",{
-    fontSize:'15vmin',
-    duration:0,
-  })
-    gsap.to('.slider',{
-      xPercent:-100,
-      yPercent:90,
-      duration:0,
-      fontSize:'15vmin',
-    })
-     gsap.to(editbar2.current,{
-         duration:0,
-          xPercent:-100,
-        
-        })
-  })
+
 
   useGSAP(()=>{
     let t1=gsap.timeline()
     
     t1.to('.slider',{
-      xPercent:0,
+      x:0,
       duration:2,
       delay:0.8,
       ease:"elastic.out",
@@ -97,8 +81,8 @@ useGSAP(()=>{
     })
 
     t1.to('.slider',{
-       xPercent:0,
-       yPercent:3,
+       x:0,
+       y:3,
       duration:2,
       delay:0.1,
       ease:"bounce.out",
@@ -124,18 +108,18 @@ useGSAP(()=>{
 
       gsap.to(editbar2.current,{
           duration:1,
-          xPercent:0,
+          x:0,
           ease:'power4.out'
         })
       else
         gsap.to(editbar2.current,{
          duration:1,
-          xPercent:-100,
+          x:'-100%',
         ease:'power4.in'
         })
   },[slide])
   
-  useEffect(()=>{
+  useEffect(()=>{ 
     setdownload(false)
      select.current.value="TXT"
     setnote_title(selected_note?.notetitle || '')
@@ -232,7 +216,7 @@ useGSAP(()=>{
   return (
     <>
     <div ref={editbar2} className={`edit  fixed w-[50vw]  h-[90vh] b-0 z-50 bg-black top-[9.5%] bottom-0 border-4
-     border-orange-500 rounded-b-sm border-l-0 flex 
+     border-orange-500 rounded-b-sm border-l-0 flex translate-x-[-100%]
     flex-row ${islogined?'':'hidden'} `}>
     <div className='w-[50%] h-[100%] flex justify-center flex-col items-center bg-black border-r-2  border-orange-500 '>
     <span className='fold w-[100%] h-[8%] flex items-center  justify-start pl-1  '>
@@ -361,9 +345,10 @@ useGSAP(()=>{
     </div>
     <div className={`h absolute top-[7%] z-[1]   h-[110vh] gap-1 w-[100vw] flex   justify-start items-center  flex-col ${islogined?"hidden":''}`}>
       <div className=' w-[100%] h-[50%] flex flex-col items-center justify-start gap-2  py-1'>
-       <h1 className='slider text-white text-[15vmin] pt-1 w-[100%] text-center mt-2 font-semibold'>Welcome to 
+       <h1 className='slider text-white text-[15vmin] pt-1 w-[100%] text-center mt-2 font-semibold translate-x-[-100%]
+       translate-y-[90%]'>Welcome to 
         <span className=' text-white font-serif '> My</span>
-            <span className='slider1 text-orange-500 text-[8vmin]  font-mono'>Note</span></h1>
+            <span className='slider1 text-orange-500 text-[15vmin]  font-mono'>Note</span></h1>
         <p className='blink  info1 text-white text-[5vmin] w-[50%] text-center font-serif  '>
           Your personal space to save ,edit and organize your thoughts securely and safely...</p>
         <button

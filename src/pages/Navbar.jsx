@@ -109,7 +109,7 @@ if(editbar){
     <>
      <div ref={slider} className='user slide absolute flex overflow-x-hidden
       overflow-y-auto  scrollbar-hide gap-1 
-      justify-start items-center  flex-col w-[70vmin] top-[8.4%]  h-[110vh]
+      justify-start items-center  flex-col w-[70vmin] top-[8.4%]  h-[115vh]
      bg-black bg-opacity-100 z-[30] rounded-r-xl border-4 border-white border-l-0 
      py-1 translate-x-[-200%]'>
       <div className={`absolute w-32 h-32 sm:w-40  sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40 z-[11] 
@@ -131,7 +131,7 @@ if(editbar){
     <h1 className='user1 text-[3vmin] font-semibold font-serif  p-0'>{userdata?.username}</h1>
     <h1 className='user1 font-thin text-gray-500 font-mono h-[2%] p-0 text-[2.6vmin]'>{userdata?.username}</h1>
     </span>
-    <div className='user1 w-[90%] h-[22%] flex my-1 justify-center flex-col gap-3  items-center text-[3vmin] '>
+    <div className='user1 w-[90%] h-[22%] flex  justify-center flex-col gap-3  items-center text-[3vmin] '>
       <span  className='use w-[100%] flex  justify-start items-center '>
         <h2 className='text-gray-400  font-semibold w-[50%] h-[80%] '>Emaill</h2>
         <h2 className='font-semibold  w-[100%]  h-[80%] text-left font-mono '>{userdata?.email}</h2>

@@ -33,7 +33,7 @@ function Navbar() {
   const dispatch=useDispatch()
   const editbar=useSelector(state=>state.noted.editbar)
   let count=0
-   const [img_user, setimg_user] = useState(userdata.profile_pic )
+   const [img_user, setimg_user] = useState(userdata?.profile_pic )
    
   const [open, setopen] = useState(false)
    useEffect(()=>{
@@ -123,7 +123,7 @@ if(editbar){
           
         </div>
       </div>
-    <img src={userdata.profile_pic ??user} 
+    <img src={userdata?.profile_pic ?? user} 
     className={`use  w-32 h-32 sm:w-40 z-[10] sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40   
     rounded-full border-orange-500 border-4 object-cover shadow-lg backdrop-brightness-110   `}  />
     <label htmlFor="input-file"

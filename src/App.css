@@ -51,6 +51,9 @@ width: 65vmin;
 
 }
 @media(max-width:768px){
+  .infopanel{
+    height: 25%;
+  }
 .infobar{
   padding-top: 10rem;
   height: 100%;
@@ -66,6 +69,10 @@ width: 65vmin;
 
 }
 @media(max-width:425px){
+    .infopanel{
+    height: 20%;
+    padding-left: 7%;
+  }
   .infobar{
   padding-top: 2rem;
   height: 100%;
@@ -117,6 +124,9 @@ width: 65vmin;
 
 }
 @media(max-width:375px){
+    .infopanel{
+    height: 18%;
+  }
   .infobar{
     padding-top: 2rem;
  gap: 15%;
@@ -152,4 +162,8 @@ width: 65vmin;
 }
 
 }
-
+@media(max-width:320px){
+/* .infopanel{
+    height: 17%;
+  } */
+}

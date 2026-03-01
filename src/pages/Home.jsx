@@ -64,7 +64,7 @@ function Home() {
    useEffect(()=>{
     if(slide==false)
   setcreate(false)
-   console.log(folders)
+  
   },[slide])
 
 
@@ -408,26 +408,26 @@ function Home() {
     </div>
         
   </div>
-      <div className={`h-[20%] w-[100%] z-[20] flex flex-col justify-start  items-center pl-[6%] ${selected_note?'':"hidden"}
+      <div className={`infopanel h-[20%] w-[100%] z-[20] flex flex-col justify-center  items-center pl-[6.5%] ${selected_note?'':"hidden"}
        ${selectedfolder?.notes.length==0?'hidden':""} `}>
-         <span className='flex w-full h-[20%] mt-2 pl-1.5  items-center   font-bold text-[3.5vmin]'>
+         <span className='flex w-full h-[20%] mt-2   items-center justify-start  font-bold text-[3.5vmin]'>
             <img src={mini} alt="" className='w-[3.7vmin]' />
           <h5 className='mx-1 '>{selectedfolder?.folname}</h5>
           <h5 className='text-orange-600 mx-1'>\</h5>
           <img src={post} alt=""  className='w-[3.7vmin]'  />
           <h5 className=''> {selected_note?.note_name}</h5>
           </span>
-        <span className='h-[40%] w-[100%]  flex justify-start items-baseline pl-1'>
+        <span className='h-[40%] w-[100%]  flex justify-start items-center '>
         <input type="text" value={note_title} className='outline-none border-0 text-[6.2vmin] mt-1 
          bg-transparent h-[100%] text-left  text-orange-500 w-[70%] ' 
         onChange={handlechange}placeholder='Give a title..'/>
         <button onClick={()=>{setdownload(true)
           setformat('TXT')
-        }} className='text-[4vmin] border-orange-500 px-2 py-1 mb-1 border-2 rounded-lg text-orange-500 font-semibold '>
+        }} className='text-[4vmin] text-center border-orange-500 px-2 py-2  border-2 rounded-lg text-orange-500 font-semibold '>
           Dowload
         </button>
     </span>
-        <span className='flex w-[100%] h-[100%] justify-start items-center gap-5 flex-row  px-2 text-[3vmin] '>
+        <span className='flex w-[100%] h-[10%] mt-1 justify-start items-center gap-5 flex-row   text-[3vmin] '>
           <h5 className=' w-50 font-bold'>Created - {selected_note?.time}</h5>
          
           <h5 className=' w-50 text-center font-bold'>Total characters:{length}</h5>

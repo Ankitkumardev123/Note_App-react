@@ -97,7 +97,7 @@ const handleupdate= async()=>{
 
 useEffect(()=>{
  
-  if(userdata.email !=="notfound@gmail.com"){
+  if(userdata?.email !=="notfound@gmail.com"){
  
     handleupdate()
     

@@ -381,9 +381,9 @@ function Home() {
     </div>
      <div className={`absolute  top-[7%] z-[1] h-[100%]   w-[100vw] flex  flex-col justify-start items-center 
       ${islogined?"":'hidden'}`}> 
-      <span className={` h-[20%] w-[100%] px-2 flex justify-center items-center ${selected_note?"hidden":""}`}>
-        <img src={note} alt=""  width={'50vmin'} height={'50vmin'} />
-      <h1 className='text-[5vmin] font-semibold duration-200'>No note selected. Start by picking or creating one!</h1>
+      <span className={` h-[80vh] w-[100%] px-4 flex justify-center items-center ${selected_note?"hidden":""}`}>
+        <img src={note} alt=""  width={'60vmin'} height={'80vmin'} />
+      <h1 className='text-[7vmin] font-semibold duration-200 text-center pr-1'>No note selected. Start by picking or creating one!</h1>
       </span>
         
   <div className={`absolute  z-[30] bg-gray-500 bg-opacity-70 grid place-items-center   w-[100vw] h-[100vh] ${dowload_on?"":'hidden'}`}>

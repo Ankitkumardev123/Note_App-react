@@ -18,7 +18,9 @@ const initialState={
             created:'404,404,404',
             profile_pic:null
    },
-   Folders:[],
+   Folders:[
+    
+   ],
    selectednote:null,
    selectedfolderid:null,
    fetching:true,

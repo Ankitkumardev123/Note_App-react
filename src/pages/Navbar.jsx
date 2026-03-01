@@ -100,7 +100,11 @@ if(editbar){
         },1000);
         
         setreset(false)
-      }).catch((err)=>alert("Img can't be changed!"))
+      }).catch((err)=>{
+        setreset(false)
+        setTimeout(() => {
+           alert("Img can't be changed!")
+        },100);})
     }
      
   }
@@ -114,7 +118,8 @@ if(editbar){
      py-1 translate-x-[-200%]'>
       <div className={`absolute w-32 h-32 sm:w-40  sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40 z-[11] 
        ${reset?'':"hidden"} opacity-40 bg-gray-400 rounded-full grid place-items-center  `}>
-        <div className='w-14 h-14 border-8 rounded-full opacity-1 z-[12]  border-white border-t-gray-900  animate-spin grid place-items-center'>
+        <div className={`w-14 h-14 border-8 rounded-full opacity-1 z-[12]  border-white
+         border-t-gray-900  animate-spin grid place-items-center`}>
           
         </div>
       </div>

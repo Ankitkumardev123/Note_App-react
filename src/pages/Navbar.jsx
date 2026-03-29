@@ -20,14 +20,14 @@ function Navbar() {
   const ClOUD_NAME="dwlfcrhc8";
   const UPLOAD_PRESET="noteapp";
   const [reset, setreset] = useState(false)
-
+  let animation=0
  const [visible, setvisible] = useState(false)
   
   const folders=useSelector(state=>state.noted.Folders)
   const folder_len=folders?.length
   let note_length=folders?.reduce((count,folder)=>count+folder?.notes?.length,0)
   let menu=useSelector(state=>state.noted.menubar)
- 
+  let container=useRef(null)
   let items=useRef()
    const slider=useRef(null)
   const dispatch=useDispatch()
@@ -41,7 +41,20 @@ function Navbar() {
     dispatch(setprofilepic(img_user))
       
    },[img_user])
-   
+   useGSAP(()=>{
+
+    
+      gsap.from('.slidet',{
+      y:'-52%',
+      opacity:0,
+        duration:0.5,
+        ease:'power2.in',
+        
+        stagger:0.3,
+      } 
+
+      )
+    },{})
   
   
  
@@ -204,53 +217,105 @@ if(editbar){
     
      />Log<span className='text-orange-600'>{islogined?"out":"in"}</span></button>
     </div>
-    <div className='fixed   z-[2] gap-[10%]  border-2 flex flex-row items-center rounded-lg bg-black w-[100vw] h-[8vh] top-[0%] left-0 right-0'>
-        <span className='flex items-center justify-left pl-2'>
-          <img src={menu?close:Menu} className='img w-[6vmin] h-[6vmin] z-50 p-0.5' alt="" onClick={()=>{
+     <div ref={container} className='fixed top-0 left-0 right-0 z-[2] w-[100%] h-[10.8vh] animate-gradient  bg-transparent bg-blend-hard-light 
+    bg-gradient-to-br from-purple-700  via-pink-600 to-cyan-500 bg-[length:200%_200%] '>
+      
+    </div>
+    <div  className='fixed  z-[5] gap-[0%] bg-black 
+     border-0 flex flex-row items-center 
+       w-[100vw] h-[10vh] top-[0%] left-0 right-0 '>
+        <div className='flex items-center justify-left pl-2 w-[50%] '>
+          <img src={menu?close:Menu} className='img slidet w-[6vmin] h-[6vmin] z-50 p-0.5' alt="" onClick={()=>{
            handleclick()
           }
           }/>
-        <h2 className=' text-center font-mono p-0.5  '>
+        <h2  className='slidet text-center font-mono p-0.5  tracking-wider'>
           
-            <span className='text-white font-serif text-[3.5vmin]'>My</span>
-            <span className='text-orange-500 text-[3vmin]'>Note</span>
+            <span className='text-white font-light
+            font-pacifico  text-[3.7vmin] ' >My</span>
+            <span className='text-transparent font-pacifico
+              bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 
+              bg-clip-text text-[3.6vmin]'>Note</span>
         </h2> 
-        </span>
-        <div className='nav w-[70%] h-[100%]  flex items-center justify-center gap-[10%]' >
-        <NavLink
+        </div>
+        <div className='nav shrink-0   w-[100%] h-[100%] 
+         flex items-center justify-center  gap-[5%]' >
+        <NavLink 
         to='/'
-         className={({isActive})=>`navl relative inline-block text-[4.3vmin]  text-orange-500 px-1 
-         font-mono font-thin   after:absolute after:left-0 after:bottom-0 
-        after:h-[3px] after:w-0 after:bg-white hover:after:w-full ${isActive?'after:w-full':''}  after:z-[-1] after:transition-all after:duration-300
+         className={({isActive})=>`slidet navl relative  inline-block text-[4vmin] text-gray-400 font-poppins  
+            after:absolute after:left-0 after:bottom-0 
+        after:h-[3px] after:w-0  after:bg-white hover:after:w-full bg-transparent
+        hover:bg-gradient-to-r
+        hover:from-purple-600
+        hover:to-pink-600
+        hover:text-transparent
+        hover: bg-clip-text
+        after:bg-gradient-to-r
+        after:bg-transparent
+        after:from-cyan-500
+        after:to-green-600
+        after:animate-pulse
+         ${isActive?'after:w-full bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text':''}  after:z-[-1] after:transition-all after:duration-300
         `}>Home
         </NavLink>
-         <h3 className='navl relative inline-block text-[4vmin]  text-orange-500 px-1 font-mono font-thin   after:absolute after:left-0 after:bottom-0 
-        after:h-[3px] after:w-0 after:bg-white hover:after:w-full focus-visible:after:w-full after:z-[-1] after:transition-all after:duration-300
-        ' onClick={()=>{
+         <h3  className='slidet navl relative inline-block  text-[4vmin] text-gray-400 font-poppins    
+          after:absolute after:left-0 after:bottom-0 
+        after:h-[3px] after:w-0
+         after:bg-white hover:after:w-full focus-visible:after:w-full after:z-[-1] after:transition-all after:duration-300
+       
+         bg-transparent
+        hover:bg-gradient-to-r
+        hover:from-purple-600
+        hover:to-pink-600
+        hover:text-transparent
+        hover:bg-clip-text
+        after:bg-gradient-to-r
+        after:bg-transparent
+        after:from-cyan-500
+         after:to-green-600
+         after:animate-pulse' onClick={()=>{
           
            handleclick()
            
         }}>Profile</h3>
-         <NavLink
+         <NavLink 
         to='/login'
-        className={({isActive})=>` navl relative inline-block text-[4vmin]   text-orange-500 px-1 font-mono font-thin    after:absolute after:left-0 after:bottom-0 
-        after:h-[3px] after:w-0 after:bg-white hover:after:w-full ${isActive?'after:w-full':''}  after:z-[-1] after:transition-all after:duration-300
+        className={({isActive})=>`slidet navl relative inline-block text-[4vmin]  text-gray-400 font-poppins   
+            after:absolute after:left-0 after:bottom-0 
+        after:h-[3px]
+        after:bg-gradient-to-r
+        after:bg-transparent
+        after:from-cyan-500
+         after:to-green-600
+         after:animate-pulse
+         after:w-0 after:bg-right-top hover:after:w-full ${isActive?'after:w-full bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text':''}  after:z-[-1]
+        bg-transparent
+        hover:bg-gradient-to-r
+        hover:from-purple-600
+        hover:to-pink-600
+        hover:text-transparent
+        hover:bg-clip-text after:transition-all after:duration-300
        ${islogined?"hidden":''}`}>Login
         </NavLink>
           <NavLink
         to='/signup'
-         className={({isActive})=>`navl relative inline-block text-[4vmin]   text-orange-500 px-1 font-mono font-thin    after:absolute after:left-0 after:bottom-0 
-        after:h-[3px] after:w-0 after:bg-white hover:after:w-full ${isActive?'after:w-full':''}  after:z-[-1] after:transition-all after:duration-300
+         className={({isActive})=>` slidet navl relative inline-block text-[4vmin]  text-gray-400 font-poppins       after:absolute after:left-0 after:bottom-0 
+        after:h-[3px] after:w-0 after:bg-white hover:after:w-full ${isActive?'after:w-full bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text':''} 
+        after:bg-gradient-to-r
+        after:bg-transparent
+        after:from-cyan-500
+         after:to-green-600
+         after:animate-pulse
+        bg-transparent
+        hover:bg-gradient-to-r
+        hover:from-purple-600
+        hover:to-pink-600
+        hover:text-transparent
+        hover:bg-clip-text after:z-[-1] after:transition-all after:duration-300
         ${islogined?"hidden":''}
         `}>Signup
         </NavLink>
-        <NavLink
-        to='/contact'
-         className={({isActive})=>`navl relative inline-block text-[4vmin]   text-orange-500 px-1 font-mono font-thin  
-          after:absolute after:left-0 after:bottom-0 
-        after:h-[3px] after:w-0 after:bg-white hover:after:w-full ${isActive?'after:w-full':''} ${islogined?"":"hidden"} after:z-[-1] after:transition-all after:duration-300
-        `}>Contact Us
-        </NavLink>
+        
         
         </div>
         

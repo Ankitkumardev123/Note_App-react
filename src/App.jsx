@@ -105,7 +105,8 @@ useEffect(()=>{
 },[userdata])
   return (
    <>
-   <div  className={`fixed  w-[100vw] h-full z-50 scrollbar-hide grid place-items-center overflow-hidden  bg-gray-800 opacity-65 ${loader?' ':'hidden'}`}>
+   <div  className={`fixed bg-black w-[100%] h-full bg-gradient-to-t
+     z-50 scrollbar-hide grid place-items-center overflow-hidden   opacity-65 ${loader?' ':'hidden'}`}>
     <div className='w-20 h-20 border-8 rounded-full border-t-black animate-spin '></div>
    </div>
     <Navbar/>

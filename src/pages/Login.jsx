@@ -63,7 +63,13 @@ function Login() {
   useEffect(()=>{
     setdata({email:user_logindata,password:user_password})
   },[user_password,user_logindata])
- 
+  const boxes=[]
+  for (let i = 0; i <0; i++) {
+    boxes.push(
+       <div key={i} className='h-[15vmin] w-[15vmin]  px-2  border-gray-500 border-[0.12vmin] '></div>
+    )
+    
+  }
   return (
    <>
    {loading &&
@@ -71,11 +77,15 @@ function Login() {
         <div className='w-[10vmin] h-[10vmin] rounded-full bg-transparent border-4 animate-spin border-t-gray-700'></div>
     </div>
    }
-    <form onSubmit={handlelogin}>
-   <div className='fixed  top-[8%]  h-[100vh] w-[100vw]  flex justify-center items-center  flex-col '>
-    <h1 className='head absolute top-[1%] left-[2%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
+   
+   <div className='fixed top-[9.7vh]   h-[100%] w-[100%]  flex justify-center items-center  flex-col '>
+    
+    
+       <form onSubmit={handlelogin}>
+        <h1 className='head z-[6]  absolute top-[1%] left-[2%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
             <span className='text-orange-700 text-[7vmin]'>Note</span></h1>
-            <div className='login w-[32vw] h-[70%] bg-black rounded-xl border-2 border-white flex justify-start items-center flex-col   gap-[1%]'>
+   
+            <div className=' login w-[32vw] h-[105%] bg-black rounded-xl border-2 border-white flex justify-start items-center flex-col   gap-[1%]'>
               <h1 className='am text-white font-semibold text-[6vmin] font-mono   mt-[2vmin] mb-1 h-[10%] text-center'><span>Log</span><span className='text-orange-500'>in</span></h1>
               <span className='w-[90%] h-[20%] flex items-center   gap-[4vmin] justify-start flex-col'>
               <input type="text" value={user_logindata} onChange={(e)=>setuserdata(e.target.value)} placeholder='Enter your gmail..' 
@@ -114,8 +124,10 @@ function Login() {
                 </span>
               </div>
             </div>
-   </div>
-   </form>
+             </form>
+             </div>
+  
+  
    </>
   )
 }

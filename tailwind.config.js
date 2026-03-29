@@ -5,7 +5,30 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundSize:{
+        '200%':'200% 200%',
+      },
+      keyframes:{
+        gradientMove:{
+          '0%, 100%':{
+            backgroundPosition:'0% 50%'
+          },
+          '50%':{backgroundPosition:'100% 50%'},
+        },
+      },
+      animation:{
+        gradient:'gradientMove 4s ease infinite'
+      },
+      fontFamily:{
+        pacifico:["PacificoCustom"],
+        caveat:["CaveatCustom"],
+        dancing:["DancingCustom"],
+        great:["GreatvibeCustom"],
+        outfit:["outfitCustom"],
+        poppins:["poppinsCustom"]
+      }
+    },
   },
   plugins: [
     require('tailwind-scrollbar-hide')

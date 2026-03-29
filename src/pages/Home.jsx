@@ -11,20 +11,19 @@ import {oneDark} from '@uiw/react-codemirror'
 import { markdown } from '@codemirror/lang-markdown'
 import { EditorView } from '@uiw/react-codemirror'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import p1 from '../images/pngs/p1.png'
-import p from '../images/pngs/p.png'
+
+
 import github from '../images/app_icons/github.png'
 import facebook from "../images/facebook.png"
 import linkedin from '../images/linkedin.png'
 import message from '../images/pngs/message.png'
 import hand from '../images/pngs/hand.png'
-import p2 from '../images/pngs/p2.png'
-import p3 from '../images/pngs/p3.png'
+
 import heart from '../images/pngs/heart.png'
 import heart1 from '../images/pngs/heart1.png'
-import comp1  from '../images/pngs/comp1.png'
+
 import comp2  from '../images/pngs/comp2.png'
-import lap1  from '../images/pngs/lap1.png'
+npm run buil
 import lap2  from '../images/pngs/lap2.png'
 import tablet  from '../images/pngs/tablet.png'
 import phone  from '../images/pngs/phone.png'

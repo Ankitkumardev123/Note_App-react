@@ -221,7 +221,7 @@ if(editbar){
     bg-gradient-to-br from-purple-700  via-pink-600 to-cyan-500 bg-[length:200%_200%] '>
       
     </div>
-    <div  className='fixed  z-[5] gap-[0%] bg-black 
+    <div  className='fixed  z-[3] gap-[0%] bg-black 
      border-0 flex flex-row items-center 
        w-[100vw] h-[10vh] top-[0%] left-0 right-0 '>
         <div className='flex items-center justify-left pl-2 w-[50%] '>

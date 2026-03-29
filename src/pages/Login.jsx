@@ -64,9 +64,11 @@ function Login() {
     setdata({email:user_logindata,password:user_password})
   },[user_password,user_logindata])
   const boxes=[]
-  for (let i = 0; i <0; i++) {
+  for (let i = 0; i <500; i++) {
     boxes.push(
-       <div key={i} className='h-[15vmin] w-[15vmin]  px-2  border-gray-500 border-[0.12vmin] '></div>
+       <div key={i} className='h-16 w-16  hover:shadow-[0_0_15px_#a855f7] hover:from-purple-500 hover:to-blue-500
+        hover:via-pink-500 hover:bg-gradient-to-tr
+          duration-300 transition-all linear hover:scale-105 border-gray-500 border-[0.12vmin] bg-[length:100%_100%] '></div>
     )
     
   }
@@ -77,15 +79,17 @@ function Login() {
         <div className='w-[10vmin] h-[10vmin] rounded-full bg-transparent border-4 animate-spin border-t-gray-700'></div>
     </div>
    }
-   
-   <div className='fixed top-[9.7vh]   h-[100%] w-[100%]  flex justify-center items-center  flex-col '>
-    
+       {/* bg-[linear-gradient(#2a2a2a_1px,transparent_1px),linear-gradient(90deg,#2a2a2a_1px,transparent_1px)] bg-[size:40px_40px] */}
+   <div className='fixed top-[9.7vh]  z-[1]  h-[100vh] w-[100vw]  flex flex-wrap
+  
+   '>
+    {boxes}
     
        <form onSubmit={handlelogin}>
-        <h1 className='head z-[6]  absolute top-[1%] left-[2%] text-white text-[8vmin] pt-1 '><span className='text-white font-serif '>My</span>
-            <span className='text-orange-700 text-[7vmin]'>Note</span></h1>
+        
    
-            <div className=' login w-[32vw] h-[105%] bg-black rounded-xl border-2 border-white flex justify-start items-center flex-col   gap-[1%]'>
+            <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+             login w-[32vw] h-[70%] bg-black rounded-xl border-2 border-white flex justify-start items-center flex-col   gap-[1%]'>
               <h1 className='am text-white font-semibold text-[6vmin] font-mono   mt-[2vmin] mb-1 h-[10%] text-center'><span>Log</span><span className='text-orange-500'>in</span></h1>
               <span className='w-[90%] h-[20%] flex items-center   gap-[4vmin] justify-start flex-col'>
               <input type="text" value={user_logindata} onChange={(e)=>setuserdata(e.target.value)} placeholder='Enter your gmail..' 

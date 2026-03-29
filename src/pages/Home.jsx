@@ -23,7 +23,6 @@ import heart from '../images/pngs/heart.png'
 import heart1 from '../images/pngs/heart1.png'
 
 import comp2  from '../images/pngs/comp2.png'
-npm run buil
 import lap2  from '../images/pngs/lap2.png'
 import tablet  from '../images/pngs/tablet.png'
 import phone  from '../images/pngs/phone.png'
@@ -107,8 +106,8 @@ function Home() {
    scrollTrigger:{
     trigger:'.main_d',
     
-    start:'top 90%',
-    end:'top 90%',
+    start:'top center',
+    end:'bottom bottom',
     
    }
    });
@@ -136,27 +135,27 @@ function Home() {
    const t4=gsap.timeline({
    scrollTrigger:{
     trigger:'.contact_sec',
-
+    
     start:'top 90%',
     end:'top 20%',
     scrub:true
    }
    });
    t4.from('.con_a',{
-     x:-100,
+     x:-200,
       opacity:0,
-      duration:1,
+      duration:2,
       delay:0.5,
-      ease:'back.out',
-      stagger:0.4
+      ease:'linear',
+      stagger:1
     
    },0)
    t4.from('.con_b ',{
-    x:100,
+    x:200,
     opacity:0,
     delay:0.5,
-    duration:0.8,
-   stagger:0.2,
+    duration:2,
+   stagger:1,
     ease:'linear'
    },0)
     t4.fromTo('.con_bu ',{
@@ -202,7 +201,17 @@ function Home() {
       stagger:0.3
     
    })
-  t3.to('.f_ele_2',{
+
+   const t5=gsap.timeline({
+   scrollTrigger:{
+    trigger:'.f_ele_2',
+ 
+   start:'top 80%',
+    end:'top 80%',
+ 
+   }
+   });
+  t5.to('.f_ele_2',{
     
       opacity:1,
       duration:0.5,
@@ -212,7 +221,7 @@ function Home() {
     
    })
   
-    t3.fromTo('#contact ',{
+    t5.fromTo('#contact ',{
     x:10000,
     opacity:0,
   
@@ -553,12 +562,12 @@ function Home() {
       </button>
      </div>
     </div>
-    {/* front_section */}
-   
+    {/* homepage */}
     <div id='home' className={`  bg-black  h-[100%]  w-[100vw] flex flex-col justify-start   ${islogined?"hidden":''}`}>
        <div className='w-[100%] h-[9.7vh]  '>
       {/* dummy-navbar */}
     </div>
+     {/* Hero section */}
       <div className='w-[100%] h-[100%]  '>
               <div className='f_back w-[100%] h-[90vh]  '>
 <div className='main_f w-[100%] h-[100%]  bg-black/60  backdrop-blur-sm flex '>
@@ -1015,23 +1024,24 @@ bg-clip-text
       <h1 className='con_a text-[9.5vmin] font-poppins font-semibold
        text-white w-full  text-left '>
        Have a Question? <br></br>
-      <span className='con_a text-[9vmin] 
+      <h2 className='con_a text-[9vmin] 
        text-transparent bg-gradient-to-l
         from-purple-500
                via-pink-500
                to-cyan-500 
-              bg-clip-text bg-[length:50%_100%]'>Let's Talk</span>
+              bg-clip-text bg-[length:50%_100%]'>Let's Talk</h2>
        </h1>
 <p className='con_a text-[3.2vmin] text-left text-gray-400 font-sans w-[75%]'>
   Have a question or suggesstion about MyNote? Send me a message and I'll get back to you soon.📩
 </p>
 
 <a className=' text-[4vmin] underline text-gray-400 underline-offset-8 
-transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-500  hover:drop-shadow-[0_0_25px_rgba(168,85,247,0.6)]' href="mailto:ankitmuna123@gmail.com">ankitmuna123@gmail.com</a>
+transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-500  hover:drop-shadow-[1rem_0_1rem_rgba(168,85,247,0.6)]' href="mailto:ankitmuna123@gmail.com">ankitmuna123@gmail.com</a>
       <div className='con_a w-full mt-2 flex gap-2'>
-      <a href="http://" className=' border-2 p-2 hover:text-blue-700 bg-transparent font-semibold font-poppins border-gray-500 flex text-[2.5vmin]
+      <a href="http://" className=' border-2 p-2
+       hover:text-blue-700 bg-transparent font-semibold font-poppins border-gray-500 flex text-[2.5vmin]
        justify-center items-center tracking-wide
-      animate-gradient
+      animate-gradient hover:scale-110
       transition-all duration-500 rounded-sm hover:border-cyan-400
       hover:
        hover:bg-gradient-to-r from-purple-700 via-pink-500 to-cyan-500
@@ -1043,7 +1053,7 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
        <a href="http://" className='hover:text-black tracking-widest border-gray-500 border-2 p-2 gap-2
         bg-transparent font-semibold font-poppins  flex text-[2.5vmin]
        justify-center items-center
-      animate-gradient
+      animate-gradient hover:scale-110
       transition-all duration-500 rounded-sm hover:border-cyan-400
   
        hover:bg-gradient-to-r from-purple-700 via-pink-500 to-cyan-500
@@ -1055,7 +1065,7 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
        <a href="http://" className='border-2 p-2 border-gray-500 hover:text-blue-800 gap-2
         bg-transparent font-semibold font-poppins flex text-[2.5vmin]
        justify-center items-center 
-      animate-gradient
+      animate-gradient hover:scale-110
       transition-all duration-500 rounded-sm hover:border-cyan-400
       hover:
        hover:bg-gradient-to-r from-purple-700 via-pink-500 to-cyan-500
@@ -1091,15 +1101,15 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
        
          
     <button 
-        className='text-[3vmin] 
-         px-5 py-3 font-poppins font-semibold 
+        className='text-[2.8vmin] 
+         px-4 py-3 font-poppins font-semibold 
         bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400
         bg-[length:200%_200%]
         animate-gradient con_bu
         border-2  border-cyan-400 rounded-lg
         transition-all
-        duration-300 hover:scale-105 con_b
-        shadow-[0_0_25px_rgba(168,85,247,0.6)]
+        duration-300 hover:scale-110 con_b
+        hover:shadow-[0_0_40px_rgba(168,85,247,0.6)]
         '
         >Send message 📩</button>
      
@@ -1125,7 +1135,7 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
         animate-gradient
         border-2  hover:border-cyan-400 rounded-md
         transition-all
-        duration-400 hover:scale-105
+        duration-400 hover:scale-110
         hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
         '
         onClick={()=>navigate('/login')}>
@@ -1140,7 +1150,7 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
         animate-gradient
         border-2  hover:border-cyan-400 rounded-md
         transition-all
-        duration-400 hover:scale-105
+        duration-400 hover:scale-110
         hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
         '
         onClick={()=>navigate('/signup')}>

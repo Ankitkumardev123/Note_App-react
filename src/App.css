@@ -58,12 +58,12 @@ body{
 }
 .f_back{
   background-size:cover;
-  background-image: url("src/images/new_back/8.jpeg");
+  background-image: url("../src/images/new_back/8.jpeg");
 
 }
 .feature_back{
   background-size:cover;
-  background-image: url("src/images/new_back/6.jpg");
+  background-image: url("../src/images/new_back/6.jpg");
 }
 h1,h2,h3,h4{
   cursor:default;

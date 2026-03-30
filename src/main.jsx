@@ -20,7 +20,7 @@ const router=createBrowserRouter(
         </Route>
     ),
     {
-        basename:'/Note_App-react/'
+        basename:'/'
     }
 )
 createRoot(document.getElementById('root')).render(

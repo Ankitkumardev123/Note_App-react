@@ -86,8 +86,10 @@ function Home() {
   
   },[slide])
   useEffect(()=>{
-    
-      scrollTrigger.refresh()
+    window.addEventListener('resize',()=>{
+scrollTrigger.refresh()
+    })
+      
    
   })
   useGSAP(()=>{
@@ -101,16 +103,17 @@ function Home() {
     })
   },[])
   //device section animation
-  useGSAP(()=>{
+ scrollTrigger.matchMedia({
+    "(min-width: 1025px)":function(){
    const t2=gsap.timeline({
    scrollTrigger:{
     trigger:'.main_d',
-    
+   markers:true,
     start:'top center',
     end:'bottom bottom',
     
    }
-   });
+   }) 
    t2.from('.dev_1',{
      y:-100,
       opacity:0,
@@ -119,7 +122,7 @@ function Home() {
       ease:'back.out',
       stagger:0.3
     
-   })
+   }),
    t2.from('.dev_2 ',{
     y:-100,
     opacity:0,
@@ -128,10 +131,13 @@ function Home() {
    
     ease:'linear'
    })
-   scrollTrigger.refresh()
+  },
+   
   })
+
   //contact section animation
-    useGSAP(()=>{
+    scrollTrigger.matchMedia({
+      "(min-width: 1025px)":function(){
    const t4=gsap.timeline({
    scrollTrigger:{
     trigger:'.contact_sec',
@@ -158,22 +164,20 @@ function Home() {
    stagger:1,
     ease:'linear'
    },0)
-    t4.fromTo('.con_bu ',{
-    x:10000,
-    opacity:0,
-  
-   },{
-    x:0,
+   
+    t4.to('.con_bu ',{
+   
     opacity:1,
     delay:0.1,
     duration:0.2,
     clearProps:'transform',
     ease:'linear'
    })
-   scrollTrigger.refresh();
-  })
+   }
+ })
   //feature section animation
-  useGSAP(()=>{
+ scrollTrigger.matchMedia({
+      "(min-width: 1025px)":function(){
    const t3=gsap.timeline({
    scrollTrigger:{
     trigger:'.feature_back',
@@ -221,20 +225,36 @@ function Home() {
     
    })
   
-    t5.fromTo('#contact ',{
-    x:10000,
-    opacity:0,
-  
-   },{
-    x:0,
-    opacity:1,
+    t5.to('#contact ',{
+     opacity:1,
     delay:0.1,
-    duration:0.3,
+    duration:0.2,
     clearProps:'transform',
     ease:'linear'
+  
    })
-   scrollTrigger.refresh();
-  })
+   
+  
+ },
+
+   "(min-width: 1024px)":function(){
+    gsap.to('.f_ele_2',{
+    
+      opacity:1,
+      duration:0,
+     
+    
+   })
+   gsap.to('#contact ',{
+     opacity:1,
+    delay:0.1,
+    duration:0.2,
+    clearProps:'transform',
+    ease:'linear'
+   
+   })
+   }
+})
   // fontsection_animation
   useGSAP(()=>{
    const t1=gsap.timeline();
@@ -1000,7 +1020,7 @@ bg-clip-text
    
       </div>
      <button id='contact'
-        className='text-[2.5vmin] shrink-0  grid place-content-center  
+        className='text-[2.5vmin] shrink-0  grid place-content-center  opacity-0
         relative px-5 py-3 font-poppins font-semibold overflow-hidden
         bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400
         bg-[length:200%_200%]
@@ -1101,14 +1121,14 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
        
          
     <button 
-        className='text-[2.8vmin] 
+        className='text-[2.8vmin]  opacity-0
          px-4 py-3 font-poppins font-semibold 
         bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400
         bg-[length:200%_200%]
         animate-gradient con_bu
         border-2  border-cyan-400 rounded-lg
         transition-all
-        duration-300 hover:scale-110 con_b
+        duration-300 hover:scale-110 
         hover:shadow-[0_0_40px_rgba(168,85,247,0.6)]
         '
         >Send message 📩</button>

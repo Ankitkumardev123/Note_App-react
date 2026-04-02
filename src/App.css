@@ -63,7 +63,7 @@ body{
 }
 .feature_back{
   background-size:cover;
-  background-image: url("../src/images/new_back/6.jpg");
+  background-image: url("src/images/new_back/6.jpg");
 }
 h1,h2,h3,h4{
   cursor:default;
@@ -72,20 +72,135 @@ h1,h2,h3,h4{
   /* transform: translateX(-550px); */
 @media(max-width:1024px){
   
-.d2{
-    display:none;
+ .footer{
+    padding: 0;
   }
-.edit{
-  width: 80vw;
+  .foot_b{
+    padding: 0;
+  }
+  .foot_2 h2{
+    font-size: 4vmin;
+  }
+  .foot_2 a{
+    font-size: 2.5vmin;
+  }
+  .foot_cont{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0%;
+  }
+  footer{
+    height: 120vh;
+  
+
+  }
+  
+  .con_2{
+padding-top: 0;
+  }
+  .contact_sec{
+    display: flex;
+    flex-direction: column;
+    height: 150vh;
+  }
+  .contact_b{
+    width:100%;
+    height: 100%;
+  }
+  .main_f button{
+    border: 0.2rem solid cyan;
+  }
+ .heart{
+   
+  top: -28%;
+  }
+  .f_b{
+    width: 100%;
+    height: 90%;
+  }
+  .f5,.f6{
+    display: none;
+  }
+  .devices_p{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    place-items: center;
+    gap: 0;
+     
+  }
+  
+  .lap{
+    padding-top: 1rem;
+    width: 35vmin;
+   
+  }
+  .tablet{
+   width: 30vmin;
+    height: 29vmin;
+  }
+  .comp{
+    width: 30vmin;
+    height: 30vmin;
+  }
+  .phone{
+    width: 15vmin;
+  }
+  .main_f{
+    gap: 0rem;
+    justify-content:center;
+    align-items: center;
+  }
+  .f_grid{
+   padding: 1rem;
+   grid-template-columns: repeat(2,1fr);
+   height: 110%;
+   gap: 0.5rem;
+  }
+  
+  
+  .devices_p{
+    gap: 10%;
+  }
+  
+  .d1{
+    display: none;
+  }
+  .d2{
+    display:block;
+  }
+  .devices_p{
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .f1{
+    padding-top: 0vmin;
+    display: grid;
+    place-items: center;
+    gap:2vmin;
+  }
+  .f1 .p{
+    font-size: 3vmin;
+    width:80%;
+    
+  }
+  .f_back{
+    height: 70vh;
+  }
+  .f1{
+    height:70%;
+  }
+.f2{
+  display:none;
 }
-.navl{
-  font-size: 3.5vmin;
-}
-.user{
-width: 65vmin;
-}
-.total{
-  height: 25%;
+  .infopanel{
+    height: 25%;
+  }
+
+.t{
+  height: 100%;
 }
 .login{
   width: 60%;

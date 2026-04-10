@@ -77,7 +77,7 @@ function Home() {
   const [length, setlength] = useState(selected_note?.notecontent.length || 0)
   useEffect(()=>{
     window.addEventListener('resize',()=>{
-      scrollTrigger.refresh();
+      gsap.refresh();
     })
   },[])
  useEffect(()=>{
@@ -177,6 +177,13 @@ scrollTrigger.refresh()
     duration:0.2,
     clearProps:'transform',
     ease:'linear'
+   })
+   },
+   "(max-width: 1024px)":function(){
+    gsap.to('.con_bu ',{
+   
+    opacity:1,
+    
    })
    }
  })
@@ -951,7 +958,7 @@ bg-clip-text
                 laptop stays in perfect sync.</p>
              </div>
       </div>
-      <div className='f_ele_2 opacity-0 transition-all duration-300 hover:scale-110  f_b w-[70%] h-[90%] bg-white backdrop-blur-lg 
+      <div className='f_ele_2 opacity-0  transition-all duration-300 hover:scale-110  f_b w-[70%] h-[90%] bg-white backdrop-blur-lg 
       rounded-lg flex flex-col '>
         <div className='w-[100%] h-[35%]    rounded-t-lg shrink-0
          flex align-center items-end '>
@@ -1067,7 +1074,7 @@ bg-clip-text
 
 <a className=' text-[4vmin] underline text-gray-400 underline-offset-8 
 transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-500  hover:drop-shadow-[1rem_0_1rem_rgba(168,85,247,0.6)]' href="mailto:ankitmuna123@gmail.com">ankitmuna123@gmail.com</a>
-      <div className='con_a w-full mt-2 flex gap-2'>
+      <div className='con_a w-full  flex gap-2'>
       <a href="http://" className=' border-2 p-2
        hover:text-blue-700 bg-transparent font-semibold font-poppins border-gray-500 flex text-[2.5vmin]
        justify-center items-center tracking-wide
@@ -1131,8 +1138,8 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
        
          
     <button 
-        className='text-[2.8vmin]  opacity-0
-         px-4 py-3 font-poppins font-semibold 
+        className='text-[3vmin]  opacity-0
+         px-3 py-4 font-poppins font-semibold 
         bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400
         bg-[length:200%_200%]
         animate-gradient con_bu

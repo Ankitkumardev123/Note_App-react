@@ -67,7 +67,7 @@ function Navbar() {
       x:'-200%',
       duration:1,
     
-      ease:'linear',
+      ease:'expo.in',
     })
  
      }
@@ -238,8 +238,8 @@ if(editbar){
               bg-clip-text text-[3.6vmin]'>Note</span>
         </h2> 
         </div>
-        <div className='nav  pr-4 w-[100%] h-[100%] 
-         flex items-center justify-center    ' >
+        <div className='nav   w-[100%] h-[100%] 
+         flex items-center justify-center  gap-[5rem] ' >
         <NavLink 
         to='/'
          className={({isActive})=>`slidet navl relative  inline-block text-[4vmin] text-gray-400 font-poppins  

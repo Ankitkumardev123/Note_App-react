@@ -63,7 +63,7 @@ body{
 }
 .feature_back{
   background-size:cover;
-  background-image: url("src/images/new_back/6.jpg");
+  background-image: url("../src/images/new_back/6.jpg");
 }
 h1,h2,h3,h4{
   cursor:default;
@@ -347,7 +347,7 @@ padding-top: 0;
 @media(max-width:425px){
   .nav{
     gap:1em;
-    padding-left: 5vmin;
+    padding-right: 1rem;
   }
   .copyright{
     font-size: 1.2rem;

@@ -75,6 +75,11 @@ function Home() {
   const [notename,setnotename]=useState(selected_note?.notename || '' )
 
   const [length, setlength] = useState(selected_note?.notecontent.length || 0)
+  useEffect(()=>{
+    window.addEventListener('resize',()=>{
+      scrollTrigger.refresh();
+    })
+  },[])
  useEffect(()=>{
   if(folders?.length)
     dispatch(setuserfolder(folders))
@@ -108,7 +113,7 @@ scrollTrigger.refresh()
    const t2=gsap.timeline({
    scrollTrigger:{
     trigger:'.main_d',
-   markers:true,
+  
     start:'top center',
     end:'bottom bottom',
     
@@ -1048,12 +1053,12 @@ bg-clip-text
       <h1 className='con_a text-[9.5vmin] font-poppins font-semibold
        text-white w-full  text-left '>
        Have a Question? <br></br>
-      <h2 className='con_a text-[9vmin] 
+      <span className='con_a text-[9vmin] 
        text-transparent bg-gradient-to-l
         from-purple-500
                via-pink-500
                to-cyan-500 
-              bg-clip-text bg-[length:50%_100%]'>Let's Talk</h2>
+              bg-clip-text bg-[length:50%_100%]'>Let's Talk</span>
        </h1>
 <p className='con_a text-[3.2vmin] text-left text-gray-400 font-sans w-[75%]'>
   Have a question or suggesstion about MyNote? Send me a message and I'll get back to you soon.📩

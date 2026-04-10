@@ -600,9 +600,9 @@ scrollTrigger.refresh()
       <div className='w-[100%] h-[100%]  '>
               <div className='f_back w-[100%] h-[90vh]  '>
 <div className='main_f w-[100%] h-[100%]  bg-black/60  backdrop-blur-sm flex '>
-    <div className='f1 gap-2 relative w-[100%] h-[100%]  flex flex-col justify-center  items-center '>
+    <div className='f1 gap-[1rem] relative w-[100%] h-[100%]  flex flex-col justify-center  items-center '>
       
-      <div className='ele_1 text_h  flex  tracking-wider text-[9vmin] font-pacifico '>
+      <div className='ele_1 text_h  flex  tracking-wider text-[10vmin] font-pacifico '>
         <h1 className=' transition-all duration-300 hover:text-gray-400'>Welcome to </h1>
        <h2 className='  '>
         <span className='h1   text-gray-400 font-light
@@ -620,8 +620,8 @@ scrollTrigger.refresh()
                 </span>
         </h2> 
         </div>
-        <div className='ele_2 p w-[62%] text-center font-poppins text-sm sm:text-md h-auto grid place-items-center'>
-          <p className=' transition-all duration-300 hover:text-white text-gray-400 leading-relaxed'>Lorem ipsum dolor, sit amet consectetur adipisicing.
+        <div className='ele_2 p w-[65%] text-center font-poppins   grid place-items-center'>
+          <p className=' transition-all text-[3vmin] duration-300 hover:text-white text-gray-400 leading-relaxed'>Lorem ipsum dolor, sit amet consectetur adipisicing.
           Totam eligendi vel quia corrupti odio alias?
           Modi ducimus quos assumenda labore, in vel?
 
@@ -671,7 +671,7 @@ scrollTrigger.refresh()
                 </span>
         </h2> 
       </div>
-      <img src={hand} alt="" className='   size-[30rem] 
+      <img src={hand} alt="" className=' z-[0]  size-[40rem] 
       drop-shadow-[10px_10px_25px_rgba(236,72,85,0.7)] 
       ' />
       </span>
@@ -685,10 +685,10 @@ scrollTrigger.refresh()
        
         </div>
        
-        <h2 className='flex px-1 gap-1 text-[3vmin]'><img src={post} className='size-5' alt="" />Create Notes</h2>
-        <h2 className='flex px-1 gap-1 text-[3vmin]'><img src={pencils} className='size-5' alt="" />Edit Notes</h2>
-       <h2 className='flex px-1 gap-1 text-[3vmin]'><span className='text-green-500'> ✔</span> Dowload Notes</h2>
-        <h2 className='flex px-1 gap-1 text-[3vmin] '><img src={folder} className='size-5 ' alt="" />Organize Notes</h2>
+        <h2 className='flex px-1 gap-1 '><img src={post} className='size-5' alt="" />Create Notes</h2>
+        <h2 className='flex px-1 gap-1 '><img src={pencils} className='size-5' alt="" />Edit Notes</h2>
+       <h2 className='flex px-1 gap-1 '><span className='text-green-500'> ✔</span> Dowload Notes</h2>
+        <h2 className='flex px-1 gap-1 '><img src={folder} className='size-5 ' alt="" />Organize Notes</h2>
       </div>
       <div  alt=""  className='ele_5 ele_5_1 font-poppins opacity-0 top-[60%] -left-10 rotate-[5deg] text-sm absolute w-[0] flex flex-col gap-1
        text-white rounded-md border-4 border-purple-400  h-[0] 
@@ -743,11 +743,12 @@ scrollTrigger.refresh()
               </div>
       </div>
       {/* banner_line */}
-      <div id='device' className='w-[100vw] h-[10vh] border-2 border-gray-500 bg-transparent  bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400
+      <div id='device' className='w-[100vw] z-[1] h-[10vh] border-2 border-gray-500 bg-transparent  bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400
         bg-[length:200%_200%]
         animate-gradient  overflow-hidden flex  '>
       <div className='box_bb w-[100%] h-[100%] bg-transparent text-[2.5vmin] bt  overflow-visible flex flex-nowrap gap-0 '>
-      <div className='box_b w-[30vmin]   h-[100%] bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0  font-popins'>
+      <div className='box_b w-[30vmin]   h-[100%] bg-black/60 backdrop-blur-lg
+        border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0  font-popins'>
       <img src={post} className='size-4' alt="" />
       Create Notes</div>
       <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-transparent flex items-center justify-center  shrink-0 gap-1 font-popins'>

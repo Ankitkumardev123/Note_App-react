@@ -468,19 +468,19 @@ scrollTrigger.refresh()
     flex-row ${islogined?' ':'hidden'} `}>
     <div className='w-[50%] h-[100%] flex justify-center flex-col items-center bg-black border-r-2  border-orange-500 '>
     <span className='fold w-[100%] h-[8%] flex items-center  justify-start pl-1  '>
-    <img src={folder} className='w-[7vmin] h-[7vmin]  mb-1' alt="" />
+    <img loading="lazy"  src={folder} className='w-[7vmin] h-[7vmin]  mb-1' alt="" />
     <h1 className='flex text-center text-[5vmin] text-orange-500  w-[50%] font-semibold font-mono justify-left items-center ' >Folders</h1>
 
     <span className=' flex b w-[50%] justify-center items-center gap-[9%] h-[100%]'>
       
-      <img src={close} className={`w-[4vmin] h-[4vmin]  rotate-45 duration-200 ${create?"rotate-90":"rotate-45"}`} alt="" onClick={()=>{
+      <img loading="lazy"   src={close} className={`w-[4vmin] h-[4vmin]  rotate-45 duration-200 ${create?"rotate-90":"rotate-45"}`} alt="" onClick={()=>{
         setsearch(false)
         setcreate(prev=>!prev)
       if(create==true)
         
         setmsg('')
       }} />
-      <img src={`${!search?searchicon:close}`} className={`w-[4vmin] h-[4vmin]  duration-200 `} alt="" onClick={()=>{
+      <img loading="lazy"   src={`${!search?searchicon:close}`} className={`w-[4vmin] h-[4vmin]  duration-200 `} alt="" onClick={()=>{
         setcreate(false)
         setsearch(prev=>!prev)
       if(search==true)
@@ -489,7 +489,7 @@ scrollTrigger.refresh()
     </span>
     </span>
     <span className={`flex w-[100%] h-[4%] pt-2 justify-center  items-center duration-400 mb-2 pl-2 ${create?"":"hidden"}  `}>
-     <img src={mini} value={msg} className='w-[5vmin] h-[5vmin]' alt="" />
+     <img loading="lazy"   src={mini} value={msg} className='w-[5vmin] h-[5vmin]' alt="" />
     <input type="text" value={msg} className={`w-[50%] text-orange-500 outline-none border-0 border-b-4 bg-transparent ${create?"":"hidden"} text-[3vmin] `} placeholder='Give a name..'onChange={e=>setmsg(e.target.value)} onKeyDown={e=>{
       if(e.key==="Enter"){
         
@@ -517,7 +517,7 @@ scrollTrigger.refresh()
      
     </span>
      <span className={`flex w-[100%] justify-start ml-2  items-center duration-400 ${search?"":"hidden"}  pl-2`}>
-       <img src={searchicon} className={`w-[5vmin] h-[5vmin] mr-1`}/>
+       <img loading="lazy"   src={searchicon} className={`w-[5vmin] h-[5vmin] mr-1`}/>
     <input type="text" value={Search_msg} className={`w-[70%] text-orange-500 outline-none border-0 border-b-4 bg-transparent text-[3vmin] `} placeholder='Enter folder name... 'onChange={e=>setsearch_msg(e.target.value)} 
      onKeyDown={e=>{
       if(e.key=="Enter")
@@ -543,15 +543,15 @@ scrollTrigger.refresh()
     </div>
      <div className={`relative w-[50%] duration-400 h-[100%] flex flex-col items-center bg-black ${selectedfolder??"hidden"}}`}>
      <span className='nold w-[100%] h-[5%] flex items-center pt-2  justify-start  pl-0.5 mb-2 mt-0.5'>
-      <img src={note} className='w-[6vmin] h-[6vmin] ' alt="" />
+      <img loading="lazy"   src={note} className='w-[6vmin] h-[6vmin] ' alt="" />
      <h1 className='flex text-center text-[5vmin] text-orange-500   font-semibold font-mono justify-left items-center ' >Notes</h1>
-      <img src={`${!search_note?searchicon:close}`} className={`w-[4vmin]   duration-400 ml-10 ${selectedfolder?? 'hidden'}`} alt="" onClick={()=>{setsearch_note(prev=>!prev)
+      <img loading="lazy"   src={`${!search_note?searchicon:close}`} className={`w-[4vmin]   duration-400 ml-10 ${selectedfolder?? 'hidden'}`} alt="" onClick={()=>{setsearch_note(prev=>!prev)
       if(search==true)
         setsearch_notemsg('')
       }} />
      </span>
      <span className={`flex w-[100%] bg-red justify-start ml-5 pb-2 items-center duration-400 ${search_note?"":"hidden"}  `}>
-      <img src={searchicon} className={`w-[4vmin] h-[4vmin] `}/>
+      <img loading="lazy"  src={searchicon} className={`w-[4vmin] h-[4vmin] `}/>
     <input type="text" value={Search_notemsg} className={`w-[60%] text-orange-500 outline-none border-0 border-b-4 bg-transparent text-[3vmin] `} placeholder='Enter note name...'onChange={e=>setsearch_notemsg(e.target.value)} 
      onKeyDown={e=>{
       if(e.key=="Enter")
@@ -561,7 +561,7 @@ scrollTrigger.refresh()
      }} />
     </span>
     <span className={`infobox ml-4 w-[100%] flex  items-center h-[4%] justify-center gap-[2%] `} ref={ani}>
-      <img src={mini} className={`w-[4vmin] h-[4vmin] grid place-items-center  ${selectedfolder??"hidden"}`}alt=""/>
+      <img loading="lazy"  src={mini} className={`w-[4vmin] h-[4vmin] grid place-items-center  ${selectedfolder??"hidden"}`}alt=""/>
       <h2 className={`text-white text-[2vmin] h-[100%] w-[30%]  text-left grid place-items-center $ ${selectedfolder??"hidden"}`}>{
       selectedfolder?.folname }</h2>
       <h2 className={`text-orange font-semibold  text-[2vmin]  w-[100%] h-[100%] grid place-items-center   ${selectedfolder??"hidden"}`}>Total Notes-{selectedfolder?.notes?.length}</h2>
@@ -586,7 +586,7 @@ scrollTrigger.refresh()
      
       dispatch(menubartoggle(false))
     }}>
-      <img src={great} alt="" className={` duration-200 ${slide?"rotate-0":"rotate-180"}`} />
+      <img loading="lazy"   src={great} alt="" className={` duration-200 ${slide?"rotate-0":"rotate-180"}`} />
       
       </button>
      </div>
@@ -637,7 +637,7 @@ scrollTrigger.refresh()
          transition-all
         duration-300 hover:scale-110
         shadow-[0_0_25px_rgba(168,85,247,0.6)]'>
-          <img src={heart} alt="" className='size-[4vmin]'/>
+          <img loading="lazy"   src={heart} alt="" className='size-[4vmin]'/>
         </div>
         <button 
         className=' text-[4vmin] z-[1]
@@ -671,7 +671,7 @@ scrollTrigger.refresh()
                 </span>
         </h2> 
       </div>
-      <img src={hand} alt="" className=' z-[0]  size-[40rem] 
+      <img loading="lazy"   src={hand} alt="" className=' z-[0]  size-[40rem] 
       drop-shadow-[10px_10px_25px_rgba(236,72,85,0.7)] 
       ' />
       </span>
@@ -685,10 +685,10 @@ scrollTrigger.refresh()
        
         </div>
        
-        <h2 className='flex px-1 gap-1 '><img src={post} className='size-5' alt="" />Create Notes</h2>
-        <h2 className='flex px-1 gap-1 '><img src={pencils} className='size-5' alt="" />Edit Notes</h2>
+        <h2 className='flex px-1 gap-1 '><img loading="lazy"   src={post} className='size-5' alt="" />Create Notes</h2>
+        <h2 className='flex px-1 gap-1 '><img loading="lazy"   src={pencils} className='size-5' alt="" />Edit Notes</h2>
        <h2 className='flex px-1 gap-1 '><span className='text-green-500'> ✔</span> Dowload Notes</h2>
-        <h2 className='flex px-1 gap-1 '><img src={folder} className='size-5 ' alt="" />Organize Notes</h2>
+        <h2 className='flex px-1 gap-1 '><img loading="lazy"   src={folder} className='size-5 ' alt="" />Organize Notes</h2>
       </div>
       <div  alt=""  className='ele_5 ele_5_1 font-poppins opacity-0 top-[60%] -left-10 rotate-[5deg] text-sm absolute w-[0] flex flex-col gap-1
        text-white rounded-md border-4 border-purple-400  h-[0] 
@@ -749,16 +749,16 @@ scrollTrigger.refresh()
       <div className='box_bb w-[100%] h-[100%] bg-transparent text-[2.5vmin] bt  overflow-visible flex flex-nowrap gap-0 '>
       <div className='box_b w-[30vmin]   h-[100%] bg-black/60 backdrop-blur-lg
         border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0  font-popins'>
-      <img src={post} className='size-4' alt="" />
+      <img loading="lazy"   src={post} className='size-4' alt="" />
       Create Notes</div>
       <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-transparent flex items-center justify-center  shrink-0 gap-1 font-popins'>
-<img src={pencils} className='size-3' alt="" />Edit Notes
+<img loading="lazy"   src={pencils} className='size-3' alt="" />Edit Notes
       </div>
        <div className='box_b w-[31vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 font-popins'>
 <span className='text-green-500'>✔</span>DowloadNotes
        </div>
         <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 gap-1 font-popins'>
-        <img src={folder} className='size-4 ' alt="" />OrganizeNotes
+        <img loading="lazy"   src={folder} className='size-4 ' alt="" />OrganizeNotes
         </div>
        <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 font-popins'>
         🔐 Secure Login
@@ -773,7 +773,7 @@ scrollTrigger.refresh()
         ⚡ fast Access</div>
         
         <div className=' box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 gap-0.5 font-popins'>
-        <img src={post} className='size-4' alt="" />
+        <img loading="lazy"   src={post} className='size-4' alt="" />
         Write Anywhere
         </div>
        <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 gap-0.5 font-popins'>
@@ -787,16 +787,16 @@ scrollTrigger.refresh()
        ♨ Secure Login
        </div>
         <div className='box_b w-[30vmin]   h-[100%] bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0  font-popins'>
-      <img src={post} className='size-4' alt="" />
+      <img loading="lazy"   src={post} className='size-4' alt="" />
       Create Notes</div>
       <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-transparent flex items-center justify-center  shrink-0 gap-1 font-popins'>
-<img src={pencils} className='size-3' alt="" />Edit Notes
+<img loading="lazy"   src={pencils} className='size-3' alt="" />Edit Notes
       </div>
        <div className='box_b w-[31vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 font-popins'>
 <span className='text-green-500'>✔</span>DowloadNotes
        </div>
         <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 gap-1 font-popins'>
-        <img src={folder} className='size-4 ' alt="" />OrganizeNotes
+        <img loading="lazy"   src={folder} className='size-4 ' alt="" />OrganizeNotes
         </div>
        <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 font-popins'>
         🔐 Secure Login
@@ -811,7 +811,7 @@ scrollTrigger.refresh()
         ⚡ fast Access</div>
         
         <div className=' box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 gap-0.5 font-popins'>
-        <img src={post} className='size-4' alt="" />
+        <img loading="lazy"   src={post} className='size-4' alt="" />
         Write Anywhere
         </div>
        <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 gap-0.5 font-popins'>
@@ -825,16 +825,16 @@ scrollTrigger.refresh()
        ♨ Secure Login
        </div>
        <div className='box_b w-[30vmin]   h-[100%] bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0  font-popins'>
-      <img src={post} className='size-4' alt="" />
+      <img loading="lazy"   src={post} className='size-4' alt="" />
       Create Notes</div>
       <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-transparent flex items-center justify-center shrink-0 gap-1 font-popins'>
-<img src={pencils} className='size-4' alt="" />Edit Notes
+<img loading="lazy"   src={pencils} className='size-4' alt="" />Edit Notes
       </div>
        <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 font-popins'>
 <span className='text-green-500'>✔</span>DowloadNotes
        </div>
         <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 gap-1 font-popins'>
-        <img src={folder} className='size-4 ' alt="" />OrganizeNotes
+        <img loading="lazy"   src={folder} className='size-4 ' alt="" />OrganizeNotes
         </div>
        <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 font-popins'>
         🔐 Secure Login
@@ -849,7 +849,7 @@ scrollTrigger.refresh()
         ⚡ fast Access</div>
         
         <div className=' box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 gap-0.5 font-popins'>
-        <img src={post} className='size-4' alt="" />
+        <img loading="lazy"   src={post} className='size-4' alt="" />
         Write Anywhere
         </div>
        <div className='box_b w-[30vmin]  h-full bg-black/60 backdrop-blur-lg  border-x-[0.1rem] border-gray-500 flex items-center justify-center shrink-0 gap-0.5 font-popins'>
@@ -886,17 +886,17 @@ bg-clip-text
          
         </span>
         <div className='dev_2 devices_p relative flex justify-center items-center h-[100%]  w-full gap-2 '>
-        <img src={comp2} alt="" className=" comp size-[57vmin] mt-7    hover:scale-105 transition-all duration-300 
+        <img loading="lazy"   src={comp2} alt="" className=" comp size-[57vmin] mt-7    hover:scale-105 transition-all duration-300 
        drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]
         hover:drop-shadow-[0_0_40px_#9333ea]
         " />
-        <img src={lap2} alt="" className="lap  w-[60vmin]    hover:scale-105 transition-all duration-300 
+        <img loading="lazy"   src={lap2} alt="" className="lap  w-[60vmin]    hover:scale-105 transition-all duration-300 
         drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]
         hover:drop-shadow-[0_0_40px_#9333ea]" />
-        <img src={tablet} alt="" className="tablet  size-[50vmin] sm:mr-4    rotate-[32deg] top-[25%] hover:scale-105 transition-all duration-300 
+        <img loading="lazy"   src={tablet} alt="" className="tablet  size-[50vmin] sm:mr-4    rotate-[32deg] top-[25%] hover:scale-105 transition-all duration-300 
        drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]
         hover:drop-shadow-[0_0_25px_rgba(168,85,247,0.6)]"/>
-        <img src={phone} alt="" className="phone  w-[20vmin] shrink-0
+        <img loading="lazy"   src={phone} alt="" className="phone  w-[20vmin] shrink-0
       drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]
          hover:scale-105 transition-all duration-300 hover:drop-shadow-[0_0_40px_rgba(168,85,247,0.6)]"/>
       </div>
@@ -1078,7 +1078,7 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
         bg-[length:200%_200%]
     hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
        '>
-      <img src={facebook} className='size-[5vmin]'></img>
+      <img loading="lazy"   src={facebook} className='size-[5vmin]'></img  >
       Facebook</a>
        <a href="http://" className='hover:text-black tracking-widest border-gray-500 border-2 p-2 gap-2
         bg-transparent font-semibold font-poppins  flex text-[2.5vmin]
@@ -1090,7 +1090,7 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
         bg-[length:200%_200%]
     hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
        '>
-      <img src={github} className='size-[4vmin] bg-white rounded-[100%]'></img>
+      <img loading="lazy"    src={github} className='size-[4vmin] bg-white rounded-[100%]'></img  >
       Github</a>
        <a href="http://" className='border-2 p-2 border-gray-500 hover:text-blue-800 gap-2
         bg-transparent font-semibold font-poppins flex text-[2.5vmin]
@@ -1102,7 +1102,7 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
         bg-[length:200%_200%]
     hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
        '>
-      <img src={linkedin} className='size-[5vmin]  bg-white rounded-[100%]'></img>
+      <img loading="lazy"    src={linkedin} className='size-[5vmin]  bg-white rounded-[100%]'></img >
       Linkedin</a>
       </div>
        </div>
@@ -1222,14 +1222,14 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
      <div className={`absolute  top-[7%] z-[1] h-[100%]   w-[100vw] flex  flex-col justify-start items-center 
       ${islogined?"":'hidden'}`}> 
       <span className={` h-[80vh] w-[100%] px-4 flex justify-center items-center ${selected_note?"hidden":""}`}>
-        <img src={note} alt=""  width={'60vmin'} height={'80vmin'} />
+        <img loading="lazy"    src={note} alt=""  width={'60vmin'} height={'80vmin'} />
       <h1 className='text-[7vmin] font-semibold duration-200 text-center pr-1'>No note selected. Start by picking or creating one!</h1>
       </span>
         
   <div className={`absolute  z-[30] bg-gray-500 bg-opacity-70 grid place-items-center   w-[100vw] h-[100vh] ${dowload_on?"":'hidden'}`}>
     <div className='relative w-[15rem] rounded-lg h-64 bg-black border-4 flex  flex-col items-center justify-center gap-2'>
       
-       <img src={close} alt="" className='absolute w-7  top-3 right-3 ' onClick={()=>{setdownload(false)
+       <img loading="lazy"  src={close} alt="" className='absolute w-7  top-3 right-3 ' onClick={()=>{setdownload(false)
         select.current.value="TXT"
        }} />
         
@@ -1251,10 +1251,10 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
       <div className={`infopanel h-[20%] w-[100%] z-[20] flex flex-col justify-center  items-center pl-[6.5%] ${selected_note?'':"hidden"}
        ${selectedfolder?.notes.length==0?'hidden':""} `}>
          <span className='flex w-full h-[20%] mt-2   items-center justify-start  font-bold text-[3.5vmin]'>
-            <img src={mini} alt="" className='w-[3.7vmin]' />
+            <img loading="lazy"  src={mini} alt="" className='w-[3.7vmin]' />
           <h5 className='mx-1 '>{selectedfolder?.folname}</h5>
           <h5 className='text-orange-600 mx-1'>\</h5>
-          <img src={post} alt=""  className='w-[3.7vmin]'  />
+          <img loading="lazy"  src={post} alt=""  className='w-[3.7vmin]'  />
           <h5 className=''> {selected_note?.note_name}</h5>
           </span>
         <span className='h-[40%] w-[100%]  flex justify-start items-center '>

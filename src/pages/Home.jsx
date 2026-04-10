@@ -1068,7 +1068,7 @@ bg-clip-text
                to-cyan-500 
               bg-clip-text bg-[length:50%_100%]'>Let's Talk</span>
        </h1>
-<p className='con_a text-[3.2vmin] text-left text-gray-400 font-sans w-[75%]'>
+<p className='con_a text-[3.5vmin] text-left text-gray-400 font-sans w-[75%]'>
   Have a question or suggesstion about MyNote? Send me a message and I'll get back to you soon.📩
 </p>
 
@@ -1138,7 +1138,7 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
        
          
     <button 
-        className='text-[3vmin]  opacity-0
+        className='text-[3vmin] mt-1  opacity-0
          px-3 py-4 font-poppins font-semibold 
         bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400
         bg-[length:200%_200%]

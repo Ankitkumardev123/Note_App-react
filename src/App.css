@@ -345,6 +345,10 @@ padding-top: 0;
 
 }
 @media(max-width:425px){
+  .nav{
+    gap:1em;
+    padding-left: 5vmin;
+  }
   .copyright{
     font-size: 1.2rem;
   }

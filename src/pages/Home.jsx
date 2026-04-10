@@ -178,6 +178,13 @@ scrollTrigger.refresh()
   //feature section animation
  scrollTrigger.matchMedia({
       "(min-width: 1025px)":function(){
+        gsap.to('.f_ele_2',{
+      
+      opacity:0,
+      
+    
+    
+   });
    const t3=gsap.timeline({
    scrollTrigger:{
     trigger:'.feature_back',
@@ -237,7 +244,7 @@ scrollTrigger.refresh()
   
  },
 
-   "(min-width: 1024px)":function(){
+   "(max-width: 1024px)":function(){
     gsap.to('.f_ele_2',{
     
       opacity:1,
@@ -247,10 +254,7 @@ scrollTrigger.refresh()
    })
    gsap.to('#contact ',{
      opacity:1,
-    delay:0.1,
-    duration:0.2,
-    clearProps:'transform',
-    ease:'linear'
+   
    
    })
    }

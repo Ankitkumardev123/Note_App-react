@@ -67,7 +67,7 @@ function Navbar() {
       x:'-200%',
       duration:1,
     
-      ease:'expo.in',
+      ease:'linear',
     })
  
      }
@@ -221,10 +221,10 @@ if(editbar){
     bg-gradient-to-br from-purple-700  via-pink-600 to-cyan-500 bg-[length:200%_200%] '>
       
     </div>
-    <div  className='fixed  z-[3] gap-[0%] bg-black 
+    <div  className='fixed  z-[3] bg-black 
      border-0 flex flex-row items-center 
        w-[100vw] h-[10vh] top-[0%] left-0 right-0 '>
-        <div className='flex items-center justify-left pl-2 w-[50%] '>
+        <div className='flex items-center justify-left pl-2 w-[40%] '>
           <img src={menu?close:Menu} className='img slidet w-[6vmin] h-[6vmin] z-50 p-0.5' alt="" onClick={()=>{
            handleclick()
           }
@@ -238,8 +238,8 @@ if(editbar){
               bg-clip-text text-[3.6vmin]'>Note</span>
         </h2> 
         </div>
-        <div className='nav shrink-0   w-[100%] h-[100%] 
-         flex items-center justify-center  gap-[5%]' >
+        <div className='nav  pr-4 w-[100%] h-[100%] 
+         flex items-center justify-center    ' >
         <NavLink 
         to='/'
          className={({isActive})=>`slidet navl relative  inline-block text-[4vmin] text-gray-400 font-poppins  

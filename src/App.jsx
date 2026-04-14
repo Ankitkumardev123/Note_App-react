@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import Navbar from './pages/Navbar'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { Provider, useDispatch, useSelector } from 'react-redux'
-import { setcurentuser, setfolders, setlogined, setloginuser } from './noteslice/noteslices'
+import { setcurentuser, setfolders, setlogined, setloginuser, setselectfolder } from './noteslice/noteslices'
 import { query,where,getDocs, collection, doc, updateDoc } from 'firebase/firestore'
 import { Auth, database } from './firebase/firebase'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
@@ -12,11 +12,23 @@ import { Link, useNavigate } from 'react-router-dom'
 
 function App() {
   const userdata=useSelector(state=>state.noted.currentuser)
-  const folders=useSelector(state=> state.noted.Folders) ?? []
+  
+
   const [loader, setloader] = useState(false)
  
   const fetch_on =useSelector(state=>state.noted.fetching)
    const fetchref=useRef(fetch_on)
+   const islogined=useSelector(state=>state.noted.logined)
+  const selected_folder=useSelector(state=>state.noted.selectedfolderid)
+      const folders=useSelector(state=>state.noted.Folders)
+      const selected_folders=folders?.find(fol=>fol.id==selected_folder) || null
+      const selected_note=useSelector(state=>state.noted.selectednote)
+      const selected_folderid=useSelector(state=>state.noted.selectedfolderid)
+    const currentuser=useSelector(state=>state.noted.currentuser)
+  // function protectedRoute({user,children}){
+  //   if(!user)
+  //     return <Navigate to="/login"/>
+  // }
    useEffect(()=>{
      fetchref.current=fetch_on
    },[fetch_on])
@@ -24,6 +36,12 @@ const dispatch=useDispatch()
 const navigate=useNavigate()
 
 useEffect(()=>{
+  if(!islogined){
+    navigate('/')
+  }
+  else{
+    navigate("/NoteEditArea")
+  }
 const handlerelogin=
   onAuthStateChanged(Auth,async (user)=>{
 
@@ -41,7 +59,7 @@ const handlerelogin=
             
         dispatch(setloginuser(userdata))
            dispatch(setlogined(true))
-           navigate("/")
+           navigate("/NoteEditArea")
            setloader(false)
            setTimeout(() => {
              alert("Login successful!")
@@ -50,13 +68,14 @@ const handlerelogin=
     }catch(error){
       alert("User check yout network connection!!")
       setloader(false)
+     
     }
     
   }
     else{
       setloader(false)
-       
-           dispatch(setlogined(false))
+     
+           
     }
   });
   return()=>{handlerelogin()};
@@ -79,17 +98,17 @@ const handleupdate= async()=>{
   await updateDoc(doc(database,"users",user?.id),{
     ...userdata
   })
-  console.log('updated')
+ 
   }catch(error){
     alert("Oops! can't auto save chnages...\nCheck Your Network connection!!")
   }
 }
   useEffect(()=>{
    
-    if(folders.length==0)
+    if(userdata?.user_folders)
     {
-       0
-  dispatch(setfolders(userdata?.user_folders))
+      
+  dispatch(setfolders(userdata?.user_folders||[]))
  
       setloginuser({...userdata,user_folders:folders})
     }

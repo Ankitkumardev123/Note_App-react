@@ -5,8 +5,8 @@ import { database } from "../firebase/firebase";
 import { doc, setDoc,collection,addDoc,  getDocs, query,where} from "firebase/firestore"; 
 import { useDispatch } from "react-redux";
 
-const month=['january','february','march','april','may','june','july','august','september','october','november','december']
 const initialState={
+    
     logined:false,
    menubar:false,
    editbar:false,
@@ -14,13 +14,11 @@ const initialState={
             username:"User_name",
             password:'********',
             email:"notfound@gmail.com",
-            phonenumber:'Notfound',
+           
             created:'404,404,404',
             profile_pic:null
    },
-   Folders:[
-    
-   ],
+   Folders:[],
    selectednote:null,
    selectedfolderid:null,
    fetching:true,
@@ -52,11 +50,11 @@ const notesslices=createSlice({
         },
         menubartoggle:(state,action)=>{
             state.menubar=action.payload ?? !state.menubar
-            if(state.menubar) state.editbar=false
+           
         },
         editbartoggle:(state,action)=>{
             state.editbar=action.payload ?? !state.editbar
-            if(state.editbar) state.menubar=false
+          
         },
         addfolder:(state,action)=>{
             
@@ -67,56 +65,84 @@ const notesslices=createSlice({
             }
             state.Folders.push(fol)
             state.currentuser={...state.currentuser,user_folders:state.Folders}
+            state.selectedfolderid=fol?.id
+            state.selectednote=null
         },
         addNote:(state,actions)=>{
             const {id,name}=actions.payload
-          const date1= new Date
-           
+          
+           const date=new Date
+             const temp=date.toLocaleString("en-US",{month:"short"})
+            
+             const am_pm=date.getHours() >=12 ? 'PM' :'AM'
             let notee={
                 
                 note_name:name,
                 id:nanoid(),
                notetitle:'',
                 notecontent:'',
-                time:`${month[date1.getMonth()]} , ${date1.getDate()}, ${date1.getFullYear()} | ${date1.getHours()}:${`${date1.getMinutes()}`.length==1?'0'+date1.getMinutes():date1.getMinutes()}`,
+                time:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`,
+                  lasttime:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`
 
             }
            
             state.Folders=state.Folders.map(folder=>folder.id==id?{...folder,notes:[...folder.notes,notee]}:folder)
           state.currentuser={...state.currentuser,user_folders:state.Folders}
+          state.selectednote=window.innerWidth>=768 ? notee:null
         },
         deletenote:(state,action)=>{
            
             const {id,folid}=action.payload
            state.Folders=state.Folders.map(folder=>folder.id==folid?{...folder,notes:folder.notes=folder.notes.filter(n=>n.id!=id)}:folder)
            state.currentuser={...state.currentuser,user_folders:state.Folders}
+           state.selectednote=null
+           const selectedfolder=state.Folders.find(fol=>fol.id==state.selectedfolderid)
+           state.selectednote=window.innerWidth>=768?selectedfolder?.notes[selectedfolder.length-1>0?selectedfolder.length-1:0] || null:null
         },
          deletefolder:(state,actions)=>{
             const {id}=actions.payload
            
             state.Folders=state.Folders.filter(folder=>folder.id!=id)
             state.currentuser={...state.currentuser,user_folders:state.Folders}
+            state.selectednote=state.selectedfolderid==id?null:state.selectednote
         },
         updatenote:(state,action)=>{
              const {id,folid,prop}=action.payload
+             const date=new Date;
+
+             const temp=date.toLocaleString("en-US",{month:"short"})
+           
+             const am_pm=date.getHours() >=12 ? 'PM' :'AM'
              
-             state.Folders=state.Folders.map(folder=>folder.id==folid?{...folder,notes:folder.notes.map(n=>n.id==id?{...n,...prop}:n)}:folder);
+             state.Folders=state.Folders.map(folder=>folder.id==folid?{...folder,notes:folder.notes.map(n=>n.id==id?{...n,...prop,
+            lasttime:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+' '+am_pm }`
+             }:n)}:folder);
              state.currentuser={...state.currentuser,user_folders:state.Folders}
+             let selected_folder={...state.Folders.filter(folder=>folder.id==state.selectedfolderid)}
+            state.selectednote=window.innerWidth>=768 ? selected_folder[0].notes.filter(n=>n.id==id)[0]:null
+             
         },
         updatefolder:(state,action)=>{
              const {folid,prop}=action.payload
             
              state.Folders=state.Folders.map(folder=>folder.id==folid?{...folder,...prop}:folder);
              state.currentuser={...state.currentuser,user_folders:state.Folders}
+             
         },
         setselectednote:(state,action)=>{
-            state.selectednote=action.payload
-            state.currentuser={...state.currentuser,user_folders:state.Folders}
+            
+           let note=action.payload
+            state.selectednote=action.payload 
+            
         },
          setselectfolder:(state,action)=>{
           
             state.selectedfolderid=action.payload
-            state.currentuser={...state.currentuser,user_folders:state.Folders}
+            // state.currentuser={...state.currentuser,user_folders:state.Folders}
+            let selelected_folder=state.Folders?.find(f=>f.id==state.selectedfolderid)
+        
+            state.selectednote=window.innerWidth>768?selelected_folder?.notes[0] ??  null:null
+            
         }
         ,
 
@@ -124,6 +150,10 @@ const notesslices=createSlice({
 
          setcurentuser:(state,action)=>{
              const date=new Date
+             const temp=date.toLocaleString("en-US",{month:"short"})
+            
+             const am_pm=date.getHours() >=12 ? 'PM' :'AM'
+
           const users={
            ... action.payload,
             profile_pic:null,
@@ -151,14 +181,15 @@ const notesslices=createSlice({
 "---\n\n" +
 "Made with ❤️ just for you.\n\n" +
 "\–- Team MyNote\n\n",
-                time:`${month[date.getMonth()]} , ${date.getDate()}, ${date.getFullYear()} | ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()}`,
+                 time:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`,
+                  lasttime:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`
             }
         ]}]
           }
        
         handledata(users)
         state.currentuser={...users}
-       
+          state.selectedfolderid=users?.user_folders?.[0]?.id || []
         },
         setuserfolder:(state,action)=>{
             state.currentuser.user_folders=action.payload
@@ -167,6 +198,9 @@ const notesslices=createSlice({
         setloginuser:(state,action)=>{
             
             state.currentuser={...action.payload}
+            state.Folders=state.currentuser.user_folders||[]
+             state.selectedfolderid=state.Folders[0]?.id||[]
+             state.selectednote=window.innerWidth>768?state.Folders[0].notes[0] || null :null
         },
         setfetching:(state,action)=>{
             state.fetching=action.payload ?? !state.fetching

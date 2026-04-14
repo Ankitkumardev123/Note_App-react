@@ -5,34 +5,50 @@ import gsap from 'gsap'
 import close from "../images/close.png"
 import folder from "../images/folder.png"
 import pencils from "../images/pencils.png"
-import post from "../images/post.png"
+import trash from "../images/trash.png"
 import save from "../images/save.png"
 import { useGSAP } from '@gsap/react'
 function Folder({fold,set1,searchmsg,fol_ser}) {
-    const [visible, setvisible] = useState(false)
+    const [visible, setvisible] = useState(true)
     const [edit, setedit] = useState(false)
-    const [rename, setrename] = useState(true)
+    const [rename, setrename] = useState(false)
     const [create, setcreate] = useState(false)
     const [note_title,setnote_title]=useState('')
-    const [msg, setmsg] = useState(fold.folname)
+    const [foldname, setfoldname] = useState(fold.folname)
     const selected_folder=useSelector(state=>state.noted.selectedfolderid)
     const folders=useSelector(state=>state.noted.Folders)
     const selected_folders=folders.find(fol=>fol.id==selected_folder)
     const selected_note=useSelector(state=>state.noted.selectednote)
+    const selected_folderid=useSelector(state=>state.noted.selectedfolderid)
     const dispatch=useDispatch()
     let folder_length=folders?.length
   useEffect(()=>{
     set1(false)
   },[create,rename,create,note_title])
    const handlesearch=(s1,s2)=>{
+    
     for(let i=0;i<s2.length;i++)
     {
-        if(s1[i]!=s2[i])
+        if(s1[i]==s2[i]){
+        
             setvisible(true)
+            
+        }
+        else{
+          setvisible(false)
+          break;
+        }
+        
        
        
     }
 }
+  const handlename=(e)=>{
+      const value=e.target.value
+      setfoldname(value)
+
+    }
+
 const del_ani=()=>{
   gsap.to(`#${fol_ser}`,{
     x:-100,
@@ -57,134 +73,90 @@ useGSAP(()=>{
 
 },[folders.length])
 
-useEffect(()=>{
 
-    if(fold.id==1)
-        dispatch(setselectfolder(fold.id))
-},[])
   useEffect(()=>{
-    setvisible(false)
-    if(searchmsg!='')
+    
+    if(searchmsg!=''){
    handlesearch(fold.folname,searchmsg)
+  
+    }
     else
-        setvisible(false)
+      setvisible(true)
   },[searchmsg])
   useEffect(()=>{
-    if(selected_folder==fold?.id){
-       
-        setedit(true)
-    }
-    else{
-       
-        setrename(true)
-        setedit(false)
-    }
+    if(selected_folder!=fold?.id)
+        setrename(false)
+     
+   
   },[selected_folder])
 
   return (
     <>
-    <div id={`${fol_ser}`} className={`fols w-[100%] h-[5.5%] z-20   flex justify-center  items-center  pl-1 ${visible?'hidden':''}`}
-    >
-        <span className=' w-[100%] h-[100%] flex justify-center items-center'>
-        <img src={folder} className={`w-[5.5min] h-[5.5vmin]  ${fold.id==1?"grayscale":''} `} alt="" onClick={()=>{
-             dispatch(setselectednote(null))
-            if(selected_folder==fold.id)
-            dispatch(setselectfolder(null))
-            else
+    <div id={`${fol_ser}`}
+     className={` w-[100%] h-10   bg-black
+      ${selected_folderid==fold.id?'bg-gradient-to-r text-purple-700':''}
+       sm:h-10  lg:h-10 md:h-10 border-b-2 border-gray-600   
+      hover:bg-gradient-to-r bg-[length:200%_200%] animate-gradient from-purple-700 via-pink-600 to-cyan-600
+       ${visible?'':'hidden'}`}
+    onClick={()=>{
+            
+            if(selected_folder!=fold.id )
             dispatch(setselectfolder(fold.id))
-        }}/>
-       <input type="text" disabled={rename} value={msg} className='outline-none w-[100%] h-[100%] bg-transparent text-[3vmin] text-left  ' onChange={
-        (e)=>{
-            setmsg(e.target.value)
-            
-        }
-       } onClick={()=>{
-        if(create==false){
-            dispatch(setselectfolder(fold.id))
-        if(selected_note){
-       const note_send=selected_folders?.notes.map(no=>no.id==selected_note?selected_note:null)
-       dispatch(setselectednote(note_send))}
-       else{
-        dispatch(setselectednote(null))
-       }
-        }
-    }}/>
-        </span>
-        <span className={`flex w-[60%] h-[100%]  items-center justify-center flex-row
-         ${edit?"":"hidden"}`}>
-            <img src={close} alt="" className={`w-[5vmin] p-0.5 rounded-lg duration-200 ${create?"-rotate-90":'rotate-45'}`} onClick={()=>{
-                
-                setcreate(prev=>!prev)
-                setnote_title('')
-                if(create==false){
-              dispatch(setselectfolder(fold.id)
-            )
-            }
-                }}/>
-            <img src={rename?pencils:save} alt=""
-                onClick={()=>{setrename(prev=>!prev) 
-                   
-                     dispatch(setselectfolder(fold.id))
-                    if(rename==false){
-                        const prop={
-                            folname:msg
-                        }
-                        dispatch(updatefolder({folid:fold.id,prop}))
-                    }
-                }} className={fold.id==1?"hidden":'w-[5vmin] p-0.5 rounded-lg duration-200'}/>
-            <img src={close}  alt="" className={fold.id==1?"hidden":'w-[5vmin] p-0.5 rounded-lg z-30'}
-            onClick={()=>{
-              console.log('clicked')
-              del_ani()
-              setTimeout(() => {
-                dispatch(deletefolder({id:fold.id}))
-              dispatch(setselectfolder(null))
-              dispatch(setselectednote(null))
-              }, 500);
-              
-            }}/>
-        </span>
-    </div>
-    <div className={`w-[100%] h-[7%]  flex justify-center  items-center ${create?"":"hidden"}`}>
-         <img src={post} className='w-[5vmin] h-[5vmin] ' alt="" />
-        <input readOnly={false} type="text" value={note_title} 
- onChange={(e)=>{
-    setnote_title(e.target.value)}
-        } onKeyDown={(e)=>{
            
-           
-            if(e.key==="Enter"){
-               
-               
-            dispatch(addNote({id:fold.id,name:note_title}))
-              
-            setnote_title('')
-            setcreate(false)
-            
-             
-            
-
-        }
-            
         }}
-       className='outline-none  bg-transparent border-b-2 text-[3vmin] w-[70%] text-orange-500' placeholder='Give a title...'/>
-<button className='text-[3vmin] p-0.5 px-1 bg-orange-600 ml-1 border-2 rounded-lg' onClick={
-          ()=>{
-            if(note_title!=''){
-            dispatch(addNote({id:fold.id,name:note_title}))
-              
-            setnote_title('')
-            setcreate(false)
-            
-             
-            }
-            else{
-              alert("Note name is empty...")
-            }
+    >
+      <div className='w-full h-full flex  bg-black/40 backdrop-blur-lg justify-start items-center'>
+       <div className='w-[5%]  h-full '>
+
+       </div>
+       <span className='w-[100%] h-full gap-2  flex justify-start items-center'>
+        <img src={folder} className={`size-[1.5rem]  `} alt=""/>
+       <input type="text" readOnly={!rename} value={foldname} className='outline-none  font-poppins font-semibold text-gray-400 
+              w-[100%] h-[100%]  bg-black/0 text-md' onChange={(e)=>{handlename(e)
+             }}
+             onKeyDown={(e)=>{
+              if(e.key=="Enter"){
+                setrename(!rename)
+                if(rename==true && foldname!=''){
+            const prop={folname:foldname}
+            dispatch(updatefolder({folid:fold.id,prop}))
           }
-        } >Add</button>
+          else if(rename==true && foldname==''){
+            alert('Folder name is empty...')
+            setrename(true)
+          }
+        }
+             }} 
+             onClick={()=>{
+               if(fold.id!=selected_folderid )
+                  dispatch(setselectfolder(fold.id))
+            }} />
+        </span>
+        <span className={`w-[23.5%] border-l-[1px] border-gray-600 h-full bg-slate-950 grid place-items-center `} onClick={()=>{setrename(!rename)
+          if(rename==true && foldname!=''){
+            const prop={folname:foldname}
+            dispatch(updatefolder({folid:fold.id,prop}))
+          }
+          else if(rename==true && foldname==''){
+            alert('Folder name is empty...')
+            setrename(!rename)
+          }
+
+          
+        }}>
+        <img src={rename?save:pencils} alt=""  className={`size-[1.8rem] `}/>
+        </span>
+        <span className={`w-[23.5%] border-l-[1px] border-gray-600 h-full bg-slate-950 grid place-items-center ${fold?.id==1?'hidden':''}`}>
+        <img src={trash} alt=""  className={`size-[1.8rem] ${fold?.id==1?'hidden':''}`}
+        onClick={()=>{
+          dispatch(deletefolder({id:fold?.id}))
+        }}
+        />
+        </span>
+        </div>
     </div>
-    
+   
+
     </>
   )
 }

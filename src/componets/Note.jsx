@@ -3,11 +3,12 @@ import {deletenote,updatenote,setselectednote,setselectfolder} from '../noteslic
 import { useDispatch,useSelector } from 'react-redux'
 
 import close from "../images/close.png"
+import note from "../images/note.png"
 
 import pencils from "../images/pencils.png"
-import post from "../images/post.png"
+
 import save from "../images/save.png"
-function Note({not,items,searchmsg_note,setnotename,noten}) {
+function Note({not,items,searchmsg_note,setnotename,noten,note_seriel}) {
    
   const [visible, setvisible] = useState(false)
     const [edit, setedit] = useState(false)
@@ -17,6 +18,13 @@ function Note({not,items,searchmsg_note,setnotename,noten}) {
     const selected_note=useSelector(state=>state.noted.selectednote)
     const selectedfolderid=useSelector(state=>state.noted.selectedfolderid)
     const dispatch=useDispatch()
+    ///All event handling functions
+    const handlename=(e)=>{
+      const value=e.target.value
+      setmsg(value)
+
+    }
+   
     const handlesearch=(s1,s2)=>{
         for(let i=0;i<s2.length;i++)
         {
@@ -26,6 +34,9 @@ function Note({not,items,searchmsg_note,setnotename,noten}) {
            
         }
     }
+    
+    ///All useeffects
+    
       useEffect(()=>{
         setvisible(false)
         if(searchmsg_note!='')
@@ -40,49 +51,64 @@ function Note({not,items,searchmsg_note,setnotename,noten}) {
         {
           setrename(true)
           setedit(false)
+         
         }
+       
       },[selected_note])
-      useEffect(()=>{
-        if(not.id==2)
-          dispatch(setselectednote(not))
-        
-      },[])
+     
   return (
-    <div className={`fols nots w-[100%] h-[5.5%] text-center flex-shrink-0  flex justify-center  items-center  pl-1 ${visible?'hidden':''}`}>
-        <span className='flex w-[100%] h-[100%] justify-center items-center'>
-        <img src={post} className='w-[5.5vmin] h-[5.5vmin]  ' alt="" onClick={()=>{
-          
     
-        if(not.id==selected_note?.id)
-              dispatch(setselectednote(null))
-            else
+    <div id={note_seriel} className={` w-[100%] h-14 text-center border-b-2 border-gray-500     flex justify-start  items-center 
+       hover:bg-slate-800 
+      ${selected_note?.id==not?.id?'bg-slate-800':'bg-slate-950'}
+      ${visible?'hidden':''}`}
+      onClick={()=>{
+        let len=window.innerHeight
+        if(not.id!=selected_note?.id && len>=768)
             dispatch(setselectednote(not))
+      }}
+      >
+        <span className='flex w-[100%] h-[100%] bg-black/40 justify-center items-center'>
+          <div className='w-[9%] h-full '></div>
+          <div className='w-full h-full flex justify-center items-center' onClick={()=>{ if(not.id!=selected_note?.id && window.innerWidth>=768)
+            dispatch(setselectednote(not))}}>
+        <img src={note} className='size-[1.7rem]  ' alt="" onClick={()=>{
+        if(not.id!=selected_note?.id )
+            dispatch(setselectednote(not))
+    
+       
+           
        }
        }/>
-       <input type="text" disabled={rename} value={msg} className='outline-none w-[100%] h-[100%]  bg-transparent text-[3vmin]' onChange={(e)=>{setmsg(e.target.value)
-        dispatch(setselectednote(not))
-        
-          
-       }} />
+       <input type="text" readOnly={rename} defaultValue={not.note_name} className='outline-none font-poppins font-semibold text-gray-400 
+        w-[100%] h-[100%]  bg-black/0 text-md' onChange={(e)=>{handlename(e)
+       }} onClick={()=>{
+         if(not.id!=selected_note?.id && window.innerWidth>=768)
+            dispatch(setselectednote(not))
+      }} />
+       </div>
         </span>
-        <span className={`flex w-[45%] h-[100%]  items-center justify-right flex-row
-         ${edit?"":"hidden"}`}>
+        <span className={`flex w-16  md:p-0 lg:p-0 h-[100%]  items-center justify-center gap-2
+        `}>
             <img src={rename?pencils:save} alt=""
-                onClick={()=>{setrename(prev=>!prev)
+                onClick={()=>{
+                
+                  setrename(prev=>!prev)
                   if(rename==false){
                     const prop={
                       note_name:msg
                     }
-                    noten(msg)
+                    // noten(msg)
                     dispatch(updatenote({id:not.id,folid:selectedfolderid,prop}))
+                    
                     
                   }
                   
-                }} className='w-[4.5vmin]  rounded-lg duration-200'/>
-            <img src={close}  alt="" className='w-[4.5vmin]  rounded-lg 'onClick={()=>{dispatch(deletenote({id:not.id,folid:selectedfolderid} ))
+                }} className='size-[1.7rem]  rounded-lg duration-200'/>
+            {/* <img src={close}  alt="" className='size-[1.5rem]  rounded-lg 'onClick={()=>{dispatch(deletenote({id:not.id,folid:selectedfolderid} ))
             
              dispatch(setselectednote(null))
-          }}/>
+          }}/> */}
         </span>
     </div> 
   )

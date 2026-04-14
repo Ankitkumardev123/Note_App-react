@@ -6,6 +6,15 @@ export default {
   ],
   theme: {
     extend: {
+      content:[
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}"
+      ],
+      colors:{
+        ring:"hsl(var(--ring))",
+        border:"hsl(var(--border))",
+        background:"hsl((var(--bacground))",
+      },
       backgroundSize:{
         '200%':'200% 200%',
       },

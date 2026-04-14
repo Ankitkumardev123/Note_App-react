@@ -100,11 +100,11 @@ function Signup() {
             </div>
 
             <div className='w-full flex flex-col sm:flex-row gap-2.5 mb-5 px-2'>
-              <button className='flex-1 h-12 border border-slate-600/60 backdrop-blur-sm rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
+              <button className='flex-1 py-4 h-12 border border-slate-600/60 backdrop-blur-sm rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
                 <img src={facebook} className='w-5 h-5' alt="" loading="lazy"/>
                 Signup with Facebook
               </button>
-              <button className='flex-1 h-12 border border-slate-600/60 backdrop-blur-sm rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
+              <button className='flex-1 py-4 h-12 border border-slate-600/60 backdrop-blur-sm rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
                 <img src={google} className='w-5 h-5' alt="" loading="lazy"/>
                 Signup with Google
               </button>

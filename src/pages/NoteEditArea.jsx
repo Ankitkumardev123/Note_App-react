@@ -69,10 +69,10 @@ export default function NoteEditArea() {
       const [note_bar, setnotebar] = useState(false)
       const [createnote,setcreatenote]=useState(false)
       const [createmsg,setcreatemsg]=useState('')
-      const toggle_editPanel=selected_note==null
+      const [toggle_editPanel,settoggleEditPanel]=useState(selected_note==null)
       const note_content=selected_note?.note_content || ''
       const [length, setlength] = useState(selected_note?.notecontent.length || 0)
-      const [ismobile,setIsmobile]=useState(window.innerWidth<768)
+      const [ismobile,setIsmobile]=useState(window.outerWidth<768)
       const [infopanel, setinfopanel] = useState(false)
       //search states
       const [Search_msg, setsearch_msg] = useState('')
@@ -80,18 +80,20 @@ export default function NoteEditArea() {
       const [Search_notemsg, setsearch_notemsg] = useState('')
       useEffect(()=>{
         const handleresize=()=>{
-          setIsmobile(window.innerWidth<768?true:false)
-          console.log(window.innerWidth)
-           if(ismobile){
+          setIsmobile(window.outerWidth<768)
+          console.log(window.outerWidth)
+         if(window.outerWidth<768){
           dispatch(setselectednote(null))
          
         }
         else{
-         dispatch(setselectednote(selectedfolder?.notes[0] || null))
+         
+         dispatch(setselectednote(selectedfolder?.notes[0]))
+         
         }
-        console.log("worked")
+       
         }
-        
+          
        
 
           window.addEventListener("resize",handleresize)
@@ -126,7 +128,7 @@ export default function NoteEditArea() {
           setlength(selected_note?.['notecontent'].length || 0)
           setnotename(selected_note?.note_name || '')
           setnotecontent(selected_note?.notecontent ||'')
-         
+         settoggleEditPanel(selected_note==null)
          
         },[selected_note])
          const handlechange=(e)=>{
@@ -225,7 +227,7 @@ export default function NoteEditArea() {
         bg-neutral-950   bottom-0 border-r-[1px]
          flex translate-x-[-100%] border-gray-700  
         flex-col  `}>
-        <div className='w-full h-8 lg:h-14 md:h-12 flex items-center justify-start border-b-[1px] border-gray-600 pl-3 '>
+        <div className='w-full h-20 flex items-center justify-start border-b-[1px] border-gray-600 pl-3 '>
             <img loading="lazy"   src={close} className={`size-[2rem] 
             `} alt="" onClick={()=>{
             dispatch(editbartoggle(!slide));
@@ -323,7 +325,7 @@ export default function NoteEditArea() {
      <div className={` z-[1] h-[100vh]   w-[100vw] flex   justify-start items-center 
       ${islogined?"":'hidden'}`}> 
       <div className={`md:w-[60%] lg:w-[40%] bg-neutral-950 border-y-2 border-r-2 border-gray-500
-       h-full flex flex-col justify-start items-center ${resize?'hidden':''} ${ismobile?selected_note==null?'w-full':'hidden':''}`}>
+       h-full flex flex-col justify-start items-center ${resize?'hidden':''} ${ismobile?toggle_editPanel?'w-full':'hidden':''}`}>
        <div className='w-full h-14 
         bg-gradient-to-r bg-[length:200%_200%] from-purple-700 via-pink-600 to-cyan-500 animate-gradient  
         border-b-2 border-gray-500'>
@@ -421,7 +423,7 @@ export default function NoteEditArea() {
           }
         </div>
       </div>
-      <div className={`w-[100%] border-y-2 border-gray-500  bg-neutral-900 h-[100vh]  flex flex-col justify-start items-center ${ismobile?selected_note!=null?'':'hidden':''}`}>
+      <div className={`w-[100%] border-y-2 border-gray-500  bg-neutral-900 h-[100vh]  flex flex-col justify-start items-center ${ismobile?toggle_editPanel?'hidden':'':''} `}>
       <div className={`w-full h-14 shrink-0 bg-slate-950 border-b-2 border-gray-500 flex items-center inner justify-start 
         ${!toggle_editPanel?'':'[&>*]:hidden'} `}>
         <div className={`w-14 h-full grid place-items-center ${ismobile?'':'hidden'} `}
@@ -429,7 +431,7 @@ export default function NoteEditArea() {
         >
           <img src={back} alt="" className=' scale-75 md:size-[1.4rem] lg:size-[2rem] sm:size-[1.4rem] size-[1.5rem]' onClick={()=>dispatch(setselectednote(null))} />
         </div>
-        <div className={`w-14 h-full grid place-items-center ${ismobile?'hidden':''} `}
+        <div className={`w-14 h-full grid place-items-center ${!ismobile?'':'hidden'} `}
         onClick={()=>setresize(!resize)}
         >
           <img src={!resize?maximize:minimize} alt="" className='size-[2rem] scale-75' />
@@ -544,7 +546,7 @@ export default function NoteEditArea() {
       <div className='w-full h-20'></div>
      
       </div>
-      <div></div>
+      
         </div>
         {/* DOWLOAD SECTION*/}
   {/* <div className={`absolute  font-md z-[30] bg-neutral-950 bg-opacity-70 grid place-items-center   w-[100vw] h-[100vh] ${dowload_on?"":'hidden'}`}>

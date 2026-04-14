@@ -63,14 +63,14 @@ function Note({not,items,searchmsg_note,setnotename,noten,note_seriel}) {
       ${selected_note?.id==not?.id?'bg-slate-800':'bg-slate-950'}
       ${visible?'hidden':''}`}
       onClick={()=>{
-        let len=window.innerHeight
+        let len=window.outerWidth
         if(not.id!=selected_note?.id && len>=768)
             dispatch(setselectednote(not))
       }}
       >
         <span className='flex w-[100%] h-[100%] bg-black/40 justify-center items-center'>
           <div className='w-[9%] h-full '></div>
-          <div className='w-full h-full flex justify-center items-center' onClick={()=>{ if(not.id!=selected_note?.id && window.innerWidth>=768)
+          <div className='w-full h-full flex justify-center items-center' onClick={()=>{ if(not.id!=selected_note?.id && window.outerWidth>=768)
             dispatch(setselectednote(not))}}>
         <img src={note} className='size-[1.7rem]  ' alt="" onClick={()=>{
         if(not.id!=selected_note?.id )
@@ -83,7 +83,7 @@ function Note({not,items,searchmsg_note,setnotename,noten,note_seriel}) {
        <input type="text" readOnly={rename} defaultValue={not.note_name} className='outline-none font-poppins font-semibold text-gray-400 
         w-[100%] h-[100%]  bg-black/0 text-md' onChange={(e)=>{handlename(e)
        }} onClick={()=>{
-         if(not.id!=selected_note?.id && window.innerWidth>=768)
+         if(not.id!=selected_note?.id && window.outerWidth>=768)
             dispatch(setselectednote(not))
       }} />
        </div>

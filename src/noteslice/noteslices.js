@@ -88,7 +88,7 @@ const notesslices=createSlice({
            
             state.Folders=state.Folders.map(folder=>folder.id==id?{...folder,notes:[...folder.notes,notee]}:folder)
           state.currentuser={...state.currentuser,user_folders:state.Folders}
-          state.selectednote=window.innerWidth>=768 ? notee:null
+          state.selectednote=window.outerWidth>=768 ? notee:null
         },
         deletenote:(state,action)=>{
            
@@ -97,7 +97,7 @@ const notesslices=createSlice({
            state.currentuser={...state.currentuser,user_folders:state.Folders}
            state.selectednote=null
            const selectedfolder=state.Folders.find(fol=>fol.id==state.selectedfolderid)
-           state.selectednote=window.innerWidth>=768?selectedfolder?.notes[selectedfolder.length-1>0?selectedfolder.length-1:0] || null:null
+           state.selectednote=window.outerWidth>=768?selectedfolder?.notes[selectedfolder.length-1>0?selectedfolder.length-1:0] || null:null
         },
          deletefolder:(state,actions)=>{
             const {id}=actions.payload
@@ -119,7 +119,7 @@ const notesslices=createSlice({
              }:n)}:folder);
              state.currentuser={...state.currentuser,user_folders:state.Folders}
              let selected_folder={...state.Folders.filter(folder=>folder.id==state.selectedfolderid)}
-            state.selectednote=window.innerWidth>=768 ? selected_folder[0].notes.filter(n=>n.id==id)[0]:null
+            state.selectednote=window.outerWidth>=768 ? selected_folder[0].notes.filter(n=>n.id==id)[0]:state.selectednote
              
         },
         updatefolder:(state,action)=>{
@@ -141,7 +141,7 @@ const notesslices=createSlice({
             // state.currentuser={...state.currentuser,user_folders:state.Folders}
             let selelected_folder=state.Folders?.find(f=>f.id==state.selectedfolderid)
         
-            state.selectednote=window.innerWidth>768?selelected_folder?.notes[0] ??  null:null
+            state.selectednote=window.outerWidth>768?selelected_folder?.notes[0] ??  null:null
             
         }
         ,
@@ -200,7 +200,9 @@ const notesslices=createSlice({
             state.currentuser={...action.payload}
             state.Folders=state.currentuser.user_folders||[]
              state.selectedfolderid=state.Folders[0]?.id||[]
-             state.selectednote=window.innerWidth>768?state.Folders[0].notes[0] || null :null
+             state.selectednote=window.outerWidth>768?state.Folders[0].notes[0] || null :null
+
+
         },
         setfetching:(state,action)=>{
             state.fetching=action.payload ?? !state.fetching

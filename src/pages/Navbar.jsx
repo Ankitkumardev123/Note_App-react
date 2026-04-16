@@ -13,7 +13,7 @@ import note from "../images/note.png"
 import Menu from "../images/menu.png"
 import user from "../images/user.png"
 import notelogo from "../images/notelogo.png"
-import ProfileSlider from '@/componets/ProfileSlider.jsx'
+
 import { useGSAP } from '@gsap/react'
 import userm from '../images/userm.png'
 function Navbar() {
@@ -66,22 +66,25 @@ function Navbar() {
    
     if(menu)
      {
-       gsap.to(slider.current,{
-      x:'400%',
-      duration:1,
+      
+         gsap.to(slider.current,{
+    x:"400%",
+    duration:1,
     
-      ease:'expo.in',
-    })
- 
+    ease:'power5.out',
+   })
+      
      }
     else
       {
          gsap.to(slider.current,{
-    x:"0%",
-    duration:1,
+        
+      x:'0%',
+      duration:1,
     
-    ease:'power5.in',
-   })
+      ease:'power5.in',
+    })
+ 
    
   }
    
@@ -113,22 +116,25 @@ function Navbar() {
     }
      
   }
-  const handleclick=()=>{
+ 
+ const handleclick=()=>{
     dispatch(menubartoggle())
     slider_move(menu)
   }
+ 
+ 
   
   return (
     <>
-     <div ref={slider} className={`user slide absolute flex overflow-x-hidden
+     <div ref={slider} className={`user slide fixed flex overflow-x-hidden
       overflow-y-auto  scrollbar-hide z-[100]
-       flex-col w-[70vmin] top-[8.4%] right-0   h-[115vh]
+       flex-col w-[70vmin] top-[8.4%] right-0   h-[90vh]
      bg-black bg-opacity-100  rounded-l-xl bg-gradient-to-t bg-[length:200%_200%]  animate-gradient from-purple-800 via-pink-600 to-cyan-500
-     py-2 pl-2 translate-x-[400%] ${islogined?'':'hidden'}`}>
+     py-1 pl-1 translate-x-[400%] ${menu?'':'hidden'}`}>
       <div ref={slider} className='flex overflow-x-hidden
-      overflow-y-auto  scrollbar-hide gap-1 
+      overflow-y-auto  scrollbar-hide  
       justify-start items-center  flex-col w-full  h-full
-     bg-black bg-opacity-100  rounded-l-xl py-2
+     bg-black bg-opacity-100  rounded-l-xl py-2 gap-2
     '>
 
       <div className={`absolute w-32 h-32 sm:w-40  sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40 z-[11] 
@@ -139,18 +145,16 @@ function Navbar() {
         </div>
       </div>
     <img src={userdata?.profile_pic ?? userm} 
-    className={`use  w-32 h-32 sm:w-40 z-[10] sm:h-40 md:w-48 md:h-48 lg:w-40 lg:h-40   
-    rounded-full border-[1px] border-orange-500 object-cover shadow-lg backdrop-brightness-110   `}  />
+    className={`use size-32  z-[10] mt-2
+    rounded-full border-[1px]  object-cover shadow-lg backdrop-brightness-110   `}  />
+    
     <label htmlFor="input-file"
      className={` bg-slate-900  text-lg  px-3 py-1 font-semibold hover:bg-slate-800 transition-all shadow-sm rounded-lg
        border-2
        ${islogined?'':'hidden'}`}>Update image</label>
     <input type="file" name="" id="input-file" accept='image/jpeg,image/png,image/jpg '  className='hidden'  onChange={(e)=>{handleimage(e.target.files[0])
     }}/>
-    <span ref={items} className='use text-center h-auto '>
-    <h1 className='user1 text-[3vmin] font-semibold font-serif  p-0'>{userdata?.username}</h1>
-    <h1 className='user1 font-thin text-gray-500 font-mono h-[2%] p-0 text-[2.6vmin]'>{userdata?.username}</h1>
-    </span>
+   
     <div className='user1 w-[90%] h-[22%] flex  justify-center flex-col gap-3  items-center text-[3vmin] '>
       <span  className='use w-[100%] flex  justify-start items-center '>
         <h2 className='text-white  font-semibold w-[50%] h-[80%] '>Username</h2>
@@ -166,16 +170,12 @@ function Navbar() {
       <span className='use  w-[100%] flex  justify-start items-center'>
         <h2 className='text-white font-semibold w-[50%] h-[80%] '>Created</h2>
         <h2 className='font-semibold w-[100%] h-[80%] text-left  font-mono text-gray-500'>{userdata?.created}</h2></span>
-      <span className='use w-[100%]  flex  justify-start items-center'>
-        <h2 className='text-white font-semibold w-[50%] h-[80%]'>Password</h2>
-        <h2 className='font-semibold w-[100%] h-[80%] text-gray-500 text-left  font-mono'>{userdata?.password}</h2></span>
+    
        
     </div>
     <div className='h-[1%] w-[90%] rounded-full bg-gradient-to-r animate-gradient bg-[length:200%_200%]'>  </div>
-     <div className='total w-[90%] h-[20%] flex   justify-left flex-col   gap-3'>
-    <span className='use flex items-center w-[100%] justify-start  '>
-      <img src={note} className='w-[6vmin] h-[6vmin]' alt="" />
-    <h1 className='text-purple-600 text-[5vmin] pt-0.5 font-semibold font-mono' >Notes</h1></span>
+     <div className='total w-[90%] h-18 flex    justify-center flex-col   gap-2 items-start'>
+    
      <span className='use w-[100%] flex items-center'>
       <h2 className='text-white w-[50%] font-semibold text-[3vmin]'>Total notes</h2>
      <h2 className='font-semibold w-[50%] h-[80%] text-right font-mono text-[3vmin] text-gray-500 '> {note_length || 0}</h2>
@@ -207,7 +207,7 @@ function Navbar() {
             username:"User_name",
             password:'********',
             email:"notfound@gmail.com",
-            phonenumber:'Notfound',
+           
             created:'404,404,404',
             profile_pic:null
    }))
@@ -216,11 +216,13 @@ function Navbar() {
    dispatch(setselectednote(null))
     dispatch( setlogined(false))
    dispatch(setfetching(false))
+   dispatch(menubartoggle(false))
      alert("You have succesfully logged out.")
-  }catch{
-    setTimeout(() => {
-      alert("Some issue arised!\nCheck you network connection.")
-     }, 100);
+  }catch (error){
+   
+      alert(error)
+      console.log(error)
+ 
   }
       }
       else{
@@ -337,9 +339,9 @@ function Navbar() {
     </div>
      <div  className={`fixed  z-[3] bg-black 
      border-0 flex flex-row items-center py-1 px-4
-       w-[100vw] h-[8.2vh] top-[0%] left-0 right-0 overflow-hidden ${!islogined?'hidden':''}`}>
+       w-[100vw] h-[8.2vh] top-[0%] left-0 right-0 overflow-hidden ${islogined?'':'hidden'}`}>
  <div className='flex items-center justify-start  w-[50%] '>
-          <img src={Menu} className='img slider1 w-[1.8rem] z-50 p-0.5' alt="" onClick={()=>{
+          <img src={Menu} className='img slider1 w-[1.5rem] z-50 p-0.5' alt="" onClick={()=>{
            dispatch(editbartoggle())
           }
           }/>
@@ -357,12 +359,10 @@ function Navbar() {
         
            
          <div className=' gap-2 w-[40%] h-full flex justify-end pr-2 items-center'>
-          <img src={userdata?.profile_pic ?? userm} alt="" className='slider1 size-[2rem] border-gray-600 border-[1px] rounded-full' />
-          <h2 className='text-md font-poppins font-semibold slider1 '>{userdata?.username.slice(0,10) ?? 'Notfound404'}</h2>
-           <img src={menu?close:Menu} className='img slider1 size-[1.5rem] z-50 p-0.5' alt="" onClick={()=>{
-           handleclick()
-          }
-          }/>
+          <img src={userdata?.profile_pic ?? userm} alt="" className='slider1 size-[1.8rem] border-gray-600 border-[1px] rounded-full' />
+          <h2 className='text-sm font-poppins font-semibold slider1 usernamenav'>{userdata?.username.slice(0,10) ?? 'Notfound404'}</h2>
+           <img src={menu?close:Menu} className='img slider1 size-[1.5rem] z-50 p-0.5' alt="" onClick={handleclick}
+          />
          </div>
      
        

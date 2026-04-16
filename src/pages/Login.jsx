@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Auth, database } from '../firebase/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
-import { setloginuser, setlogined, setfetching, setfolders } from '../noteslice/noteslices'
+import { setloginuser, setlogined, setfetching, setfolders, menubartoggle } from '../noteslice/noteslices'
 import { collection, getDocs, query, where } from "firebase/firestore"; 
 import eye2 from "../images/eye2.png"
 import eye1 from "../images/eye1.png"
@@ -43,7 +43,7 @@ function Login() {
       
       dispatch(setfolders(userdata?.user_folder))
       dispatch(setlogined(true))
-      
+      dispatch(menubartoggle(false))
       setTimeout(() => {
         alert(`Successfully logged in, Welcome back ${userdata.username}`)
       }, 100)
@@ -58,6 +58,7 @@ function Login() {
       dispatch(setfetching(false))
       setuserdata('')
       setpassword('')
+      dispatch(menubartoggle(false))
     }
   }
 

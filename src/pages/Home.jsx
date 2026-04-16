@@ -318,8 +318,8 @@ scrollTrigger.refresh()
     <>
    
     {/* homepage */}
-    <div id='home' className={`  bg-black  h-[100%]  w-[100vw] flex flex-col justify-start   }`}>
-       <div className='w-[100%] h-[9.7vh]  '>
+    <div id='home' className={`  bg-black  h-[100%]  w-[100vw] flex flex-col justify-start overflow-x-hidden overflow-y-auto  `}>
+       <div className='w-[100%] h-[9.7vh] shrink-0  '>
       {/* dummy-navbar */}
     </div>
      {/* Hero section */}

@@ -93,9 +93,9 @@ useGSAP(()=>{
   return (
     <>
     <div id={`${fol_ser}`}
-     className={` w-[100%] h-10   bg-black
+     className={` w-[100%] h-10  bg-black shrink-0
       ${selected_folderid==fold.id?'bg-gradient-to-r text-purple-700':''}
-       sm:h-10  lg:h-10 md:h-10 border-b-2 border-gray-600   
+       sm:h-10  lg:h-12 md:h-10 border-t-[1px] border-b-[1px] border-gray-600   
       hover:bg-gradient-to-r bg-[length:200%_200%] animate-gradient from-purple-700 via-pink-600 to-cyan-600
        ${visible?'':'hidden'}`}
     onClick={()=>{

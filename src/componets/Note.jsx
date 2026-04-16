@@ -58,7 +58,7 @@ function Note({not,items,searchmsg_note,setnotename,noten,note_seriel}) {
      
   return (
     
-    <div id={note_seriel} className={` w-[100%] h-14 text-center border-b-2 border-gray-500     flex justify-start  items-center 
+    <div id={note_seriel} className={` w-[100%] h-14 text-center border-b-2 border-gray-500   shrink-0  flex justify-start  items-center 
        hover:bg-slate-800 
       ${selected_note?.id==not?.id?'bg-slate-800':'bg-slate-950'}
       ${visible?'hidden':''}`}
@@ -73,9 +73,9 @@ function Note({not,items,searchmsg_note,setnotename,noten,note_seriel}) {
           <div className='w-full h-full flex justify-center items-center' onClick={()=>{ if(not.id!=selected_note?.id && window.outerWidth>=768)
             dispatch(setselectednote(not))}}>
         <img src={note} className='size-[1.7rem]  ' alt="" onClick={()=>{
-        if(not.id!=selected_note?.id )
+        if(not.id!=selected_note?.id || !selected_note )
             dispatch(setselectednote(not))
-    
+    console.log('Clicked')
        
            
        }

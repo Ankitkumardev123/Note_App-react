@@ -29,6 +29,14 @@ function App() {
   //   if(!user)
   //     return <Navigate to="/login"/>
   // }
+  // useEffect(()=>{
+  //   const body=document.querySelector('body')
+  //   if(islogined)
+  //     body.style.overflow="hidden"
+  //   else{
+  //     body.style.overflow="auto"
+  //   }
+  // },[islogined])
    useEffect(()=>{
      fetchref.current=fetch_on
    },[fetch_on])
@@ -128,8 +136,11 @@ useEffect(()=>{
      z-50 scrollbar-hide grid place-items-center overflow-hidden   opacity-65 ${loader?' ':'hidden'}`}>
     <div className='w-20 h-20 border-8 rounded-full border-t-black animate-spin '></div>
    </div>
+     <div  className='h-full   w-[100vw] flex flex-col '>
     <Navbar/>
+  
     <Outlet/>
+    </div>
   </>
   )
 }

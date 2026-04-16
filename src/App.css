@@ -13,15 +13,35 @@
 .border-border{
   border-color: white;
 }
+body{
+ 
+  width: 100vw;
+ height: 100%;
+}
 *{
   margin: 0;
   padding: 0;
   color:rgb(255, 255, 255);
+ 
 
 }
 .prose ul{
   list-style-type: circle;
   padding-left: 20px;
+  margin:0;
+  height: 20px;
+  display: flex;
+  justify-content:baseline;
+  align-items: center;
+}
+.prose h1,.prose h2,.prose h3,.prose h4{
+  color: white;
+ 
+  margin: 0;
+  padding: 0;
+}
+.prose p{
+  margin: 0;
 }
 html{
     font-size: 17px;
@@ -494,6 +514,9 @@ label{
 }
 }
 @media(max-width:375px){
+  .usernamenav{
+    display: none;
+  }
   .footer{
     height: 70vh;
   }

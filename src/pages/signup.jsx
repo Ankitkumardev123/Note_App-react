@@ -66,6 +66,7 @@ function Signup() {
       setTimeout(() => {
         alert("Some issue arised in signup!\nCheck you network connection.")
       }, 100)
+      console.log(error)
     } finally {
       setloading(false)
     }

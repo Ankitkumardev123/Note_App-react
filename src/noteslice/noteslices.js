@@ -44,6 +44,7 @@ const notesslices=createSlice({
         },
         setfolders:(state,action)=>{
             state.Folders=action.payload;
+            
         },
         setuserdata:(state,actions)=>{
             state.currentuser={...actions.payload}
@@ -141,7 +142,7 @@ const notesslices=createSlice({
             // state.currentuser={...state.currentuser,user_folders:state.Folders}
             let selelected_folder=state.Folders?.find(f=>f.id==state.selectedfolderid)
         
-            state.selectednote=window.outerWidth>768?selelected_folder?.notes[0] ??  null:null
+            state.selectednote=window.outerWidth>=768?selelected_folder?.notes[0] ??  null:null
             
         }
         ,
@@ -157,7 +158,7 @@ const notesslices=createSlice({
           const users={
            ... action.payload,
             profile_pic:null,
-    created:`${month[date.getMonth()]},${date.getDate()},${date.getFullYear()}`,
+    created:`${[date.getMonth()]},${date.getDate()},${date.getFullYear()}`,
     user_folders:[{
         folname:'default_notes',
         id:1,
@@ -180,16 +181,20 @@ const notesslices=createSlice({
 "- Explore the editor\n\n" +
 "---\n\n" +
 "Made with ❤️ just for you.\n\n" +
-"\–- Team MyNote\n\n",
+"\–- Team MyNote\n"+
+"-Created  by Ankit Kumar DAsh",
                  time:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`,
                   lasttime:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`
             }
         ]}]
+    
           }
        
         handledata(users)
         state.currentuser={...users}
           state.selectedfolderid=users?.user_folders?.[0]?.id || []
+        state.selectednote=window.outerWidth>=768?state.Folders[0]?.notes[0] || null :null
+
         },
         setuserfolder:(state,action)=>{
             state.currentuser.user_folders=action.payload
@@ -200,7 +205,7 @@ const notesslices=createSlice({
             state.currentuser={...action.payload}
             state.Folders=state.currentuser.user_folders||[]
              state.selectedfolderid=state.Folders[0]?.id||[]
-             state.selectednote=window.outerWidth>768?state.Folders[0].notes[0] || null :null
+             state.selectednote=window.outerWidth>=768?state.Folders[0]?.notes[0] || null :null
 
 
         },

@@ -446,9 +446,9 @@ export default function NoteEditArea() {
                    text-sm sm:text-base outline-none resize-none overflow-y-auto overflow-x-hidden scrollbar-hide placeholder:text-gray-600 leading-relaxed"
                 />
               ) : (
-                <div className="w-full h-full px-4  pt-4 pb-4 gap-2 text-white overflow-y-auto overflow-x-hidden scrollbar-hide
-                  prose 
-                  
+                <div className="w-full h-full px-2  pt-4 pb-4 gap-2 text-white overflow-y-auto overflow-x-hidden scrollbar-hide
+                  prose prose-strong:text-white
+                  prose-code:text-white
                   prose-p:leading-relaxed whitespace-pre-wrap">
                   <ReactMarkdown remarkPlugins={[remarkBreaks]}>{notecontent}</ReactMarkdown>
                 </div>

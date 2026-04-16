@@ -82,7 +82,9 @@ html{
   font-family: "GreatvibeCustom";
   src: url("./fonts/Great.ttf") format("truetype");
 }
-
+strong,code{
+  color: white;
+}
 body{
   width: 100%;
   height: 100%;

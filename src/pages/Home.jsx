@@ -448,7 +448,7 @@ scrollTrigger.refresh()
        
       </div>
        <div  alt=""  className='ele_5 ele_5_2 font-poppins opacity-0 z-[5] top-[5%] right-5 rotate-[5deg] 
-        text-[2.5vmin] absolute w-[0] flex flex-col gap-1
+        text-[2.5vmin] absolute  flex flex-col gap-1
         text-white rounded-md border-4 border-cyan-400  h-[0] 
        bg-black duration-300 hover:scale-105'>
         <div className='w-full h-5 gap-1 px-2 bg-cyan-500  flex items-center text-center text-[5vmin] text-black'>
@@ -458,9 +458,9 @@ scrollTrigger.refresh()
        
         </div>
        
-        <h2 className='flex pl-1  '>🔐Works On All Devices</h2>
-        <h2 className='flex pl-1  '>⚡SecureAuthentication</h2>
-       <h2 className='flex pl-1'>🔥Smooth Experience</h2>
+        <h2 className='flex pl-0.2  '>🔐Works On All Devices</h2>
+        <h2 className='flex pl-0.2  '>⚡Sec_Authentication</h2>
+       <h2 className='flex pl-0.2'>🔥Smooth Experience</h2>
        
       </div>
       

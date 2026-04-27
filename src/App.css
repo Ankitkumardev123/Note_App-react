@@ -113,7 +113,9 @@ h1,h2,h3,h4{
   /* transform: translateX(-550px); */
 @media(max-width:1024px){
 
-
+.feature_back{
+  height: auto;
+}
  .footer{
     padding: 0;
   }
@@ -145,11 +147,12 @@ padding-top: 0;
   .contact_sec{
     display: flex;
     flex-direction: column;
-    height: 150vh;
+    height: auto;
   }
   .contact_b{
     width:100%;
-    height: 100%;
+    height: auto;
+    
   }
   .main_f button{
     border: 0.2rem solid cyan;
@@ -160,7 +163,7 @@ padding-top: 0;
   }
   .f_b{
     width: 100%;
-    height: 90%;
+    height: 30vmin;
   }
   .f5,.f6{
     display: none;
@@ -276,12 +279,9 @@ padding-top: 0;
   .contact_sec{
     display: flex;
     flex-direction: column;
-    height: 150vh;
+    height: auto;
   }
-  .contact_b{
-    width:100%;
-    height: 100%;
-  }
+ 
   .main_f button{
     border: 0.2rem solid cyan;
   }
@@ -289,10 +289,7 @@ padding-top: 0;
 
   top: -28%;
   }
-  .f_b{
-    width: 100%;
-    height: 90%;
-  }
+ 
   .f5,.f6{
     display: none;
   }
@@ -324,6 +321,9 @@ padding-top: 0;
     gap: 0rem;
     justify-content:center;
     align-items: center;
+  }
+  .feature_back{
+    height:auto;
   }
   .f_grid{
    padding: 1rem;
@@ -376,7 +376,7 @@ padding-top: 0;
   
 
 }
-@media(max-width:425px){
+@media(max-width:767px){
   
   .nav{
     gap:1em;
@@ -398,24 +398,18 @@ padding-top: 0;
     font-size: 3.5vmin;
   }
 
-  .contact_b{
-    height:60%;
-    gap: 1rem;
-  }
+ 
   .con_2{
     height: 120%;
   }
 
-   .contact_sec {
-
-    height: 120vh;
-  }
+   
   .f_back{
     height: 50vh;
   }
 
   .feature_back{
-    height: 150vh;
+    height:auto;
   }
     .f_grid{
    padding: 0;
@@ -507,16 +501,19 @@ padding-top: 0;
  gap: 1rem;
 }
 
-.contact_sec{
-  height: 120vh;
-  gap: 5%;
 
-}
 label{
   font-size: 0.8rem;
 }
 }
 @media(max-width:375px){
+  .expand_nav{
+display: none;
+  }
+  .short_nav{
+    display:flex;
+    justify-content: end;
+  }
   .usernamenav{
     display: none;
   }
@@ -526,16 +523,11 @@ label{
   .copyright{
     font-size: 1rem;
   }
-  .contact_b{
-    height: 50%;
-  }
+  
  .con_2{
   height: 100%;
  }
-  .contact_sec {
-   gap: 0.3rem;
-    height: 110vh;
-  }
+  
    .text_h{
     height: 15%;
   }
@@ -588,9 +580,7 @@ label{
     width: 90%;
     height:22%;
   }
-  .feature_back{
-    height: 110vh;
-  }
+  
 
   .main_d{
   height: 75vh;

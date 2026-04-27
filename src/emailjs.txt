@@ -1,0 +1,167 @@
+import React, { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import ScrollTrigger from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
+import { useSelector, useDispatch } from 'react-redux'
+import emailjs from "@emailjs/browser"
+
+import github from '../images/app_icons/github.png'
+import facebook from "../images/facebook.png"
+import linkedin from '../images/linkedin.png'
+import message from '../images/pngs/message.png'
+import hand from '../images/pngs/hand.png'
+import heart from '../images/pngs/heart.png'
+import heart1 from '../images/pngs/heart1.png'
+import { useNavigate } from 'react-router-dom'
+import comp2 from '../images/pngs/comp2.png'
+import lap2 from '../images/pngs/lap2.png'
+import tablet from '../images/pngs/tablet.png'
+import phone from '../images/pngs/phone.png'
+import close from "../images/close.png"
+import pencils from "../images/pencils.png"
+import folder from "../images/folder.png"
+import searchicon from "../images/searchicon.png"
+import note from "../images/note.png"
+import mini from "../images/mini.png"
+import great from "../images/great.png"
+import notess from "../images/notess.png"
+import * as docx from 'docx'
+import { saveAs } from 'file-saver'
+import { useGSAP } from '@gsap/react'
+
+function Home() {
+  const [contact_btn, setcontact_btn] = useState("Send a message 📩")
+  const select = useRef(null)
+  const fromRef = useRef()
+  const [isloading, setisloading] = useState(false)
+  const navigate = useNavigate()
+  let folders = useSelector(state => state.noted.Folders)
+
+  // Helper to detect desktop
+   useGSAP(() => {
+    gsap.to('.box_bb', {
+      transform: 'translateX(-270%)',
+      duration: 50,
+      ease: 'none',
+      repeat: -1,
+    })
+  }, [])
+
+  // ── Device section — ScrollTrigger on ALL screens
+  useGSAP(() => {
+    const t2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.main_d',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      }
+    })
+    t2.from('.dev_1', {
+      y: -60,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'back.out',
+      stagger: 0.2
+    })
+    t2.from('.dev_2', {
+      y: 60,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'back.out',
+    }, '-=0.3')
+  }, [])
+
+  // ── Contact section — ScrollTrigger on ALL screens
+  useGSAP(() => {
+    gsap.set('.con_a', { x: -80, opacity: 0 })
+    gsap.set('.con_b', { x: 80, opacity: 0 })
+    gsap.set('.con_bu', { opacity: 0 })
+
+    const t4 = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.contact_sec',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      }
+    })
+    t4.to('.con_a', { x: 0, opacity: 1, duration: 0.7, ease: 'power2.out', stagger: 0.15 }, 0)
+    t4.to('.con_b', { x: 0, opacity: 1, duration: 0.7, ease: 'power2.out', stagger: 0.15 }, 0)
+    t4.to('.con_bu', { opacity: 1, duration: 0.4, ease: 'linear' }, 0.5)
+  }, [])
+
+  // ── Feature section — ScrollTrigger on ALL screens
+  useGSAP(() => {
+    gsap.set('.f_ele_2', { opacity: 0, y: 40 })
+    gsap.set('.f_ele_11', { opacity: 0 })
+    gsap.set('#contact', { opacity: 0 })
+
+    const t3 = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.feature_back',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      }
+    })
+    t3.to('.f_ele_11', { opacity: 1, duration: 0.4, ease: 'back.out' })
+    t3.from('.f_ele_1', { y: 40, opacity: 0, duration: 0.5, ease: 'back.out', stagger: 0.2 })
+
+    const t5 = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.f_grid',
+        start: 'top 88%',
+        toggleActions: 'play none none none',
+      }
+    })
+    t5.to('.f_ele_2', { opacity: 1, y: 0, duration: 0.5, ease: 'back.out', stagger: 0.1 })
+    t5.to('#contact', { opacity: 1, duration: 0.3, ease: 'linear' }, '-=0.2')
+  }, [])
+
+  // ── Hero animation (runs on mount, unchanged)
+  useGSAP(() => {
+    const t1 = gsap.timeline()
+    gsap.set('.ele_5 h2', { y: '-50%', opacity: 0 })
+    gsap.set('.heart', { opacity: 0 })
+
+    t1.from('.ele_1', { y: -100, opacity: 0, duration: 1, delay: 0.5, ease: 'back.out' })
+    t1.from('.ele_2', { y: -50, opacity: 0, duration: 1, delay: 0.1, ease: 'back.in' })
+    t1.from('.ele_3', { y: 100, opacity: 0, duration: 1, delay: 0.2, ease: 'bounce.out' })
+    t1.from('.ele_4', { y: 100, opacity: 0, duration: 1, delay: 0.2, ease: 'linear' }, 0)
+    t1.to('.heart', { opacity: 1, duration: 0.2, delay: 0.1, ease: 'bounce.inOut' })
+    t1.to('.ele_5_1', { height: '25.2vmin', width: '35vmin', opacity: 1, delay: 0.2, stagger: 0.5, duration: 0.5, ease: 'linear' })
+    t1.to('.ele_5_2', { height: '21vmin', width: '33vmin', opacity: 1, delay: 0.1, stagger: 0.5, duration: 0.5, ease: 'linear' })
+    t1.to('.ele_5 h2', { y: '0%', opacity: 1, duration: 0.2, delay: 0.1, ease: 'power2', stagger: 0.2 })
+    t1.play()
+  }, [])
+
+  const handlecontact = async (e) => {
+    e.preventDefault()
+    setisloading(true)
+    setcontact_btn("Sending")
+    const templateParams = {
+      user_name: fromRef.current.user_name.value,
+      user_email: fromRef.current.user_email.value,
+      message: fromRef.current.message.value,
+      date_time: new Date().toLocaleString("en-US", {
+        month: "short",
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      })
+    }
+    try {
+      await emailjs.sendForm(
+        "service_r15sdc7",
+        "template_343p9tc",
+        templateParams,
+        "KB4zlh3Xsb33CRdBr"
+      ).then(() => {
+        setisloading(false)
+        setcontact_btn("Message sent 👍")
+      })
+    } catch {
+      setisloading(false)
+      setcontact_btn("Failed 🥺")
+    }
+  }

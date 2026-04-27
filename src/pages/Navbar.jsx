@@ -5,7 +5,7 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import gsap from 'gsap'
 import {  signOut } from 'firebase/auth'
 import { Auth } from '../firebase/firebase.js'
-
+import NanDropdown from '@/componets/NanDropdown.jsx'
 import close from "../images/close.png"
 import  logout from "../images/logout.png"
 import  login from "../images/login.png"
@@ -254,7 +254,7 @@ function Navbar() {
               bg-clip-text lg:text-lg md:text-lg sm:text-lg'>Note</span>
         </h2> 
         </div>
-        <div className='nav relative   w-[100%] h-[100%] 
+        <div className='nav expand_nav relative   w-[100%] h-[100%] 
          flex items-center justify-center  gap-[5rem] md:gap-[4rem] ' > 
          
         <NavLink 
@@ -335,8 +335,11 @@ function Navbar() {
         
         </div>
         
-        
+        <div className='w-full hidden h-full short_nav  flex items-center justify-end pr-4'>
+    <NanDropdown />
     </div>
+    </div>
+    
      <div  className={`fixed  z-[3] bg-black 
      border-0 flex flex-row items-center py-1 px-4
        w-[100vw] h-[8.2vh] top-[0%] left-0 right-0 overflow-hidden ${islogined?'':'hidden'}`}>

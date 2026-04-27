@@ -216,7 +216,7 @@ setisloading(false)
         </div>
         <div className='ele_2 w-[80%] text-center font-poppins   grid place-items-center'>
           <p className=' transition-all text-[3vmin] duration-300 hover:text-white text-gray-400 leading-relaxed'>
-            Caputer ideas instantly🌠,organize every thought with ease😍.
+            Capture ideas instantly🌠,organize every thought with ease😍.
              Your personal space for productivity and creativity 🔥.
 
           </p>
@@ -744,7 +744,7 @@ transition-all duration-400 decoration-1 hover:text-white hover:decoration-cyan-
         duration-300 hover:scale-110 
         hover:shadow-[0_0_40px_rgba(168,85,247,0.6)]
 .        '
-        >{contact_btn==="Sending🐥"?<span className=''>contact_btn<span className="animate-ping">......</span></span>:contact_btn}</button>
+        >{contact_btn==="Sending🐥"?<span className=''>{contact_btn}<span className="animate-ping">......</span></span>:contact_btn}</button>
      
         </div>
        </form>

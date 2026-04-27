@@ -254,15 +254,15 @@ export default function NoteEditArea() {
             className={`
               shrink-0 bg-neutral-950 border-y-2 border-r-2 border-gray-500
               flex flex-col overflow-hidden
-              md:w-[40%] lg:w-[38%]
+              md:w-[40%] lg:w-[30%]
               ${resize ? "hidden" : ""}
               ${ismobile ? (toggle_editPanel ? "w-full" : "hidden") : ""}
             `}
           >
             
             <div className="w-full h-12 sm:h-14 shrink-0 bg-gradient-to-r bg-[length:200%_200%] from-purple-700 via-pink-600 to-cyan-500 animate-gradient border-b-2 border-gray-500">
-              <div className="w-full h-full bg-black/40 backdrop-blur-lg flex items-center">
-                <div className="flex-1 min-w-0 flex items-center gap-2 pl-3 text-sm sm:text-base lg:text-lg font-semibold font-outfit text-white">
+              <div className="w-full h-full bg-black/40 backdrop-blur-lg flex items-center justify-center">
+                <div className="flex-1 justify-center min-w-0 flex items-center gap-2 pl-3 text-sm sm:text-base lg:text-lg font-semibold font-outfit text-white">
                   <img loading="lazy" src={folder} className="size-6 sm:size-7 shrink-0" alt="" />
                   <span className="truncate">{selectedfolder?.folname}</span>
                 </div>
@@ -346,7 +346,7 @@ export default function NoteEditArea() {
           </div>
 
           {/* Editor panel */}
-          <div className={`flex-1 min-w-0 border-y-2 h-full border-gray-500 bg-neutral-900 flex flex-col overflow-hidden ${ismobile ? (toggle_editPanel ? "hidden" : "") : ""}`}>
+          <div className={`flex-1 w-full border-y-2 h-full border-gray-500 bg-neutral-900 flex flex-col overflow-hidden ${ismobile ? (toggle_editPanel ? "hidden" : "") : ""}`}>
 
             <div className={`w-full h-12 sm:h-14 shrink-0 bg-slate-950 border-b-2 border-gray-500  ${toggle_editPanel ? "pointer-events-none" : ""}`}>
               <div className={`w-full h-full flex items-center ${selected_note?'':'hidden'}`}>

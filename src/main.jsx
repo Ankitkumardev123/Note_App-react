@@ -8,15 +8,29 @@ import { BrowserRouter, createBrowserRouter, createRoutesFromElements, Route, Ro
 import Login from "./pages/Login";
 import Signup from "./pages/signup";
 import Home from "./pages/Home";
-
+import ProtectRoutes from "./ProtectRoutes";
 import NoteEditArea from './pages/NoteEditArea'
+import { useSelector } from 'react-redux'
+
 const router=createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<App/>}>
-            <Route  path='/' element={<Home/>} />
-            <Route  path='/login' element={<Login/>} />
-            <Route  path='/signup' element={<Signup/>} />
-            <Route  path='/NoteEditArea' element={<NoteEditArea/>} />
+            <Route  path='/' element={
+            <ProtectRoutes >
+                <Home/>
+            </ProtectRoutes>} />
+            <Route  path='/login' element={
+            <ProtectRoutes >
+                <Login/>
+            </ProtectRoutes>} />
+            <Route  path='/signup' element={
+            <ProtectRoutes >
+                <Signup/>
+            </ProtectRoutes>} />
+            <Route  path='/NoteEditArea' element={
+            <ProtectRoutes >
+                <NoteEditArea/>
+            </ProtectRoutes>} />
             
            
         </Route>

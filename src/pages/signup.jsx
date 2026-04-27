@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setcurentuser, setlogined } from '../noteslice/noteslices'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { Auth } from '../firebase/firebase'
+import { Auth,googleProvider} from '../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
 import eye2 from "../images/eye2.png"
 import eye1 from "../images/eye1.png"
 import google from "../images/google.png"
 import facebook from "../images/facebook.png"
-
+import { signInWithPopup } from "firebase/auth";
 function Signup() { 
   const [visible, setvisible] = useState(false)
   const [user_name, setusename] = useState('')
@@ -76,7 +76,34 @@ function Signup() {
     setgmail('')
     setusename('')
   }
-
+  const signupwithGoogle=async()=>{
+    try{
+      await signInWithPopup(Auth,googleProvider).then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+    alert("Logined !")
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+   
+  });
+      
+    }
+    catch{
+       alert("issue!")
+    }
+  }
   return (
     <>
       {loading && (

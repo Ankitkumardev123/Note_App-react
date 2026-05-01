@@ -7,6 +7,6 @@ export default function ProtectRoutes({children}) {
     const navigate=useNavigate();
  useEffect(()=>{
     if(user) navigate("/NoteEditArea")
- })
+ },[user])
  return children
 }

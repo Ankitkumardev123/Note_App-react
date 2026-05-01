@@ -75,7 +75,7 @@ function Note({not,items,searchmsg_note,setnotename,noten,note_seriel}) {
         <img src={note} className='size-[1.7rem]  ' alt="" onClick={()=>{
         if(not.id!=selected_note?.id || !selected_note )
             dispatch(setselectednote(not))
-    console.log('Clicked')
+    
        
            
        }

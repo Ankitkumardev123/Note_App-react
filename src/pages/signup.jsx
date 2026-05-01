@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setcurentuser, setlogined } from '../noteslice/noteslices'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { Auth,googleProvider} from '../firebase/firebase'
+import { setcurentuser, setlogined, setloginuser } from '../noteslice/noteslices'
+import { createUserWithEmailAndPassword, getAdditionalUserInfo, GoogleAuthProvider} from 'firebase/auth'
+import { Auth,googleProvider,database} from '../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
+import { collection, getDocs, query, where } from "firebase/firestore"; 
 import eye2 from "../images/eye2.png"
 import eye1 from "../images/eye1.png"
 import google from "../images/google.png"
 import facebook from "../images/facebook.png"
+import userm from "../images/userm.png"
 import { signInWithPopup } from "firebase/auth";
 function Signup() { 
   const [visible, setvisible] = useState(false)
@@ -66,7 +68,7 @@ function Signup() {
       setTimeout(() => {
         alert("Some issue arised in signup!\nCheck you network connection.")
       }, 100)
-      console.log(error)
+     
     } finally {
       setloading(false)
     }
@@ -76,32 +78,59 @@ function Signup() {
     setgmail('')
     setusename('')
   }
-  const signupwithGoogle=async()=>{
+  const signupwithGoogle=async(e)=>{
+    e.preventDefault()
     try{
-      await signInWithPopup(Auth,googleProvider).then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
+     
+      await signInWithPopup(Auth,googleProvider).then(async(result) => {
+   
     const credential = GoogleAuthProvider.credentialFromResult(result);
+   
     const token = credential.accessToken;
-    // The signed-in user info.
+    const isNewUser=getAdditionalUserInfo(result).isNewUser;
+    
     const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-    alert("Logined !")
+    const Data={username:user?.displayName,email:user?.email}
+    if(isNewUser){
+     setTimeout(() => {
+        alert(`Succesfully signed up, welcome to MyNote ${Data?.username}`)
+      }, 100)
+      
+      dispatch(setcurentuser(Data))
+      dispatch(setlogined(true))
+      navigate('/')
+      return;
+      
+    }
+   
+            const q = query(collection(database, "users"), where("email", "==", Data?.email))
+            const userSnap = await getDocs(q)
+            
+            if (userSnap.empty) return
+            
+            const userdata = userSnap.docs[0]?.data()
+            dispatch(setloginuser(userdata))
+            
+            
+            dispatch(setlogined(true))
+            navigate('/NoteEditArea')
+            setTimeout(() => {
+              alert(`Successfully logged in, Welcome back ${userdata.username}`)
+            }, 100)
+            
+        
+        
+    
   }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
+    alert("Google signup was canceled.")
+    
    
   });
       
     }
-    catch{
-       alert("issue!")
+    catch(error){
+      
+       alert("Signup Unsuccessfull!\nTry again!")
     }
   }
   return (
@@ -115,11 +144,12 @@ function Signup() {
       <div className='h-screen w-screen flex flex-col overflow-hidden bg-gradient-to-br from-slate-950/30 to-transparent'>
         <div className='h-[9vh] w-full bg-gradient-to-r'></div>
         
-        <div className='flex-1 w-full min-h-0 flex flex-col lg:flex-row overflow-hidden'>
+        <div className='flex-1 w-full min-h-0 flex flex-col lg:flex-row overflow-x-hidden'>
           <div className='w-full lg:w-1/2 flex flex-col justify-center px-4 py-4 lg:py-6 lg:px-8 xl:px-12 bg-gradient-to-b from-purple-800/20 via-black/95 to-black/90 bg-[length:400%_200%] backdrop-blur-xl'>
             
-            <div className='text-center mb-4 lg:mb-6 px-2'>
-              <h1 className='text-2xl sm:text-3xl md:text-[2.5rem] lg:text-[2.6rem] xl:text-[2.9rem] font-bold tracking-tight leading-tight mb-2 lg:mb-3 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent'>
+            <div className='text-center   px-2 h-18 pb-3'>
+              <h1 className='text-2xl sm:text-3xl md:text-[2.5rem] lg:text-[2.6rem] xl:text-[2.9rem] 
+              font-bold tracking-tight leading-tight mb-1 lg:mb-3 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent'>
                 Create Your Account
               </h1>
               <p className='text-xs sm:text-sm md:text-base lg:text-lg font-mono text-slate-400 px-1 leading-tight'>
@@ -127,14 +157,15 @@ function Signup() {
               </p>
             </div>
 
-            <div className='w-full flex flex-col sm:flex-row gap-2.5 mb-5 px-2'>
+            <div className='w-full flex flex-col sm:flex-row gap-2.5 mb-1 px-2'>
               <button className='flex-1 py-4 h-12 border border-slate-600/60 backdrop-blur-sm rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
-                <img src={facebook} className='w-5 h-5' alt="" loading="lazy"/>
-                Signup with Facebook
+                <img src={userm} className='size-6' alt="" loading="lazy"/>
+                Continue as Guest
               </button>
-              <button className='flex-1 py-4 h-12 border border-slate-600/60 backdrop-blur-sm rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
-                <img src={google} className='w-5 h-5' alt="" loading="lazy"/>
-                Signup with Google
+              <button onClick={signupwithGoogle}
+               className='flex-1 py-4 h-12 border border-slate-600/60 backdrop-blur-sm rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
+                <img src={google} className='size-5' alt="" loading="lazy"/>
+                Continue with Google
               </button>
             </div>
 

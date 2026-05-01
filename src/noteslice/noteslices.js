@@ -73,17 +73,24 @@ const notesslices=createSlice({
             const {id,name}=actions.payload
           
            const date=new Date
-             const temp=date.toLocaleString("en-US",{month:"short"})
+              const temp=date.toLocaleString("en-US",{
+        month:"short",
+        day:'2-digit',
+        year:'numeric',
+        hour:'2-digit',
+        minute:'2-digit',
+        hour12:true
+      })
             
-             const am_pm=date.getHours() >=12 ? 'PM' :'AM'
+          
             let notee={
                 
                 note_name:name,
                 id:nanoid(),
                notetitle:'',
                 notecontent:'',
-                time:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`,
-                  lasttime:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`
+                time:`${temp}`,
+                  lasttime:`${temp}`
 
             }
            
@@ -111,12 +118,19 @@ const notesslices=createSlice({
              const {id,folid,prop}=action.payload
              const date=new Date;
 
-             const temp=date.toLocaleString("en-US",{month:"short"})
+              const temp=date.toLocaleString("en-US",{
+        month:"short",
+        day:'2-digit',
+        year:'numeric',
+        hour:'2-digit',
+        minute:'2-digit',
+        hour12:true
+      })
            
-             const am_pm=date.getHours() >=12 ? 'PM' :'AM'
+           
              
              state.Folders=state.Folders.map(folder=>folder.id==folid?{...folder,notes:folder.notes.map(n=>n.id==id?{...n,...prop,
-            lasttime:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+' '+am_pm }`
+            lasttime:`${temp}`
              }:n)}:folder);
              state.currentuser={...state.currentuser,user_folders:state.Folders}
              let selected_folder={...state.Folders.filter(folder=>folder.id==state.selectedfolderid)}
@@ -151,14 +165,21 @@ const notesslices=createSlice({
 
          setcurentuser:(state,action)=>{
              const date=new Date
-             const temp=date.toLocaleString("en-US",{month:"short"})
+             const temp=date.toLocaleString("en-US",{
+        month:"short",
+        day:'2-digit',
+        year:'numeric',
+        hour:'2-digit',
+        minute:'2-digit',
+        hour12:true
+      })
             
-             const am_pm=date.getHours() >=12 ? 'PM' :'AM'
+            
 
           const users={
            ... action.payload,
             profile_pic:null,
-    created:`${[date.getMonth()]},${date.getDate()},${date.getFullYear()}`,
+    created:`${temp}`,
     user_folders:[{
         folname:'default_notes',
         id:1,
@@ -183,8 +204,8 @@ const notesslices=createSlice({
 "Made with ❤️ just for you.\n\n" +
 "\–- Team MyNote\n"+
 "-Created  by Ankit Kumar DAsh",
-                 time:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`,
-                  lasttime:`${temp} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${`${date.getMinutes()}`.length==1?'0'+date.getMinutes():date.getMinutes()+am_pm }`
+                 time:`${temp}`,
+                  lasttime:`${temp}`
             }
         ]}]
     
@@ -192,14 +213,12 @@ const notesslices=createSlice({
        
         handledata(users)
         state.currentuser={...users}
+        state.Folders=state.currentuser.user_folders||[]
           state.selectedfolderid=users?.user_folders?.[0]?.id || []
         state.selectednote=window.outerWidth>=768?state.Folders[0]?.notes[0] || null :null
 
         },
-        setuserfolder:(state,action)=>{
-            state.currentuser.user_folders=action.payload
-            state.currentuser={...state.currentuser,user_folders:state.Folders}
-        },
+       
         setloginuser:(state,action)=>{
             
             state.currentuser={...action.payload}
@@ -216,5 +235,5 @@ const notesslices=createSlice({
 }})
 
 export const {setlogined,menubartoggle,editbartoggle,deletefolder,deletenote,addfolder,addNote,updatenote,updatefolder,setselectednote,setselectfolder,
-    setfolders,setprofilepic,setcurentuser,setuserfolder,setloginuser , setfetching} =notesslices.actions;
+    setfolders,setprofilepic,setcurentuser,setloginuser , setfetching} =notesslices.actions;
 export default notesslices.reducer;

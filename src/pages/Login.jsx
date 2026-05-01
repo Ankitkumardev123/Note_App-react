@@ -1,15 +1,17 @@
 import React,{useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Auth, database } from '../firebase/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithPopup } from "firebase/auth";
+
 import { useDispatch } from 'react-redux'
-import { setloginuser, setlogined, setfetching, setfolders, menubartoggle } from '../noteslice/noteslices'
+import { signInWithEmailAndPassword, getAdditionalUserInfo, GoogleAuthProvider} from 'firebase/auth'
+import { Auth,googleProvider,database} from '../firebase/firebase'
+import { setloginuser, setlogined, setfetching, menubartoggle,setcurentuser } from '../noteslice/noteslices'
 import { collection, getDocs, query, where } from "firebase/firestore"; 
 import eye2 from "../images/eye2.png"
 import eye1 from "../images/eye1.png"
 import google from "../images/google.png"
 import facebook from "../images/facebook.png"
-
+import userm from "../images/userm.png"
 function Login() {
   const [visible, setvisible] = useState(false)
   const [user_logindata, setuserdata] = useState('')
@@ -41,7 +43,7 @@ function Login() {
       const userdata = userSnap.docs[0]?.data()
       dispatch(setloginuser(userdata))
       
-      dispatch(setfolders(userdata?.user_folder))
+      
       dispatch(setlogined(true))
       dispatch(menubartoggle(false))
       setTimeout(() => {
@@ -70,7 +72,61 @@ function Login() {
       style={{ animationDelay: `${Math.random() * 2}s` }}
     />
   ))
-
+const loginwithGoogle=async(e)=>{
+    e.preventDefault()
+    try{
+     
+      await signInWithPopup(Auth,googleProvider).then(async(result) => {
+   
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    
+    const token = credential.accessToken;
+    const isNewUser=getAdditionalUserInfo(result).isNewUser;
+    
+    const user = result.user;
+    const Data={username:user?.displayName,email:user?.email}
+    if(isNewUser){
+     setTimeout(() => {
+        alert(`Succesfully signed up, welcome to MyNote ${Data?.username}`)
+      }, 100)
+      
+      dispatch(setcurentuser(Data))
+      dispatch(setlogined(true))
+      navigate('/')
+      return;
+      
+    }
+   
+            const q = query(collection(database, "users"), where("email", "==", Data?.email))
+            const userSnap = await getDocs(q)
+            
+            if (userSnap.empty) return
+            
+            const userdata = userSnap.docs[0]?.data()
+            dispatch(setloginuser(userdata))
+            
+            
+            dispatch(setlogined(true))
+            navigate('/NoteEditArea')
+            setTimeout(() => {
+              alert(`Successfully logged in, Welcome back ${userdata.username}`)
+            }, 100)
+            
+        
+        
+    
+  }).catch((error) => {
+    alert("Google signup was canceled.")
+    console.log(error)
+   
+  });
+      
+    }
+    catch(error){
+      console.log(error)
+       alert("Signup Unsuccessfull!\nTry again!")
+    }
+  }
   return (
     <>
       {/* Loading Spinner */}
@@ -87,14 +143,15 @@ function Login() {
         <div className='h-[9vh] w-full bg-gradient-to-r z-0  '></div>
         
         {/* Content Area - Perfect 91vh */}
-        <div className='flex-1 w-full min-h-0 flex flex-col lg:flex-row overflow-hidden'>
+        <div className='flex-1 w-full min-h-0 flex flex-col lg:flex-row overflow-x-hidden'>
           
           {/* Form Section */}
           <div className='w-full lg:w-1/2 flex flex-col justify-center px-4 py-4 lg:py-6 lg:px-8 xl:px-12 bg-gradient-to-b from-purple-800/20 via-black/95 to-black/90 bg-[length:400%_200%] backdrop-blur-xl'>
             
             {/* Title */}
             <div className='text-center mb-4 lg:mb-6 px-2'>
-              <h1 className='text-2xl sm:text-3xl md:text-[2.5rem] lg:text-[2.6rem] xl:text-[2.9rem] font-bold tracking-tight leading-tight mb-2 lg:mb-3 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent'>
+              <h1 className='text-2xl w-full h-auto bg-red-800 sm:text-3xl md:text-[2.5rem] lg:text-[2.6rem] xl:text-[2.9rem] font-bold 
+              tracking-tight leading-tight py-3 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent'>
                 Login to Your Account
               </h1>
               <p className='text-xs sm:text-sm md:text-base lg:text-lg font-mono text-slate-400 px-1 leading-tight'>
@@ -103,21 +160,21 @@ function Login() {
             </div>
 
             {/* Social Login */}
-            <div className='w-full flex flex-col sm:flex-row gap-2.5 mb-5 px-2'>
+            <div className='w-full flex flex-col sm:flex-row gap-2.5 mb-3 px-2'>
               <button className='flex-1 h-12 py-3 border border-slate-600/60 backdrop-blur-sm
                rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300
                 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70
                  via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
-                <img src={facebook} className='w-5 h-5' alt="Facebook" loading="lazy"/>
-                <span className=''>Login with Facebook</span>
+                <img src={userm} className='size-6' alt="Facebook" loading="lazy"/>
+                <span className=''>Continue as Guest</span>
              
               </button>
               <button className='flex-1 h-12 border
                border-slate-600/60 backdrop-blur-sm py-3 rounded-xl font-semibold text-xs sm:text-sm tracking-wid
                e hover:scale-105 transition-all duration-300 hover:border-purple-500/80
-                hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
-                <img src={google} className='w-5 h-5' alt="Google" loading="lazy"/>
-                <span className=''>Login with Google</span>
+                hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2' onClick={loginwithGoogle}>
+                <img src={google} className='size-5' alt="Google" loading="lazy" />
+                <span className=''>Continue with Google</span>
                 
               </button>
             </div>
@@ -173,7 +230,7 @@ function Login() {
               </button>
 
               <div className='w-full text-center pt-2 pb-3'>
-                <span className='text-xs font-mono text-slate-500'>Not a member? </span>
+                <span className='text-xs font-mono text-slate-500'>Not a member yet? </span>
                 <button 
                   type="button"
                   onClick={() => navigate('/signup')}

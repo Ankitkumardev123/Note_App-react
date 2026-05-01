@@ -5,7 +5,7 @@ import Note from '../componets/Note'
 import Folder from '../componets/Folder'
 import ReactMarkdown from "react-markdown"
 import Dropdown from "../componets/Dropdown"
-import { menubartoggle, editbartoggle, addfolder, updatenote, setselectednote, setselectfolder, setuserfolder, addNote } from '../noteslice/noteslices'
+import { menubartoggle, editbartoggle, addfolder, updatenote, setselectednote, setselectfolder, addNote } from '../noteslice/noteslices'
 import CodeMirror from "@uiw/react-codemirror"
 import { oneDark } from '@uiw/react-codemirror'
 import { markdown } from '@codemirror/lang-markdown'
@@ -359,10 +359,11 @@ export default function NoteEditArea() {
               </div>
 
               <div
-                className={`w-11 sm:w-14 h-full shrink-0 grid place-items-center border-r border-gray-700 cursor-pointer ${!ismobile ? "" : "hidden"}`}
+                className={`w-11 sm:w-14 h-full shrink-0 grid place-items-center border-r cursor-pointer border-gray-700  
+                  ${!ismobile ? "" : "hidden"}`}
                 onClick={() => setresize(!resize)}
               >
-                <img src={!resize ? maximize : minimize} alt="" className="size-5 sm:size-6" />
+                <img src={!resize ? maximize : minimize} alt="" className="size-5 sm:size-6 cursor-pointer" />
               </div>
 
          

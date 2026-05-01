@@ -335,7 +335,7 @@ function Navbar() {
         
         </div>
         
-        <div className='w-full hidden h-full short_nav  flex items-center justify-end pr-4'>
+        <div className='w-full hidden h-full short_nav   items-center justify-end pr-4'>
     <NanDropdown />
     </div>
     </div>
@@ -361,9 +361,9 @@ function Navbar() {
           
         
            
-         <div className=' gap-2 w-[40%] h-full flex justify-end pr-2 items-center'>
+         <div className=' gap-2 w-[50%] h-full flex justify-end pr-2 items-center'>
           <img src={userdata?.profile_pic ?? userm} alt="" className='slider1 size-[1.8rem] border-gray-600 border-[1px] rounded-full' />
-          <h2 className='text-sm font-poppins font-semibold slider1 usernamenav'>{userdata?.username.slice(0,10) ?? 'Notfound404'}</h2>
+          <h2 className='text-sm font-poppins font-semibold slider1 usernamenav'>{userdata?.username?.slice(0,10)+"..." ?? 'Notfound404'}</h2>
            <img src={menu?close:Menu} className='img slider1 size-[1.5rem] z-50 p-0.5' alt="" onClick={handleclick}
           />
          </div>

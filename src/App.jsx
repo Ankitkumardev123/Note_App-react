@@ -25,18 +25,7 @@ function App() {
       const selected_note=useSelector(state=>state.noted.selectednote)
       const selected_folderid=useSelector(state=>state.noted.selectedfolderid)
     const currentuser=useSelector(state=>state.noted.currentuser)
-  // function protectedRoute({user,children}){
-  //   if(!user)
-  //     return <Navigate to="/login"/>
-  // }
-  // useEffect(()=>{
-  //   const body=document.querySelector('body')
-  //   if(islogined)
-  //     body.style.overflow="hidden"
-  //   else{
-  //     body.style.overflow="auto"
-  //   }
-  // },[islogined])
+  
    useEffect(()=>{
      fetchref.current=fetch_on
    },[fetch_on])
@@ -74,7 +63,7 @@ const handlerelogin=
            }, 1000);
         return;
     }catch(error){
-      alert("User check yout network connection!!")
+      alert("Please check yout network connection!!")
       setloader(false)
      
     }
@@ -123,12 +112,14 @@ const handleupdate= async()=>{
   },[folders])
 
 useEffect(()=>{
- 
-  if(userdata?.email !=="notfound@gmail.com"){
+ setTimeout(() => {
+   if(userdata?.email !=="notfound@gmail.com"){
  
     handleupdate()
     
   }
+ }, 200);
+ 
 },[userdata])
   return (
    <>

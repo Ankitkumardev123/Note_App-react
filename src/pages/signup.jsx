@@ -83,7 +83,7 @@ function Signup() {
     try{
      
       await signInWithPopup(Auth,googleProvider).then(async(result) => {
-   
+   setloading(true)
     const credential = GoogleAuthProvider.credentialFromResult(result);
    
     const token = credential.accessToken;
@@ -123,14 +123,17 @@ function Signup() {
     
   }).catch((error) => {
     alert("Google signup was canceled.")
-    
+    setloading(false)
    
   });
       
     }
     catch(error){
-      
+      setloading(false)
        alert("Signup Unsuccessfull!\nTry again!")
+    }
+    finally{
+      setloading(false)
     }
   }
   return (

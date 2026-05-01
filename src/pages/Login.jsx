@@ -75,7 +75,7 @@ function Login() {
 const loginwithGoogle=async(e)=>{
     e.preventDefault()
     try{
-     
+      setloading(true)
       await signInWithPopup(Auth,googleProvider).then(async(result) => {
    
     const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -116,15 +116,17 @@ const loginwithGoogle=async(e)=>{
         
     
   }).catch((error) => {
-    alert("Google signup was canceled.")
+    alert("Google login was canceled.")
     console.log(error)
-   
+    setloading(false)
   });
       
     }
     catch(error){
-      console.log(error)
-       alert("Signup Unsuccessfull!\nTry again!")
+      setloading(false)
+       alert("Login Unsuccessfull!\nTry again!")
+    }finally{
+      setloading(false)
     }
   }
   return (

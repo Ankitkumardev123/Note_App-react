@@ -50,18 +50,17 @@ function Navbar() {
       gsap.from(`${islogined?'.slider1':'.slider'}`,{
       transform:'translateY(-50%)',
       opacity:0,
-        duration:0.5,
+        duration:1,
         ease:'back.in',
         
-        stagger:0.3,
+        stagger:0.5,
       } 
 
       )
     },{})
   
-  
  
- let  slider_move=(menu)=>{ 
+let  slider_move=(menu)=>{ 
    
    
     if(menu)
@@ -69,8 +68,8 @@ function Navbar() {
       
          gsap.to(slider.current,{
     x:"400%",
-    duration:1,
-    
+    duration:2,
+   
     ease:'power5.out',
    })
       
@@ -80,8 +79,8 @@ function Navbar() {
          gsap.to(slider.current,{
         
       x:'0%',
-      duration:1,
-    
+      duration:1.5,
+         
       ease:'power5.in',
     })
  
@@ -89,6 +88,9 @@ function Navbar() {
   }
    
   }
+  
+ 
+ 
 
   
   const handleimage=(file)=>{
@@ -130,7 +132,7 @@ function Navbar() {
       overflow-y-auto  scrollbar-hide z-[100]
        flex-col w-[70vmin] top-[8.4%] right-0   h-[90vh]
      bg-black bg-opacity-100  rounded-l-xl bg-gradient-to-t bg-[length:200%_200%]  animate-gradient from-purple-800 via-pink-600 to-cyan-500
-     py-1 pl-1 translate-x-[400%] ${menu?'':'hidden'}`}>
+     py-1 pl-1 translate-x-[400%] `}>
       <div ref={slider} className='flex overflow-x-hidden
       overflow-y-auto  scrollbar-hide  
       justify-start items-center  flex-col w-full  h-full

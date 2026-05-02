@@ -111,6 +111,9 @@ export default function NoteEditArea() {
     setnotename(selected_note?.note_name || '')
     setnotecontent(selected_note?.notecontent || '')
     settoggleEditPanel(selected_note == null)
+    setpreview(false)
+    setcreatenote(false)
+    setinfopanel(false)
   }, [selected_note])
 
   const handlechange = (e) => {
@@ -397,8 +400,9 @@ export default function NoteEditArea() {
             </div>
 
           
-            <div className={`flex-1 min-h-0 grid place-items-center ${toggle_editPanel ? "" : "hidden"}`}>
+            <div className={`flex flex-col h-full   justify-center items-center gap-3  ${toggle_editPanel ? "" : "hidden"}`}>
               <img loading="lazy" src={notelogo} alt="" className="size-24 sm:size-36 grayscale opacity-50" />
+              <h1 className='text-2xl text-gray-500 font-semibold font-poppins'>Create a note or Select a note.</h1>
             </div>
 
             
@@ -450,18 +454,18 @@ export default function NoteEditArea() {
               
                 <div className="w-full h-full px-4 py-2 text-left gap-2 text-white overflow-y-auto overflow-x-hidden scrollbar-hide
                   prose prose-invert max-w-none
-                  prose-p:my-1 prose-p:leading-relaxed prose-p:whitespace-normal
+                  prose-p:my-4  
                   prose-headings:text-white prose-headings:my-2
                   prose-strong:text-white
                   prose-em:text-white
                   prose-code:text-white prose-code:bg-gray-700 prose-code:px-1 prose-code:rounded
                   prose-pre:bg-gray-800 prose-pre:my-2
-                  prose-ul:my-1 prose-ul:text-white prose-ul:list-disc prose-ul:pl-5
-                  prose-ol:my-1 prose-ol:text-white prose-ol:list-decimal prose-ol:pl-5
+                  prose-ul:my-2 prose-ul:text-white prose-ul:list-disc prose-ul:pl-5
+                  prose-ol:my-2 prose-ol:text-white prose-ol:list-decimal prose-ol:pl-5
                   prose-li:my-0.5 prose-li:text-white prose-li:whitespace-pre-wrap prose-li:break-words
                   prose-blockquote:text-gray-300 prose-blockquote:border-gray-500 prose-blockquote:my-2
                   prose-a:text-blue-400
-                  prose-hr:my-3 prose-hr:border-gray-600">
+                  prose-hr:my-4 prose-hr:border-gray-600">
                   <ReactMarkdown remarkPlugins={[remarkBreaks]}>{notecontent}</ReactMarkdown>
                 </div>
               )}

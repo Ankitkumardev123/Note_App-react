@@ -188,22 +188,60 @@ const notesslices=createSlice({
                 note_name:'Welcome to MyNote..',
                 id:2,
                 notetitle:'Welcome note',
-                notecontent:"# 👋 Welcome to MyNote\n\n" +
-"Hey there, and welcome! 🎉\n\n" +
-"You’ve just created your first note. Here’s what you can do with MyNote:\n\n" +
-"✅ Create folders to organize your notes\n" +
-"✅ Write in Markdown — format using **bold**, *italic*, `inline code`, and more\n" +
-"✅ Notes are saved automatically\n" +
-"✅ Access your notes anytime, anywhere\n\n" +
+                notecontent:"# 👋 Welcome to MyNote!\n\n" +
+"### Hey there! Great to have you here 🎉\n\n" +
+"MyNote is your personal space to write, organize, and think clearly.\n\n" +
 "---\n\n" +
-"## ✍️ Try it now\n\n" +
-"- Type anything below\n" +
-"- Create your first folder\n" +
-"- Explore the editor\n\n" +
+"## 📁 Folders\n\n" +
+"- Create **folders** to group related notes together\n" +
+"- Click the **folder icon** in the sidebar to add one\n" +
+"- You can have as many folders as you need\n\n" +
 "---\n\n" +
-"Made with ❤️ just for you.\n\n" +
-"\–- Team MyNote\n"+
-"-Created  by Ankit Kumar DAsh",
+"## 📝 Notes\n\n" +
+"- Inside each folder, create **notes** with the **+ button**\n" +
+"- Give your notes a **title** at the top\n" +
+"- Start writing in the editor below\n\n" +
+"---\n\n" +
+"## ✍️ Markdown Support\n\n" +
+"MyNote supports full **Markdown** formatting:\n\n" +
+"| Element | Syntax |\n" +
+"|---|---|\n" +
+"| Bold | `**bold**` |\n" +
+"| Italic | `*italic*` |\n" +
+"| Heading | `# Heading` |\n" +
+"| Code | `` `inline code` `` |\n" +
+"| List | `- item` |\n" +
+"| Divider | `---` |\n\n" +
+"---\n\n" +
+"## 👁️ Preview Mode\n\n" +
+"- Click the **eye icon** in the toolbar to toggle **Preview**\n" +
+"- Preview renders your Markdown beautifully\n" +
+"- Switch back anytime to keep editing\n\n" +
+"---\n\n" +
+"## 🖥️ Fullscreen Mode *(Desktop)*\n\n" +
+"- Click the **maximize icon** (top-left of the editor) to enter **Fullscreen**\n" +
+"- Hides the note list for a distraction-free writing experience\n" +
+"- Click **minimize** to return to normal view\n\n" +
+"---\n\n" +
+"## 💾 Auto-Save\n\n" +
+"> Your notes are **saved automatically** as you type.\n" +
+"> No save button needed — just write!\n\n" +
+"---\n\n" +
+"## 📋 Tips & Tricks\n\n" +
+"- Use `---` to add a clean **horizontal divider**\n" +
+"- Use `> text` for **blockquotes**\n" +
+"- Use ` ``` ` for **code blocks**\n" +
+"- Click the **info icon** to see note details like character count and dates\n\n" +
+"---\n\n" +
+"## 🚀 Try It Now\n\n" +
+"- [ ] Create your first folder\n" +
+"- [ ] Write a note in Markdown\n" +
+"- [ ] Toggle Preview mode to see it rendered\n" +
+"- [ ] Try Fullscreen mode on desktop\n\n" +
+"---\n\n" +
+"*Made with ❤️ just for you.*\n\n" +
+"**— MyNote | Created by Ankit Kumar Dash**\n\n" +
+"[⭐ Star on GitHub](https://github.com/Ankitkumardev123/Note_App-react)",
                  time:`${temp}`,
                   lasttime:`${temp}`
             }

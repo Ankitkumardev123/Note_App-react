@@ -1,4 +1,4 @@
-
+import remarkGfm from 'remark-gfm';
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Note from '../componets/Note'
@@ -447,10 +447,21 @@ export default function NoteEditArea() {
                    text-sm sm:text-base outline-none resize-none overflow-y-auto overflow-x-hidden scrollbar-hide placeholder:text-gray-600 leading-relaxed"
                 />
               ) : (
-                <div className="w-full h-full px-2  pt-4 pb-4 gap-2 text-white overflow-y-auto overflow-x-hidden scrollbar-hide
-                  prose prose-strong:text-white
-                  prose-code:text-white
-                  prose-p:leading-relaxed whitespace-pre-wrap">
+              
+                <div className="w-full h-full px-4 py-2 text-left  text-white overflow-y-auto overflow-x-hidden scrollbar-hide
+                  prose prose-invert max-w-none
+                  prose-p:my-1 prose-p:leading-relaxed prose-p:whitespace-normal
+                  prose-headings:text-white prose-headings:my-2
+                  prose-strong:text-white
+                  prose-em:text-white
+                  prose-code:text-white prose-code:bg-gray-700 prose-code:px-1 prose-code:rounded
+                  prose-pre:bg-gray-800 prose-pre:my-2
+                  prose-ul:my-1 prose-ul:text-white prose-ul:list-disc prose-ul:pl-5
+                  prose-ol:my-1 prose-ol:text-white prose-ol:list-decimal prose-ol:pl-5
+                  prose-li:my-0.5 prose-li:text-white prose-li:whitespace-pre-wrap prose-li:break-words
+                  prose-blockquote:text-gray-300 prose-blockquote:border-gray-500 prose-blockquote:my-2
+                  prose-a:text-blue-400
+                  prose-hr:my-3 prose-hr:border-gray-600">
                   <ReactMarkdown remarkPlugins={[remarkBreaks]}>{notecontent}</ReactMarkdown>
                 </div>
               )}

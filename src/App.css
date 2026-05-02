@@ -26,19 +26,11 @@ body{
  
 
 }
-.prose ul{
-  list-style-type: circle;
-  padding-left: 20px;
-  margin:0;
-  height: 20px;
-  display: flex;
-  justify-content:baseline;
-  align-items: center;
-}
-.prose h1,.prose h2,.prose h3,.prose h4{
+
+.prose h1,.prose h2,.prose h3,.prose h4,.prose p.prose hr{
   color: white;
  
-  margin: 0;
+  margin: 2% 0% 2% 0;
   padding: 0;
 }
 .prose p{
@@ -501,7 +493,9 @@ padding-top: 0;
  gap: 1rem;
 }
 
-
+.prose hr{
+  margin: 0 0 0 0 ;
+}
 label{
   font-size: 0.8rem;
 }

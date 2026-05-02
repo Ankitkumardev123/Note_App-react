@@ -138,19 +138,19 @@ const loginwithGoogle=async(e)=>{
         </div>
       )}
       
-      {/* Full Viewport Layout */}
+      
       <div className='h-screen w-screen flex flex-col overflow-hidden bg-gradient-to-br from-slate-950/30 to-transparent'>
         
-        {/* ✅ EXACT 9vh Navbar Space */}
+       
         <div className='h-[9vh] w-full bg-gradient-to-r z-0  '></div>
         
-        {/* Content Area - Perfect 91vh */}
+       
         <div className='flex-1 w-full min-h-0 flex flex-col lg:flex-row overflow-x-hidden'>
           
-          {/* Form Section */}
+         
           <div className='w-full lg:w-1/2 flex flex-col justify-center px-4 py-4 lg:py-6 lg:px-8 xl:px-12 bg-gradient-to-b from-purple-800/20 via-black/95 to-black/90 bg-[length:400%_200%] backdrop-blur-xl'>
             
-            {/* Title */}
+        
             <div className='text-center mb-4 lg:mb-6 px-2'>
               <h1 className='text-2xl w-full h-auto bg-red-800 sm:text-3xl md:text-[2.5rem] lg:text-[2.6rem] xl:text-[2.9rem] font-bold 
               tracking-tight leading-tight py-3 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent'>
@@ -161,7 +161,6 @@ const loginwithGoogle=async(e)=>{
               </p>
             </div>
 
-            {/* Social Login */}
             <div className='w-full flex flex-col sm:flex-row gap-2.5 mb-3 px-2'>
               <button className='flex-1 h-12 py-3 border border-slate-600/60 backdrop-blur-sm
                rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300
@@ -244,7 +243,7 @@ const loginwithGoogle=async(e)=>{
             </form>
           </div>
 
-          {/* Animated Background */}
+          
           <div className='login_p2 lg:block lg:w-1/2 h-full  relative overflow-hidden '>
            
           </div>

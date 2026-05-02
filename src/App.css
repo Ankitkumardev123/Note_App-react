@@ -240,6 +240,12 @@ padding-top: 0;
 
 }
 @media(max-width:768px){
+  .login_p2{
+    display: none;
+  }
+  .login_p1{
+    height: 100%;
+  }
   .footer{
     padding: 0;
   }

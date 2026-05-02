@@ -162,12 +162,12 @@ function Signup() {
 
             <div className='w-full flex flex-col sm:flex-row gap-2.5 mb-1 px-2'>
               <button className='flex-1 py-4 h-12 border border-slate-600/60 backdrop-blur-sm rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
-                <img src={userm} className='size-6' alt="" loading="lazy"/>
+                <img loading="lazy" src={userm} className='size-6' alt="" />
                 Continue as Guest
               </button>
               <button onClick={signupwithGoogle}
                className='flex-1 py-4 h-12 border border-slate-600/60 backdrop-blur-sm rounded-xl font-semibold text-xs sm:text-sm tracking-wide hover:scale-105 transition-all duration-300 hover:border-purple-500/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:bg-gradient-to-r from-purple-600/70 via-pink-400/70 to-cyan-400/70 flex items-center justify-center gap-2'>
-                <img src={google} className='size-5' alt="" loading="lazy"/>
+                <img loading="lazy" src={google} className='size-5' alt="" />
                 Continue with Google
               </button>
             </div>
@@ -204,7 +204,7 @@ function Signup() {
                   onChange={(e) => setpassword(e.target.value)}
                   required
                 />
-                <img 
+                <img loading="lazy" 
                   src={visible ? eye2 : eye1} 
                   alt="toggle visibility" 
                   className='absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer hover:scale-110 transition-all hover:brightness-125' 

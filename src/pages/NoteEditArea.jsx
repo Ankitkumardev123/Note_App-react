@@ -197,7 +197,7 @@ export default function NoteEditArea() {
         <div className={`w-full h-11 sm:h-12 shrink-0 border-t border-gray-600 bg-gradient-to-r bg-[length:200%_200%] animate-gradient from-purple-700 via-pink-600 to-cyan-600 ${create ? "" : "hidden"}`}>
           <div className="w-full h-full flex items-center bg-black/60 backdrop-blur-lg">
             <div className="w-12 sm:w-14 h-full shrink-0 grid place-items-center">
-              <img src={folder} className="size-5 sm:size-6" alt="" />
+              <img loading="lazy" src={folder} className="size-5 sm:size-6" alt="" />
             </div>
             <input
               type="text"
@@ -227,7 +227,7 @@ export default function NoteEditArea() {
                 }
               }}
             >
-              <img src={save} className="size-6 sm:size-7" alt="" />
+              <img loading="lazy" src={save} className="size-6 sm:size-7" alt="" />
             </div>
           </div>
         </div>
@@ -270,7 +270,7 @@ export default function NoteEditArea() {
                   className="w-12 sm:w-14 h-full shrink-0 bg-slate-950 flex items-center justify-center border-l border-gray-600 cursor-pointer"
                   onClick={() => setcreatenote(!createnote)}
                 >
-                  <img src={!createnote ? remove : close} alt="" className="size-6 sm:size-7" />
+                  <img loading="lazy" src={!createnote ? remove : close} alt="" className="size-6 sm:size-7" />
                 </div>
               </div>
             </div>
@@ -303,7 +303,7 @@ export default function NoteEditArea() {
               <div className={`w-full h-12 sm:h-14 shrink-0 border-2 z-10 border-purple-700 flex items-center bg-cyan-700 ${createnote ? "" : "hidden"}`}>
                 <span className="flex-1 h-full flex items-center bg-black/40">
                   <div className="w-10 sm:w-12 h-full shrink-0" />
-                  <img src={note} className="size-5 sm:size-6 shrink-0" alt="" />
+                  <img loading="lazy" src={note} className="size-5 sm:size-6 shrink-0" alt="" />
                   <input
                     type="text"
                     value={createmsg}
@@ -324,7 +324,7 @@ export default function NoteEditArea() {
                   />
                 </span>
                 <span
-                  className="w-12 sm:w-14 h-full shrink-0 flex items-center justify-center border-l border-purple-700 bg-black/30 cursor-pointer"
+                  className="w-12  h-full shrink-0 flex items-center justify-center border-l border-purple-700 bg-black/30 cursor-pointer"
                   onClick={() => {
                     if (createmsg !== '') {
                       dispatch(addNote({ id: selected_folderid, name: createmsg }))
@@ -335,7 +335,7 @@ export default function NoteEditArea() {
                     }
                   }}
                 >
-                  <img src={save} alt="" className="size-6 sm:size-7 rounded-lg" />
+                  <img loading="lazy" src={save} alt="" className="size-6 sm:size-7 rounded-lg" />
                 </span>
               </div>
 
@@ -355,7 +355,7 @@ export default function NoteEditArea() {
                 className={`w-11 sm:w-14 h-full shrink-0 grid place-items-center border-r border-gray-700 cursor-pointer ${ismobile ? "" : "hidden"}`}
                 onClick={() => dispatch(setselectednote(null))}
               >
-                <img src={back} alt="" className="size-5 sm:size-6" />
+                <img loading="lazy" src={back} alt="" className="size-5 sm:size-6" />
               </div>
 
               <div
@@ -363,7 +363,7 @@ export default function NoteEditArea() {
                   ${!ismobile ? "" : "hidden"}`}
                 onClick={() => setresize(!resize)}
               >
-                <img src={!resize ? maximize : minimize} alt="" className="size-5 sm:size-6 cursor-pointer" />
+                <img loading="lazy" src={!resize ? maximize : minimize} alt="" className="size-5 sm:size-6 cursor-pointer" />
               </div>
 
          
@@ -379,13 +379,13 @@ export default function NoteEditArea() {
 
             
               <div className="h-full shrink-0 flex items-center gap-3 sm:gap-4 px-3 sm:px-4 border-l border-gray-700">
-                <img
+                <img loading="lazy"
                   src={preview ? eye2 : eye1}
                   alt=""
                   className="size-5 sm:size-6 cursor-pointer opacity-80 hover:opacity-100 transition-opacity"
                   onClick={() => setpreview(!preview)}
                 />
-                <img
+                <img loading="lazy"
                   src={info}
                   alt=""
                   className="size-5 sm:size-6 cursor-pointer opacity-80 hover:opacity-100 transition-opacity"
@@ -398,7 +398,7 @@ export default function NoteEditArea() {
 
           
             <div className={`flex-1 min-h-0 grid place-items-center ${toggle_editPanel ? "" : "hidden"}`}>
-              <img src={notelogo} alt="" className="size-24 sm:size-36 grayscale opacity-50" />
+              <img loading="lazy" src={notelogo} alt="" className="size-24 sm:size-36 grayscale opacity-50" />
             </div>
 
             
@@ -411,7 +411,7 @@ export default function NoteEditArea() {
                  
                   <div className="w-full h-12 shrink-0 border-b border-gray-600 flex items-center justify-between px-4">
                     <h1 className="text-gray-300 font-sans font-light text-sm sm:text-base">Document</h1>
-                    <img
+                    <img loading="lazy"
                       src={close}
                       alt=""
                       className="size-6 cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
@@ -448,7 +448,7 @@ export default function NoteEditArea() {
                 />
               ) : (
               
-                <div className="w-full h-full px-4 py-2 text-left  text-white overflow-y-auto overflow-x-hidden scrollbar-hide
+                <div className="w-full h-full px-4 py-2 text-left gap-2 text-white overflow-y-auto overflow-x-hidden scrollbar-hide
                   prose prose-invert max-w-none
                   prose-p:my-1 prose-p:leading-relaxed prose-p:whitespace-normal
                   prose-headings:text-white prose-headings:my-2

@@ -133,7 +133,7 @@ function Home() {
     t1.from('.ele_4', { y: 100, opacity: 0, duration: 1, delay: 0.2, ease: 'linear' }, 0)
     t1.to('.heart', { opacity: 1, duration: 0.2, delay: 0.1, ease: 'bounce.inOut' })
     t1.to('.ele_5_1', { height: '25.2vmin', width: '35vmin', opacity: 1, delay: 0.2, stagger: 0.5, duration: 0.5, ease: 'linear' })
-    t1.to('.ele_5_2', { height: '21vmin', width: '33vmin', opacity: 1, delay: 0.1, stagger: 0.5, duration: 0.5, ease: 'linear' })
+    t1.to('.ele_5_2', { height: '21vmin', width: '35vmin', opacity: 1, delay: 0.1, stagger: 0.5, duration: 0.5, ease: 'linear' })
     t1.to('.ele_5 h2', { y: '0%', opacity: 1, duration: 0.2, delay: 0.1, ease: 'power2', stagger: 0.2 })
     t1.play()
   }, [])
@@ -281,7 +281,7 @@ setisloading(false)
        
         <h2 className='flex px-1 gap-1 '><img loading="lazy"   src={note} className='size-5' alt="" />Create Notes</h2>
         <h2 className='flex px-1 gap-1 '><img loading="lazy"   src={pencils} className='size-5' alt="" />Edit Notes</h2>
-       <h2 className='flex px-1 gap-1 '><span className='text-green-500'> ✔</span> Dowload Notes</h2>
+       <h2 className='flex px-1 gap-1 '><span className='text-green-500'> <img loading="lazy"   src={folder} className='size-5 ' alt="" /></span> Create Folders</h2>
         <h2 className='flex px-1 gap-1 '><img loading="lazy"   src={folder} className='size-5 ' alt="" />Organize Notes</h2>
       </div>
       <div  alt=""  className='ele_5 ele_5_1 font-poppins opacity-0 top-[60%] -left-10 rotate-[5deg] text-sm absolute w-[0] flex flex-col gap-1
@@ -315,9 +315,9 @@ setisloading(false)
        <h2 className='flex px-1'>🔥 Stay Organized</h2>
        
       </div>
-       <div  alt=""  className='ele_5 ele_5_2 font-poppins opacity-0 z-[5] top-[5%] right-5 rotate-[5deg] 
-        text-[2.5vmin] absolute  flex flex-col gap-1
-        text-white rounded-md border-4 border-cyan-400  h-[0] 
+       <div  alt=""  className='ele_5 ele_5_2 font-poppins justify-between opacity-0 z-[5] top-[5%] right-5 rotate-[5deg] 
+        text-xs absolute  flex flex-col gap-1
+        text-white rounded-md border-4 border-cyan-400  h-[0] w-auto  
        bg-black duration-300 hover:scale-105'>
         <div className='w-full h-5 gap-1 px-2 bg-cyan-500  flex items-center text-center text-[5vmin] text-black'>
         <div className='size-[0.5rem] bg-white rounded-full'></div>
@@ -326,8 +326,9 @@ setisloading(false)
        
         </div>
        
-        <h2 className='flex pl-0.2  '>🔐Works On All Devices</h2>
-        <h2 className='flex pl-0.2  '>⚡Sec_Authentication</h2>
+
+        <h2 className='flex pl-0.2  '>🖥️ Works on All Devices</h2>
+        <h2 className='flex pl-0.2  '>⚡Secure Authentication</h2>
        <h2 className='flex pl-0.2'>🔥Smooth Experience</h2>
        
       </div>

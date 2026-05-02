@@ -301,13 +301,13 @@ export default function NoteEditArea() {
               )}
 
               <div className={`w-full h-12 sm:h-14 shrink-0 border-2 z-10 border-purple-700 flex items-center bg-cyan-700 ${createnote ? "" : "hidden"}`}>
-                <span className="flex-1 h-full flex items-center bg-black/40">
-                  <div className="w-10 sm:w-12 h-full shrink-0" />
+                <span className="w-full h-full flex justify-start items-center bg-black/40">
+                  <div className="w-5 sm:w-8 h-full shrink-0 " />
                   <img loading="lazy" src={note} className="size-5 sm:size-6 shrink-0" alt="" />
                   <input
                     type="text"
                     value={createmsg}
-                    className="flex-1 h-full bg-transparent outline-none font-poppins font-semibold text-purple-300 text-sm sm:text-base px-2"
+                    className="w-full h-full bg-transparent outline-none font-poppins font-semibold text-purple-300 text-sm sm:text-base px-2"
                     onChange={(e) => setcreatemsg(e.target.value)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
@@ -324,7 +324,7 @@ export default function NoteEditArea() {
                   />
                 </span>
                 <span
-                  className="w-12  h-full shrink-0 flex items-center justify-center border-l border-purple-700 bg-black/30 cursor-pointer"
+                  className="w-[20%]  h-full shrink-0 flex items-center justify-center border-l border-purple-700 bg-black/30 cursor-pointer"
                   onClick={() => {
                     if (createmsg !== '') {
                       dispatch(addNote({ id: selected_folderid, name: createmsg }))

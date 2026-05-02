@@ -63,7 +63,7 @@ function Navbar() {
 let  slider_move=(menu)=>{ 
    
    
-    if(menu)
+    if(menu || !islogined)
      {
       
          gsap.to(slider.current,{
@@ -72,10 +72,9 @@ let  slider_move=(menu)=>{
    
     ease:'power5.out',
    })
-      
+    
      }
-    else
-      {
+    else{
          gsap.to(slider.current,{
         
       x:'0%',
@@ -83,13 +82,15 @@ let  slider_move=(menu)=>{
          
       ease:'power5.in',
     })
- 
-   
   }
+   
+  
    
   }
   
- 
+ useEffect(()=>{
+  if(!islogined) slider_move(true)
+ },[islogined])
  
 
   
@@ -228,6 +229,7 @@ let  slider_move=(menu)=>{
   }
       }
       else{
+      
         navigate('/login')
         dispatch(menubartoggle(false))
       }
